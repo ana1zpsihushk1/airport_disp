@@ -10,7 +10,39 @@ void AirportPlayer::tick()
 
 void AirportPlayer::acceptAirplane(std::shared_ptr<Airplane> plane)
 {
-    airplanes.push_back(plane);
-    //САМОЛЕТ ПРИБЫЛ В АЭРОПОРТ
-    //КОГДА ЭТО ВЫЗЫВАТЬ
+    if (hasFreeSlot()) 
+    {
+        airplanes.push_back(plane);
+    }
+    else 
+    {
+        // самолет уходить на круг (далее: новый запрос/падение/до NPC)
+    }
+}
+
+void AirportPlayer::setLevel(int level)
+{
+    curLevel = level;
+    if (level == 6) 
+    {
+        capacity += 10; //ОТКАЛИБРОВАТЬ 
+    }
+    else if (level == 11) 
+    {
+        capacity += 10; //ОТКАЛИБРОВАТЬ
+    }
+}
+
+
+void AirportPlayer::deleteAirplane(const std::string& id)
+{
+    auto it = std::remove_if(airplanes.begin(), airplanes.end(),
+        [&](const std::shared_ptr<Airplane>& plane) 
+        {
+            return plane->getId() == id;
+        });
+    if (it != airplanes.end()) 
+    {
+        airplanes.erase(it, airplanes.end());
+    }
 }

@@ -1,2 +1,7 @@
-﻿  Main.cpp
+﻿  AirportNpc.cpp
+  AirportPlayer.cpp
+C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(11,25): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+  LevelManager.cpp
+C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(11,25): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+  Создание кода...
   airport.vcxproj -> C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\airport.exe

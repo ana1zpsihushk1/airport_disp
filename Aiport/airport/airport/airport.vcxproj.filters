@@ -39,6 +39,9 @@
     <ClCompile Include="AirportNpc.cpp">
       <Filter>Исходные файлы\Airport</Filter>
     </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="Airport.h">
       <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
