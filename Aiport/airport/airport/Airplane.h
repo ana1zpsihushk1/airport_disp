@@ -23,13 +23,24 @@ class Airplane
 public:
 	Airplane(std::string id, std::unique_ptr<Role> role);
 
+	void tick(); // игровой шаг, пока там потеря топлива
+	void crash();
+
+    //функции взаимодействия с игроком
+    bool requestLanding();
+    bool requestTakingOff();
+
+    const std::string& getId() const { return id; };
+    int getFuel() const { return fuel; };
+    AirplaneStatus getStatus() const { return status; };
+    std::string getTypeName() const { return role->getType(); };
 
 private:
 	int fuel;
 	int circles;
 
 	std::string id;
-	unique_ptr<Role> role;
+	std::unique_ptr<Role> role;
 
 	AirplaneStatus status;
 };
