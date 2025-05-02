@@ -3,6 +3,7 @@
 #include <queue>
 
 #include "Airport.h"
+#include "Strip.h"
 
 class AirportNpc : public Airport
 {
@@ -13,8 +14,11 @@ public:
 
 	AirportNpc(sf::Vector2f position, sf::Vector2f size);
 	void draw(sf::RenderWindow& window);
+	void initStrip();
 private:
 	std::vector<std::shared_ptr<Airplane>> airplanes;
 
 	sf::RectangleShape shape;
+
+	std::vector<Strip> strips;
 };

@@ -136,6 +136,7 @@
     <ClCompile Include="AirportPlayer.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Strip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h" />
@@ -144,6 +145,7 @@
     <ClInclude Include="AirportPlayer.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Role.h" />
+    <ClInclude Include="Strip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -57,4 +57,19 @@ AirportPlayer::AirportPlayer(sf::Vector2f position, sf::Vector2f size)
 void AirportPlayer::draw(sf::RenderWindow& window) 
 {
     window.draw(shape);
+    for (auto& r : strips)
+    {
+        r.draw(window);
+    }
+}
+
+void AirportPlayer::initStrip() 
+{
+    strips.clear();
+    Strip passenger(StripType::Passenger, 100);
+    passenger.setPosition({ shape.getPosition().x + 20, shape.getPosition().y + shape.getSize().y + 10 });
+    Strip cargo(StripType::Cargo, 100);
+    cargo.setPosition({ shape.getPosition().x + 80, shape.getPosition().y + shape.getSize().y + 10 });
+    strips.push_back(passenger);
+    strips.push_back(cargo);
 }

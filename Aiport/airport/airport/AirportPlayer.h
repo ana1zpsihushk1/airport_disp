@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Airport.h"
+#include "Strip.h"
 
 class AirportPlayer : public Airport
 {
@@ -18,10 +19,13 @@ public:
 
 	AirportPlayer(sf::Vector2f position, sf::Vector2f size);
 	void draw(sf::RenderWindow& window);
+
+	void initStrip();
 private:
 	std::vector<std::shared_ptr<Airplane>> airplanes;
 	int curLevel = 0;
 	int capacity = 5;
-
+	std::vector<Strip> strips;
+	
 	sf::RectangleShape shape;
 };

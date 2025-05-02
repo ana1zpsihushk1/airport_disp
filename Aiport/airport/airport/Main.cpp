@@ -3,6 +3,8 @@
 #include <memory>
 #include "AirportPlayer.h"
 #include "AirportNpc.h"
+#include "Strip.h"
+
 int main()
 {
     const int windowWidth = 1280;
@@ -19,6 +21,8 @@ int main()
     // создаём аэропорты
     auto playerAirport = std::make_shared<AirportPlayer>(playerPos, airportSize);
     auto npcAirport = std::make_shared<AirportNpc>(npcPos, airportSize);
+    playerAirport->initStrip();
+    npcAirport->initStrip();
 
     while (window.isOpen()) 
     {
@@ -30,14 +34,15 @@ int main()
         }
 
         // обновление логики
-        playerAirport->tick();
-        npcAirport->tick();
+        //playerAirport->tick();
+        //npcAirport->tick();
 
-        // отрисовка
+        // отрисовка Аэропортов и полос
         window.clear(sf::Color::White);
         playerAirport->draw(window);
         npcAirport->draw(window);
         window.display();
     }
+
 	return 0;
 }

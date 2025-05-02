@@ -38,4 +38,32 @@ AirportNpc::AirportNpc(sf::Vector2f position, sf::Vector2f size)
 void AirportNpc::draw(sf::RenderWindow& window) 
 {
     window.draw(shape);
+    for (auto& r : strips)
+    {
+        r.draw(window);
+    }
+}
+
+void AirportNpc::initStrip() 
+{
+    strips.clear();
+
+    float lineHeight = 200.f;
+    sf::Vector2f base = shape.getPosition();
+
+    float offsetX1 = base.x + 20;
+    float offsetX2 = base.x + 80;
+
+    float topY = base.y;
+
+    Strip passenger(StripType::Passenger, (int)lineHeight);
+    passenger.setSize(sf::Vector2f(40, lineHeight));
+    passenger.setPosition({ offsetX1, topY - lineHeight });
+
+    Strip cargo(StripType::Cargo, (int)lineHeight);
+    cargo.setSize(sf::Vector2f(40, lineHeight));
+    cargo.setPosition({ offsetX2, topY - lineHeight });
+
+    strips.push_back(passenger);
+    strips.push_back(cargo);
 }

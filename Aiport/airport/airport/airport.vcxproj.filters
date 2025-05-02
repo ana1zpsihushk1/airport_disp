@@ -42,6 +42,9 @@
     <ClCompile Include="LevelManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Strip.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -61,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Strip.h">
+      <Filter>Файлы заголовков\Airport</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

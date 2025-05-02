@@ -1,0 +1,23 @@
+#include "Strip.h"
+
+Strip::Strip(StripType type, int length) : 
+	type(type), length(length) 
+{
+    shape.setSize(sf::Vector2f(40.f, static_cast<float>(length*2)));
+    shape.setFillColor(type == StripType::Passenger ? sf::Color::Green : sf::Color(150, 75, 0));
+}
+
+void Strip::setPosition(sf::Vector2f pos)
+{
+    shape.setPosition(pos);
+}
+
+void Strip::setSize(sf::Vector2f size) 
+{
+    shape.setSize(size);
+}
+
+void Strip::draw(sf::RenderWindow& window)
+{
+    window.draw(shape);
+}
