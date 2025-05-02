@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 #include "Airport.h"
 
@@ -14,8 +15,13 @@ public:
 
 	void tick() override;
 	void acceptAirplane(std::shared_ptr<Airplane> plane) override;
+
+	AirportPlayer(sf::Vector2f position, sf::Vector2f size);
+	void draw(sf::RenderWindow& window);
 private:
 	std::vector<std::shared_ptr<Airplane>> airplanes;
 	int curLevel = 0;
 	int capacity = 5;
+
+	sf::RectangleShape shape;
 };

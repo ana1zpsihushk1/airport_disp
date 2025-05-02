@@ -46,3 +46,15 @@ void AirportPlayer::deleteAirplane(const std::string& id)
         airplanes.erase(it, airplanes.end());
     }
 }
+
+AirportPlayer::AirportPlayer(sf::Vector2f position, sf::Vector2f size) 
+{
+    shape.setSize(size);
+    shape.setPosition(position);
+    shape.setFillColor(sf::Color::Blue);
+}
+
+void AirportPlayer::draw(sf::RenderWindow& window) 
+{
+    window.draw(shape);
+}

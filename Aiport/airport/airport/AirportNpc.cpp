@@ -27,3 +27,15 @@ void AirportNpc::deleteAirplane(const std::string& id)
         
     }
 }
+
+AirportNpc::AirportNpc(sf::Vector2f position, sf::Vector2f size) 
+{
+    shape.setSize(size);
+    shape.setPosition(position);
+    shape.setFillColor(sf::Color::Red);
+}
+
+void AirportNpc::draw(sf::RenderWindow& window) 
+{
+    window.draw(shape);
+}
