@@ -13,10 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Airplane">
+      <UniqueIdentifier>{793694e0-5622-4bbc-bab4-f38d30385d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Airplane">
+      <UniqueIdentifier>{d332800a-6d34-48bb-b9e3-2f09e037b683}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Airplane.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Airplane.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Role.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
