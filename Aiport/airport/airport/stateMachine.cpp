@@ -1,10 +1,16 @@
 #include "stateMachine.h"
 
+stateMachine::stateMachine() :
+	_isRemoving(false),
+	_isAdding(false),
+	_isReplacing(false)
+{
+}
+
 void stateMachine::AddState(StateRef newState, bool isReplacing)
 {
 	this->_isAdding = true;
 	this->_isReplacing = isReplacing;
-
 	this->_newState = std::move(newState);
 }
 
@@ -21,7 +27,7 @@ void stateMachine::ProcessStateChanges()
 
 		if (!this->_states.empty())
 		{
-			this->_states.top()->resume();
+			this->_states.top()->Resume();
 		}
 
 		this->_isRemoving = false;
@@ -37,7 +43,7 @@ void stateMachine::ProcessStateChanges()
 			}
 			else
 			{
-				this->_states.top()->pause();
+				this->_states.top()->Pause();
 			}
 		}
 
@@ -49,5 +55,5 @@ void stateMachine::ProcessStateChanges()
 
 StateRef& stateMachine::GetActiveState()
 {
-	return this->_states.top();
+	return _states.top();
 }

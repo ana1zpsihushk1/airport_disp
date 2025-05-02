@@ -132,17 +132,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="assetManager.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="initState.cpp" />
     <ClCompile Include="inputManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="menuState.cpp" />
+    <ClCompile Include="rulesState.cpp" />
     <ClCompile Include="stateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="assetManager.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="definitions.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="initState.h" />
     <ClInclude Include="inputManager.h" />
+    <ClInclude Include="menuState.h" />
+    <ClInclude Include="rulesState.h" />
+    <ClInclude Include="simulationState.h" />
     <ClInclude Include="state.h" />
     <ClInclude Include="stateMachine.h" />
   </ItemGroup>
