@@ -19,6 +19,12 @@
     <Filter Include="Файлы заголовков\Airplane">
       <UniqueIdentifier>{d332800a-6d34-48bb-b9e3-2f09e037b683}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Airport">
+      <UniqueIdentifier>{ab4877d3-ee10-4085-b7f4-a7635fd8cc54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Airport">
+      <UniqueIdentifier>{854b7c45-7593-4b11-af40-8c56f25d6a23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -27,6 +33,12 @@
     <ClCompile Include="Airplane.cpp">
       <Filter>Исходные файлы\Airplane</Filter>
     </ClCompile>
+    <ClCompile Include="AirportPlayer.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
+    <ClCompile Include="AirportNpc.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -34,6 +46,15 @@
     </ClInclude>
     <ClInclude Include="Role.h">
       <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="AirportPlayer.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="AirportNpc.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="Airport.h">
+      <Filter>Файлы заголовков\Airport</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
