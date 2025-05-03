@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "Role.h"
+#include "Strip.h"
 
 enum class AirplaneStatus
 {
@@ -35,6 +36,12 @@ public:
     AirplaneStatus getStatus() const { return status; };
     std::string getTypeName() const { return role->getType(); };
 
+	void setPosition(sf::Vector2f pos);
+	void moveTo(sf::Vector2f targetPos);
+	void startTakeoff(Strip* targetStrip); // основная логика взлёта
+	void updateMovement();                 // вызывается каждый тик
+	void draw(sf::RenderWindow& window);
+
 private:
 	int fuel;
 	int circles;
@@ -43,4 +50,8 @@ private:
 	std::unique_ptr<Role> role;
 
 	AirplaneStatus status;
+
+	sf::CircleShape sprite;             
+	sf::Vector2f velocity = { 0.f, 0.f }; 
+	float takeoffProgress = 0.f;
 };

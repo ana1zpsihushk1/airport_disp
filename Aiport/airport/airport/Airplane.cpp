@@ -6,7 +6,12 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> role)
     : id(std::move(id)), role(std::move(role)),
     fuel(role->getInitFuel()),
     circles(role->getMaxCircles()),
-    status(AirplaneStatus::waitTakeoff) {}
+    status(AirplaneStatus::waitTakeoff) 
+{
+    sprite.setRadius(10.f);
+    sprite.setFillColor(sf::Color::Black);
+    sprite.setOrigin(10.f, 10.f); // центр круга
+}
 
 void Airplane::tick()
 {
@@ -52,4 +57,14 @@ bool Airplane::requestTakingOff()
         return true;
     }
     return false;
+}
+
+void Airplane::setPosition(sf::Vector2f pos) 
+{
+    sprite.setPosition(pos);
+}
+
+void Airplane::draw(sf::RenderWindow& window)
+{
+    window.draw(sprite);
 }
