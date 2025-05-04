@@ -5,8 +5,8 @@
 
 enum class StripType 
 { 
-    Passenger, 
-    Cargo 
+    Universal,
+    Limitted
 };
 
 class Strip

@@ -56,14 +56,14 @@ void AirportNpc::initStrip()
 
     float topY = base.y;
 
-    Strip passenger(StripType::Passenger, (int)lineHeight);
-    passenger.setSize(sf::Vector2f(40, lineHeight));
-    passenger.setPosition({ offsetX1, topY - lineHeight });
+    Strip universal(StripType::Universal, (int)lineHeight);
+    universal.setSize(sf::Vector2f(40, lineHeight));
+    universal.setPosition({ offsetX1, topY - lineHeight });
 
-    Strip cargo(StripType::Cargo, (int)lineHeight);
-    cargo.setSize(sf::Vector2f(40, lineHeight));
-    cargo.setPosition({ offsetX2, topY - lineHeight });
+    Strip limitted(StripType::Limitted, (int)lineHeight);
+    limitted.setSize(sf::Vector2f(40, lineHeight));
+    limitted.setPosition({ offsetX2, topY - lineHeight });
 
-    strips.push_back(passenger);
-    strips.push_back(cargo);
+    strips.push_back(universal);
+    strips.push_back(limitted);
 }

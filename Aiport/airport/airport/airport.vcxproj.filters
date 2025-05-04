@@ -45,6 +45,18 @@
     <ClCompile Include="Strip.cpp">
       <Filter>Исходные файлы\Airport</Filter>
     </ClCompile>
+    <ClCompile Include="WideBody.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="NarrowBody.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="Regional.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="Local.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -67,6 +79,18 @@
     </ClInclude>
     <ClInclude Include="Strip.h">
       <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="WideBody.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="NarrowBody.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Regional.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Local.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

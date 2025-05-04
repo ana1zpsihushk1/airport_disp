@@ -135,7 +135,11 @@
     <ClCompile Include="AirportNpc.cpp" />
     <ClCompile Include="AirportPlayer.cpp" />
     <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="Local.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="NarrowBody.cpp" />
+    <ClCompile Include="Regional.cpp" />
+    <ClCompile Include="WideBody.cpp" />
     <ClCompile Include="Strip.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +148,10 @@
     <ClInclude Include="AirportNpc.h" />
     <ClInclude Include="AirportPlayer.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="Local.h" />
+    <ClInclude Include="NarrowBody.h" />
+    <ClInclude Include="Regional.h" />
+    <ClInclude Include="WideBody.h" />
     <ClInclude Include="Role.h" />
     <ClInclude Include="Strip.h" />
   </ItemGroup>

@@ -4,7 +4,7 @@ Strip::Strip(StripType type, int length) :
 	type(type), length(length) 
 {
     shape.setSize(sf::Vector2f(40.f, static_cast<float>(length*2)));
-    shape.setFillColor(type == StripType::Passenger ? sf::Color::Green : sf::Color(150, 75, 0));
+    shape.setFillColor(type == StripType::Universal ? sf::Color::Green : sf::Color(150, 75, 0));
 }
 
 void Strip::setPosition(sf::Vector2f pos)

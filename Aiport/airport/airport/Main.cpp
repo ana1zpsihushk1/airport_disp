@@ -27,7 +27,7 @@ int main()
     npcAirport->initStrip();
 
     std::vector<std::shared_ptr<Airplane>> activePlanes;
-    //auto role = std::make_unique<PassengerRole>();  // онйю мер щрнцн, мн асдер :)
+    //auto role = std::make_unique<Passenger>();  // онйю мер щрнцн, мн асдер :)
     //auto plane = std::make_shared<Airplane>("Plane-1", std::move(role));
 
     //мю ярнъмйе

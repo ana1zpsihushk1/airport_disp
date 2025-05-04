@@ -9,11 +9,11 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> role)
     status(AirplaneStatus::waitTakeoff) 
 {
     sprite.setRadius(10.f);
-    sprite.setFillColor(sf::Color::Black);
+    sprite.setFillColor(sf::Color::Black); //ïîòîì öâåòà ìåíÿòü áóäåì
     sprite.setOrigin(10.f, 10.f); // öåíòğ êğóãà
 }
 
-void Airplane::tick()
+void Airplane::tick() //åñëè íàäî - ïîïğàâèì
 {
     if ((status == AirplaneStatus::inSky) || (status == AirplaneStatus::takingOff)
         || (status == AirplaneStatus::landing))
@@ -29,12 +29,11 @@ void Airplane::tick()
 void Airplane::crash()
 {
     status = AirplaneStatus::crashed;
-    //Î×ÈÑÒÊÀ ÏÀÌßÒÈ?
     //ÀÍÈÌÀÖÈß???
 }
 
 bool Airplane::requestLanding() //ÂÇÀÈÌÎÄÅÉÑÒÂÈÅ Ñ ÈÃĞÎÊÎÌ
-//ÁÓÄÅÌ ÏĞÀÂÈÒÜ ÂÎÇÌÎÆÍÎ 
+//ÁÓÄÅÌ ÏĞÀÂÈÒÜ 
 {
     if (circles > 0) 
     {
@@ -59,6 +58,7 @@ bool Airplane::requestTakingOff()
     return false;
 }
 
+//îòğèñîâêà
 void Airplane::setPosition(sf::Vector2f pos) 
 {
     sprite.setPosition(pos);

@@ -66,10 +66,10 @@ void AirportPlayer::draw(sf::RenderWindow& window)
 void AirportPlayer::initStrip() 
 {
     strips.clear();
-    Strip passenger(StripType::Passenger, 100);
-    passenger.setPosition({ shape.getPosition().x + 20, shape.getPosition().y + shape.getSize().y + 10 });
-    Strip cargo(StripType::Cargo, 100);
-    cargo.setPosition({ shape.getPosition().x + 80, shape.getPosition().y + shape.getSize().y + 10 });
-    strips.push_back(passenger);
-    strips.push_back(cargo);
+    Strip universal(StripType::Universal, 100);
+    universal.setPosition({ shape.getPosition().x + 20, shape.getPosition().y + shape.getSize().y + 10 });
+    Strip limitted(StripType::Limitted, 100);
+    limitted.setPosition({ shape.getPosition().x + 80, shape.getPosition().y + shape.getSize().y + 10 });
+    strips.push_back(universal);
+    strips.push_back(limitted);
 }
