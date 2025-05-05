@@ -57,6 +57,9 @@
     <ClCompile Include="Local.cpp">
       <Filter>Исходные файлы\Airplane</Filter>
     </ClCompile>
+    <ClCompile Include="Cargo.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -90,6 +93,9 @@
       <Filter>Файлы заголовков\Airplane</Filter>
     </ClInclude>
     <ClInclude Include="Local.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Cargo.h">
       <Filter>Файлы заголовков\Airplane</Filter>
     </ClInclude>
   </ItemGroup>

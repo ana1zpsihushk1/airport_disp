@@ -3,8 +3,8 @@
 
 #include "Regional.h"
 
-Regional::Regional(int fuel = 60, int circles = 2)
-	: fuel(fuel), circles(circles) {}
+Regional::Regional(int fuel = 60, int circles = 2, int minus = 3)
+	: fuel(fuel), circles(circles), minus(minus) {}
 
 std::string Regional::getType() const
 {
@@ -20,4 +20,7 @@ int Regional::getMaxCircles() const
 {
 	return circles;
 }
-
+int Regional::getInitMinus() const
+{
+	return minus;
+}

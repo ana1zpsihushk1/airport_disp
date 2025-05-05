@@ -134,6 +134,7 @@
     <ClCompile Include="Airplane.cpp" />
     <ClCompile Include="AirportNpc.cpp" />
     <ClCompile Include="AirportPlayer.cpp" />
+    <ClCompile Include="Cargo.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="Local.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Airport.h" />
     <ClInclude Include="AirportNpc.h" />
     <ClInclude Include="AirportPlayer.h" />
+    <ClInclude Include="Cargo.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Local.h" />
     <ClInclude Include="NarrowBody.h" />
