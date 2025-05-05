@@ -139,6 +139,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="menuState.cpp" />
     <ClCompile Include="rulesState.cpp" />
+    <ClCompile Include="simulationState1.cpp" />
     <ClCompile Include="stateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +151,7 @@
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="menuState.h" />
     <ClInclude Include="rulesState.h" />
-    <ClInclude Include="simulationState.h" />
+    <ClInclude Include="simulationState1.h" />
     <ClInclude Include="state.h" />
     <ClInclude Include="stateMachine.h" />
   </ItemGroup>

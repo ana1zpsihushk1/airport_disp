@@ -1,32 +1,42 @@
 #include <SFML/Graphics.hpp>
 #include "assetManager.h"
 
-void assetManager::LoadTexture(std::string name, std::string fileName)
+void assetManager::LoadTexture(const std::string& name, const std::string& fileName)
 {
+	if (_textures.find(name) != _textures.end())
+		return;
+
 	sf::Texture tex;
-
 	if (tex.loadFromFile(fileName))
+		_textures[name] = tex;
+}
+
+sf::Texture& assetManager::GetTexture(const std::string& name)
+{
+	if (_textures.count(name) == 0)
 	{
-		this->_textures[name] = tex;
+		static sf::Texture emptyTexture;
+		return emptyTexture;
 	}
+	return _textures[name];
 }
 
-sf::Texture& assetManager::GetTexture(std::string name)
+void assetManager::LoadFont(const std::string& name, const std::string& fileName)
 {
-	return this->_textures.at(name);
-}
+	if (_fonts.find(name) != _fonts.end())
+		return;
 
-void assetManager::LoadFont(std::string name, std::string fileName)
-{
 	sf::Font font;
-
 	if (font.loadFromFile(fileName))
-	{
-		this->_fonts[name] = font;
-	}
+		_fonts[name] = font;
 }
 
-sf::Font& assetManager::GetFont(std::string name)
+sf::Font& assetManager::GetFont(const std::string& name)
 {
-	return this->_fonts.at(name);
+	if (_fonts.count(name) == 0)
+	{
+		static sf::Font emptyFont;
+		return emptyFont;
+	}
+	return _fonts[name];
 }

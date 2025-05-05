@@ -3,7 +3,7 @@
 
 #include "menuState.h"
 #include "rulesState.h"
-#include "simulationState.h"
+#include "simulationState1.h"
 #include "stateMachine.h"
 #include "definitions.h"
 
@@ -19,14 +19,27 @@ void menuState::Init()
 	_background.setTexture(_data->assets.GetTexture("menu_Background"));
 	_font = _data->assets.GetFont("menu_Font");
 
-	_newGameButton = std::make_unique<Button>(sf::Vector2f(300, 70), sf::Vector2f(100, 200), "НОВАЯ ИГРА", _font);
-	_continueButton = std::make_unique<Button>(sf::Vector2f(300, 70), sf::Vector2f(100, 300), "ПРОДОЛЖИТЬ ИГРУ", _font);
-	_rulesButton = std::make_unique<Button>(sf::Vector2f(300, 70), sf::Vector2f(100, 400), "ПРАВИЛА", _font);
+	const float centerX = SCREEN_WIDTH / 2.f;
+	const float startY = 300.f;
+	const float buttonSpacing = 100.f;
+
+	// Создаём кнопки
+	_newGameButton = std::make_unique<Button>(sf::Vector2f(300, 70),
+		sf::Vector2f(centerX - 150, startY + 0 * buttonSpacing), "NEW GAME", _font);
+	_continueButton = std::make_unique<Button>(sf::Vector2f(300, 70),
+		sf::Vector2f(centerX - 150, startY + 1 * buttonSpacing), "CONTINUE GAME", _font);
+	_rulesButton = std::make_unique<Button>(sf::Vector2f(300, 70),
+		sf::Vector2f(centerX - 150, startY + 2 * buttonSpacing), "RULES", _font);
 }
 
 void menuState::HandleInput()
 {
 	sf::Event event;
+	sf::Vector2i mousePos = sf::Mouse::getPosition(_data->window);
+
+	_newGameButton->update(mousePos);
+	_continueButton->update(mousePos);
+	_rulesButton->update(mousePos);
 
 	while (_data->window.pollEvent(event))
 	{
@@ -36,20 +49,13 @@ void menuState::HandleInput()
 			_data->window.close();
 		}
 
-		sf::Vector2i mousePos = sf::Mouse::getPosition(_data->window);
-
-		_newGameButton->update(mousePos);
-		_continueButton->update(mousePos);
-		_rulesButton->update(mousePos);
-
 		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
 		{
 			if (_newGameButton->isClicked(mousePos)) {
-				_data->machine.AddState(StateRef(new simulationState(_data)), false);
+				_data->machine.AddState(StateRef(new simulationState1(_data)), false);
 			}
 			else if (_continueButton->isClicked(mousePos)) {
-				// заглушка – можно добавить загрузку состояния
-				_data->machine.AddState(StateRef(new simulationState(_data)), false);
+				_data->machine.AddState(StateRef(new simulationState1(_data)), false);  // пока заглушка
 			}
 			else if (_rulesButton->isClicked(mousePos)) {
 				_data->machine.AddState(StateRef(new rulesState(_data)), false);

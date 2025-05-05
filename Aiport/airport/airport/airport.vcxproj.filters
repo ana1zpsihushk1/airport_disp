@@ -25,6 +25,12 @@
     <Filter Include="Исходные файлы\States">
       <UniqueIdentifier>{a075c02b-3b01-41df-8af8-6a3c3830e89c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\UI">
+      <UniqueIdentifier>{2425cce0-a7a4-4a81-9312-2441c6cf8de1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\UI">
+      <UniqueIdentifier>{cddf21d9-d7dc-4ef6-b527-aa2aa23744bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -45,14 +51,17 @@
     <ClCompile Include="initState.cpp">
       <Filter>Исходные файлы\States</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Исходные файлы\States</Filter>
-    </ClCompile>
     <ClCompile Include="menuState.cpp">
       <Filter>Исходные файлы\States</Filter>
     </ClCompile>
     <ClCompile Include="rulesState.cpp">
       <Filter>Исходные файлы\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Исходные файлы\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="simulationState1.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,11 +92,11 @@
     <ClInclude Include="rulesState.h">
       <Filter>Файлы заголовков\States</Filter>
     </ClInclude>
-    <ClInclude Include="simulationState.h">
+    <ClInclude Include="simulationState1.h">
       <Filter>Файлы заголовков\States</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>Файлы заголовков\States</Filter>
+      <Filter>Файлы заголовков\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

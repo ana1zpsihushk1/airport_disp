@@ -18,28 +18,35 @@ void Engine::Run()
 
 	while (this->_data->window.isOpen())
 	{
-		this->_data->machine.ProcessStateChanges();
-
-		newTime = this->_clock.getElapsedTime().asSeconds();
-		frameTime = newTime - currentTime;
-
-		if (frameTime > 0.25f)
+		try
 		{
-			frameTime = 0.25f;
+			this->_data->machine.ProcessStateChanges();
+
+			newTime = this->_clock.getElapsedTime().asSeconds();
+			frameTime = newTime - currentTime;
+
+			if (frameTime > 0.25f)
+			{
+				frameTime = 0.25f;
+			}
+
+			currentTime = newTime;
+			accumulator += frameTime;
+
+			while (accumulator >= dt)
+			{
+				_data->machine.GetActiveState()->HandleInput();
+				_data->machine.GetActiveState()->Update(dt);
+				accumulator -= dt;
+			}
+
+			interpolation = accumulator / dt;
+			_data->machine.GetActiveState()->Draw(interpolation);
 		}
-
-		currentTime = newTime;
-		accumulator += frameTime;
-
-		while (accumulator >= dt)
+		catch (const std::exception& e)
 		{
-			this->_data->machine.GetActiveState()->HandleInput();
-			this->_data->machine.GetActiveState()->Update(dt);
-
-			accumulator -= dt;
+			std::cerr << "[Engine] Ошибка состояния: " << e.what() << std::endl;
+			_data->window.close();
 		}
-
-		interpolation = accumulator / dt;
-		this->_data->machine.GetActiveState()->Draw(interpolation);
 	}
 }

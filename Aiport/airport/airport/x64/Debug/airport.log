@@ -1,8 +1,7 @@
-﻿  Engine.cpp
+﻿  Main.cpp
   initState.cpp
+  menuState.cpp
+  rulesState.cpp
+  simulationState1.cpp
   Создание кода...
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Engine.cpp(7,39): error C2061: синтаксическая ошибка: идентификатор "initState"
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Engine.cpp(36,43): error C2039: "HandleInput": не является членом "state".
-      C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\state.h(3,7):
-       см. объявление "state"
-  
+  airport.vcxproj -> C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\airport.exe

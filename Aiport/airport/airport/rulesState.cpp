@@ -54,7 +54,7 @@ void rulesState::Init()
 	_background.setTexture(_data->assets.GetTexture("rules_Background"));
 
 	_rulesText.setFont(_data->assets.GetFont("menu_Font"));
-	_rulesText.setString("ПРАВИЛА:\n- Управляй самолётами...\n- Избегай ЧП\n- Следи за временем");
+	_rulesText.setString("RULES:\n- Управляй самолётами...\n- Избегай ЧП\n- Следи за временем");
 	_rulesText.setCharacterSize(36);
 	_rulesText.setFillColor(sf::Color::White);
 	_rulesText.setPosition(100, 100);

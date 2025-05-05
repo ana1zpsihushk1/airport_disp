@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <stack>
+#include <exception>
 
 #include "state.h"
 

@@ -1,3 +1,5 @@
+#include <iostream>
+#include <stdexcept>
 #include "stateMachine.h"
 
 stateMachine::stateMachine() :
@@ -55,5 +57,7 @@ void stateMachine::ProcessStateChanges()
 
 StateRef& stateMachine::GetActiveState()
 {
+	if (_states.empty())
+		throw std::runtime_error("stateMachine: GetActiveState called with empty state stack");
 	return _states.top();
 }
