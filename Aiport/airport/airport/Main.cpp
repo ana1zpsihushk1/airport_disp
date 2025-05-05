@@ -38,13 +38,19 @@ int main()
 
     std::vector<std::shared_ptr<Airplane>> activePlanes;
     int planeId = 0;
-    auto plane = std::make_shared<Airplane>("Plane_" + std::to_string(planeId++), createRandomRole());
+    //PLAYER
+    auto playerPlane = std::make_shared<Airplane>("Plane_" + std::to_string(planeId++), createRandomRole());
+    playerPlane->setPosition({ playerPos.x + 100, playerPos.y + 50 });
+    playerPlane->setFromNpc(false);
+    activePlanes.push_back(playerPlane);
+    AirPlayer->acceptAirplane(playerPlane);
 
-    //НА СТОЯНКЕ
-    plane->setPosition({ npcPos.x + 100, npcPos.y + 50 });  // немного внутрь прямоугольника
-    activePlanes.push_back(plane);
-    AirNpc->acceptAirplane(plane);
-
+    //NPC
+    auto npcPlane = std::make_shared<Airplane>("Plane_" + std::to_string(planeId++), createRandomRole());
+    npcPlane->setPosition({ npcPos.x + 100, npcPos.y + 50 });
+    npcPlane->setFromNpc(true);
+    activePlanes.push_back(npcPlane);
+    AirNpc->acceptAirplane(npcPlane);
     while (window.isOpen()) 
     {
         sf::Event event;
@@ -57,29 +63,22 @@ int main()
         // обновление логики - ТИК
         AirPlayer->tick();
         AirNpc->tick();
-        AirNpc->processTakeoff();
 
+        AirNpc->processTakeoff();
+        AirPlayer->processTakeoff();
         for (auto& p : activePlanes)
         {
             p->tick();
         }
-        /*for (auto& plane : activePlanes)
-        {
-            AirNpc->processTakeoff();
-            //пока только npc, потом подумаем над игровым
-        }*/
-
-        // отрисовка Аэропортов и полос
         window.clear(sf::Color::White);
         AirPlayer->draw(window);
         AirNpc->draw(window);
 
-        for (auto& p : activePlanes)
+        for (auto& plane : activePlanes)
         {
-            p->draw(window);
-        }
+            plane->draw(window);
+        }     
         window.display();
     }
-
 	return 0;
 }

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <deque>
 
 #include "Role.h"
 #include "Strip.h"
@@ -37,12 +38,15 @@ public:
     AirplaneStatus getStatus() const { return status; };
     std::string getTypeName() const { return role->getType(); };
 
+	void setFromNpc(bool val) { fromNpc = val; }
 	void setPosition(sf::Vector2f pos);
-	//void moveTo(sf::Vector2f targetPos);
-	void startTakeoff(Strip* targetStrip); // основная логика взлёта
+	void startTakeoff(Strip* targetStrip, bool isPlayer); // взлёт
 	void updateMovement();                 // вызывается каждый тик
 	void draw(sf::RenderWindow& window);
 
+	sf::Vector2f getPosition() const;
+	void startFlight(sf::Vector2f target); // запуск полёта
+	void updateFlight();                   // вызывается каждый тик
 private:
 	int fuel;
 	int circles;
@@ -52,10 +56,18 @@ private:
 
 	AirplaneStatus status;
 
+	bool fromNpc = false;
+
 	sf::CircleShape sprite;             
 	sf::Vector2f velocity = { 0.f, 0.f }; 
 	sf::Vector2f targetPosition;
 	sf::Vector2f taxiTarget;
 	float takeoffProgress = 0.f;
 	Strip* currentStrip = nullptr;
+
+	float flightDuration = 0.f;
+	float flightTimer = 0.f;
+	sf::Vector2f flightTarget;
+	sf::Vector2f flightControlPoint; 
+	std::deque<sf::Vector2f> trail; // пунктир
 };

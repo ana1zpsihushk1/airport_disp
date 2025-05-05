@@ -109,8 +109,9 @@ void AirportPlayer::processTakeoff()
         {
             if (plane->requestTakingOff())
             {
-                plane->startTakeoff(strip);
+                plane->startTakeoff(strip, true);
             }
         }
     }
 }
+

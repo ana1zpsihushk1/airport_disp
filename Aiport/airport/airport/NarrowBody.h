@@ -9,7 +9,7 @@
 class NarrowBody : public Role
 {
 public:
-	NarrowBody(int fuel = 80, int circles = 2, int minus = 4, float speed = 0.1f);
+	NarrowBody(int fuel = 80, int circles = 2, int minus = 4, float speed = 2.0f);
 	std::string getType() const override;
 	int getInitFuel() const override;
 	int getMaxCircles() const override;

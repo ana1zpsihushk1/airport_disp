@@ -104,7 +104,7 @@ void AirportNpc::processTakeoff()
         {
             if (plane->requestTakingOff()) 
             {
-                plane->startTakeoff(strip);
+                plane->startTakeoff(strip, false);
             }
         }
     }
