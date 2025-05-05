@@ -21,6 +21,7 @@ private:
 	GameDataRef _data;
 
 	sf::Sprite _background;
+	sf::Text _rulesTitle;
 	sf::Text _rulesText;
 
 	std::unique_ptr<Button> backButton;

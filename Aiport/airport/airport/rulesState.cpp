@@ -6,64 +6,27 @@ rulesState::rulesState(GameDataRef data) : _data(data) {}
 
 void rulesState::Init()
 {
-	//_data->assets.LoadTexture("rules_Background", BACKGROUND_PNG);
-	//_data->assets.LoadFont("pixelBit_Font", FONT_FOR_MENU);
-
-	//_background.setTexture(_data->assets.GetTexture("rules_Background"));
-
-	// Настройка текста правил
-	//_rulesText.setFont(_data->assets.GetFont("pixelBit_Font"));
-	//_rulesText.setString("ПРАВИЛА:\n- Управляй самолётами\n- Не допускай столкновений\n- Следи за топливом\n\nНажми 'Назад' чтобы вернуться");
-	//_rulesText.setCharacterSize(36);
-	//_rulesText.setFillColor(sf::Color::Color(244, 241, 222));
-	//_rulesText.setPosition(50, 100);
-
-	//_backText.setFont(_data->assets.GetFont("pixelBit_Font"));
-	//_backText.setString("НАЗАД");
-	//_backText.setCharacterSize(50);
-	//_backText.setFillColor(sf::Color::Color(244, 241, 222));
-	//_backText.setPosition(65, 500);
-	
-	/*_data->assets.LoadTexture("rules_Background", BACKGROUND_PNG);
-	_data->assets.LoadFont("menu_Font", FONT_FOR_MENU);
-
-	_background.setTexture(_data->assets.GetTexture("rules_Background"));
-
-	// Текст с правилами
-	_rulesText.setFont(_data->assets.GetFont("menu_Font"));
-	_rulesText.setString("ПРАВИЛА:\n"
-		"- Управляй самолётами, следи за топливом\n"
-		"- Не допускай задержек и столкновений\n"
-		"- Приземляй и отправляй рейсы вовремя\n\n"
-		"Нажми 'НАЗАД' чтобы вернуться в меню");
-	_rulesText.setCharacterSize(40);
-	_rulesText.setFillColor(sf::Color::White);
-	_rulesText.setPosition(100, 100);
-
-	// Кнопка "НАЗАД"
-	_backText.setFont(_data->assets.GetFont("menu_Font"));
-	_backText.setString("НАЗАД");
-	_backText.setCharacterSize(50);
-	_backText.setFillColor(sf::Color::White);
-	_backText.setPosition(100, SCREEN_HEIGHT - 120);
-	*/
-
 	_data->assets.LoadTexture("rules_Background", BACKGROUND_PNG);
 	_data->assets.LoadFont("menu_Font", FONT_FOR_MENU);
 
 	_background.setTexture(_data->assets.GetTexture("rules_Background"));
 
-	_rulesText.setFont(_data->assets.GetFont("menu_Font"));
-	_rulesText.setString("RULES:\n- Управляй самолётами...\n- Избегай ЧП\n- Следи за временем");
-	_rulesText.setCharacterSize(36);
-	_rulesText.setFillColor(sf::Color::White);
-	_rulesText.setPosition(100, 100);
+	_rulesTitle.setFont(_data->assets.GetFont("menu_Font"));
+	_rulesTitle.setString("RULES:");
+	_rulesTitle.setCharacterSize(56);
+	_rulesTitle.setFillColor(sf::Color(180, 255, 80));
+	_rulesTitle.setPosition(100, 80);
 
-	// Кнопка назад
+	_rulesText.setFont(_data->assets.GetFont("menu_Font"));
+	_rulesText.setString("- You can make...\n- Avoid smth\n- Keep track of the time");
+	_rulesText.setCharacterSize(36);
+	_rulesText.setFillColor(sf::Color(180, 255, 80));
+	_rulesText.setPosition(100, 160);
+
 	backButton = std::make_unique<Button>(
-		sf::Vector2f(200, 60),
+		sf::Vector2f(350, 60),
 		sf::Vector2f(100, SCREEN_HEIGHT - 100),
-		"НАЗАД",
+		"BACK TO MENU",
 		_data->assets.GetFont("menu_Font")
 	);
 }
@@ -98,6 +61,7 @@ void rulesState::Draw(float dt)
 	_data->window.clear();
 	_data->window.draw(_background);
 	_data->window.draw(_rulesText);
+	_data->window.draw(_rulesTitle);
 	backButton->draw(_data->window);
 	_data->window.display();
 }

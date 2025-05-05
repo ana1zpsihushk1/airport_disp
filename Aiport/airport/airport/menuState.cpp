@@ -23,7 +23,6 @@ void menuState::Init()
 	const float startY = 300.f;
 	const float buttonSpacing = 100.f;
 
-	// Создаём кнопки
 	_newGameButton = std::make_unique<Button>(sf::Vector2f(300, 70),
 		sf::Vector2f(centerX - 150, startY + 0 * buttonSpacing), "NEW GAME", _font);
 	_continueButton = std::make_unique<Button>(sf::Vector2f(300, 70),

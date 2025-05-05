@@ -9,19 +9,19 @@ initState::initState(GameDataRef data) : _data(data) {}
 void initState::Init()
 {
 	_data->assets.LoadTexture("init_Background", BACKGROUND_PNG);
-	_data->assets.LoadFont("pixelBit_Font", FONT_FOR_MENU);
+	_data->assets.LoadFont("pixelBit_Font", FONT_FOR_GAME);
 
 	_background.setTexture(_data->assets.GetTexture("init_Background"));
 
 	_initText.setFont(_data->assets.GetFont("pixelBit_Font"));
 	_initText.setString("Tap SPACE to continue");
-	_initText.setCharacterSize(32);
-	//_initText.setFillColor(sf::Color(129, 178, 154));
-	_initText.setFillColor(sf::Color::White);
+	_initText.setCharacterSize(88);
+	_initText.setFillColor(sf::Color(180, 255, 80));
+	//_initText.setFillColor(sf::Color::White);
 
 	sf::FloatRect bounds = _initText.getLocalBounds();
 	_initText.setOrigin(bounds.width / 2, bounds.height / 2);
-	_initText.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3);
+	_initText.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 }
 
 void initState::HandleInput()
