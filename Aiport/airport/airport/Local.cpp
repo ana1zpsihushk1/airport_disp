@@ -3,8 +3,8 @@
 
 #include "Local.h"
 
-Local::Local(int fuel = 40, int circles = 1, int minus = 2)
-	: fuel(fuel), circles(circles), minus(minus) {}
+Local::Local(int fuel, int circles, int minus, float speed)
+	: fuel(fuel), circles(circles), minus(minus), speed(speed) {}
 
 std::string Local::getType() const
 {
@@ -23,4 +23,9 @@ int Local::getMaxCircles() const
 int Local::getInitMinus() const
 {
 	return minus;
+}
+
+float Local::getSpeed() const
+{
+	return speed;
 }

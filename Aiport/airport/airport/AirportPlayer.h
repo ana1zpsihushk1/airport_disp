@@ -21,6 +21,8 @@ public:
 	void draw(sf::RenderWindow& window);
 
 	void initStrip();
+	void processTakeoff();
+	Strip* findSuitableStrip(const std::string& typeName);
 private:
 	std::vector<std::shared_ptr<Airplane>> airplanes;
 	int curLevel = 0;

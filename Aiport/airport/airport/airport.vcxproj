@@ -153,6 +153,7 @@
     <ClInclude Include="Local.h" />
     <ClInclude Include="NarrowBody.h" />
     <ClInclude Include="Regional.h" />
+    <ClInclude Include="RoleFabric.h" />
     <ClInclude Include="WideBody.h" />
     <ClInclude Include="Role.h" />
     <ClInclude Include="Strip.h" />

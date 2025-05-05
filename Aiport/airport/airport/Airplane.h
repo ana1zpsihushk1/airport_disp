@@ -11,6 +11,7 @@
 enum class AirplaneStatus
 {
 	waitTakeoff, //ожидание взлета
+	taxiingToStrip, //агрессивно подъезжаем к ВПП
 	takingOff, //взлет
 	inSky, //летит (в небе)
 	landing, //приземление
@@ -37,7 +38,7 @@ public:
     std::string getTypeName() const { return role->getType(); };
 
 	void setPosition(sf::Vector2f pos);
-	void moveTo(sf::Vector2f targetPos);
+	//void moveTo(sf::Vector2f targetPos);
 	void startTakeoff(Strip* targetStrip); // основная логика взлёта
 	void updateMovement();                 // вызывается каждый тик
 	void draw(sf::RenderWindow& window);
@@ -53,5 +54,8 @@ private:
 
 	sf::CircleShape sprite;             
 	sf::Vector2f velocity = { 0.f, 0.f }; 
+	sf::Vector2f targetPosition;
+	sf::Vector2f taxiTarget;
 	float takeoffProgress = 0.f;
+	Strip* currentStrip = nullptr;
 };

@@ -1,11 +1,21 @@
 #include <SFML/Graphics.hpp>
 
 #include <memory>
+#include <cstdlib>
+#include <ctime>
+
 #include "AirportPlayer.h"
 #include "AirportNpc.h"
 #include "Strip.h"
 #include "Airplane.h"
 #include "Role.h"
+#include "RoleFabric.h"
+
+#include "WideBody.h"
+#include "Cargo.h"
+#include "NarrowBody.h"
+#include "Regional.h"
+#include "Local.h"
 
 int main()
 {
@@ -21,18 +31,19 @@ int main()
     sf::Vector2f npcPos(20, windowHeight - airportSize.y - 20);
 
     // создаём аэропорты
-    auto playerAirport = std::make_shared<AirportPlayer>(playerPos, airportSize);
-    auto npcAirport = std::make_shared<AirportNpc>(npcPos, airportSize);
-    playerAirport->initStrip();
-    npcAirport->initStrip();
+    auto AirPlayer = std::make_shared<AirportPlayer>(playerPos, airportSize);
+    auto AirNpc = std::make_shared<AirportNpc>(npcPos, airportSize);
+    AirPlayer->initStrip();
+    AirNpc->initStrip();
 
     std::vector<std::shared_ptr<Airplane>> activePlanes;
-    //auto role = std::make_unique<Passenger>();  // ПОКА НЕТ ЭТОГО, НО БУДЕТ :)
-    //auto plane = std::make_shared<Airplane>("Plane-1", std::move(role));
+    int planeId = 0;
+    auto plane = std::make_shared<Airplane>("Plane_" + std::to_string(planeId++), createRandomRole());
 
     //НА СТОЯНКЕ
-    //plane->setPosition({ npcPos.x + 100, npcPos.y + 50 });  // немного внутрь прямоугольника
-    //activePlanes.push_back(plane);
+    plane->setPosition({ npcPos.x + 100, npcPos.y + 50 });  // немного внутрь прямоугольника
+    activePlanes.push_back(plane);
+    AirNpc->acceptAirplane(plane);
 
     while (window.isOpen()) 
     {
@@ -43,21 +54,30 @@ int main()
                 window.close();
         }
 
-        // обновление логики - ТИК // У МЕНЯ НЕРВНЫЙ ТИК С ЭТИМ ПРОЕКТОМ БУДЕТ
-        //playerAirport->tick();
-        //npcAirport->tick();
+        // обновление логики - ТИК
+        AirPlayer->tick();
+        AirNpc->tick();
+        AirNpc->processTakeoff();
 
-        //for (auto& p : activePlanes)
-          //  p->tick();
+        for (auto& p : activePlanes)
+        {
+            p->tick();
+        }
+        /*for (auto& plane : activePlanes)
+        {
+            AirNpc->processTakeoff();
+            //пока только npc, потом подумаем над игровым
+        }*/
 
         // отрисовка Аэропортов и полос
         window.clear(sf::Color::White);
-        playerAirport->draw(window);
-        npcAirport->draw(window);
+        AirPlayer->draw(window);
+        AirNpc->draw(window);
 
-        //for (auto& p : activePlanes)
-          //  p->draw(window);
-
+        for (auto& p : activePlanes)
+        {
+            p->draw(window);
+        }
         window.display();
     }
 

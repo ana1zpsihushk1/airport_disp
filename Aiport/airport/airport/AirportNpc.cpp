@@ -49,21 +49,63 @@ void AirportNpc::initStrip()
     strips.clear();
 
     float lineHeight = 200.f;
+    float stripGap = 10.f;
+
     sf::Vector2f base = shape.getPosition();
+    float topY = base.y;
 
     float offsetX1 = base.x + 20;
     float offsetX2 = base.x + 80;
 
-    float topY = base.y;
-
     Strip universal(StripType::Universal, (int)lineHeight);
     universal.setSize(sf::Vector2f(40, lineHeight));
-    universal.setPosition({ offsetX1, topY - lineHeight });
+    universal.setPosition({ offsetX1, topY - lineHeight - stripGap });
 
     Strip limitted(StripType::Limitted, (int)lineHeight);
     limitted.setSize(sf::Vector2f(40, lineHeight));
-    limitted.setPosition({ offsetX2, topY - lineHeight });
+    limitted.setPosition({ offsetX2, topY - lineHeight - stripGap });
 
     strips.push_back(universal);
     strips.push_back(limitted);
+}
+
+Strip* AirportNpc::findSuitableStrip(const std::string& typeName)
+{
+    for (auto& s : strips)
+    {
+        if (!s.isAvailable())
+        {
+            continue;
+        }
+        if (s.getType() == StripType::Universal)
+        {
+            return &s;
+        }
+        if ((s.getType() == StripType::Limitted && typeName == "WideBody") || (s.getType() == StripType::Limitted && typeName == "Cargo"))
+        {
+            return &s;
+        }
+    }
+    return nullptr;
+}
+
+void AirportNpc::processTakeoff()
+{
+    //ÇÄÅÑÜ ÁÓÄÅÒ ÏĞÎÂÅĞÊÀ ĞÀÑÏÈÑÀÍÈß
+    for (auto& plane : airplanes)
+    {
+        if (plane->getStatus() != AirplaneStatus::waitTakeoff)
+        {
+            continue;
+        }
+
+        Strip* strip = findSuitableStrip(plane->getTypeName());
+        if (strip)
+        {
+            if (plane->requestTakingOff()) 
+            {
+                plane->startTakeoff(strip);
+            }
+        }
+    }
 }

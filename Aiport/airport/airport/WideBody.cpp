@@ -3,8 +3,8 @@
 
 #include "WideBody.h"
 
-WideBody::WideBody(int fuel = 100, int circles = 3, int minus = 5)
-	: fuel(fuel), circles(circles), minus(minus) {}
+WideBody::WideBody(int fuel, int circles, int minus, float speed)
+	: fuel(fuel), circles(circles), minus(minus), speed(speed) {}
 
 std::string WideBody::getType() const
 {
@@ -24,5 +24,10 @@ int WideBody::getMaxCircles() const
 int WideBody::getInitMinus() const
 {
 	return minus;
+}
+
+float WideBody::getSpeed() const
+{
+	return speed;
 }
 

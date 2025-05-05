@@ -9,13 +9,15 @@
 class NarrowBody : public Role
 {
 public:
-	NarrowBody(int fuel, int circles, int minus);
+	NarrowBody(int fuel = 80, int circles = 2, int minus = 4, float speed = 0.1f);
 	std::string getType() const override;
 	int getInitFuel() const override;
 	int getMaxCircles() const override;
 	int getInitMinus() const override;
+	float getSpeed() const override;
 private:
 	int fuel; //откалибровать
 	int circles; //откалибровать
 	int minus;
+	float speed;
 };

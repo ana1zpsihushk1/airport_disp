@@ -3,8 +3,8 @@
 
 #include "Regional.h"
 
-Regional::Regional(int fuel = 60, int circles = 2, int minus = 3)
-	: fuel(fuel), circles(circles), minus(minus) {}
+Regional::Regional(int fuel, int circles, int minus, float speed)
+	: fuel(fuel), circles(circles), minus(minus), speed(speed) {}
 
 std::string Regional::getType() const
 {
@@ -23,4 +23,9 @@ int Regional::getMaxCircles() const
 int Regional::getInitMinus() const
 {
 	return minus;
+}
+
+float Regional::getSpeed() const
+{
+	return speed;
 }

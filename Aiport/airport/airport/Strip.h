@@ -22,6 +22,7 @@ public:
     void release() { occupied = false; }
 
     void setPosition(sf::Vector2f pos);
+    sf::Vector2f getPosition() const;
     void setSize(sf::Vector2f size);
     void draw(sf::RenderWindow& window);
 private:

@@ -98,5 +98,8 @@
     <ClInclude Include="Cargo.h">
       <Filter>Файлы заголовков\Airplane</Filter>
     </ClInclude>
+    <ClInclude Include="RoleFabric.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

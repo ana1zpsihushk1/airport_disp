@@ -9,13 +9,15 @@
 class Cargo : public Role
 {
 public:
-	Cargo(int fuel, int circles, int minus);
+	Cargo(int fuel = 100, int circles = 3, int minus = 5, float speed = 0.1f);
 	std::string getType() const override;
 	int getInitFuel() const override;
 	int getMaxCircles() const override;
 	int getInitMinus() const override;
+	float getSpeed() const override;
 private:
 	int fuel; //откалибровать
 	int circles; //откалибровать
 	int minus;
+	float speed;
 };

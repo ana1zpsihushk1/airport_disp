@@ -73,3 +73,44 @@ void AirportPlayer::initStrip()
     strips.push_back(universal);
     strips.push_back(limitted);
 }
+
+Strip* AirportPlayer::findSuitableStrip(const std::string& typeName)
+{
+    for (auto& s : strips)
+    {
+        if (!s.isAvailable())
+        {
+            continue;
+        }
+        if (s.getType() == StripType::Universal)
+        {
+            return &s;
+        }
+        if ((s.getType() == StripType::Limitted && typeName == "WideBody") || (s.getType() == StripType::Limitted && typeName == "Cargo"))
+        {
+            return &s;
+        }
+    }
+    return nullptr;
+}
+
+void AirportPlayer::processTakeoff()
+{
+    //ÇÄÅÑÜ ÁÓÄÅÒ ÏĞÎÂÅĞÊÀ ĞÀÑÏÈÑÀÍÈß è ÎÒÂÅÒ ÄÈÑÏÅÒ×ÅĞÀ
+    for (auto& plane : airplanes)
+    {
+        if (plane->getStatus() != AirplaneStatus::waitTakeoff)
+        {
+            continue;
+        }
+
+        Strip* strip = findSuitableStrip(plane->getTypeName());
+        if (strip)
+        {
+            if (plane->requestTakingOff())
+            {
+                plane->startTakeoff(strip);
+            }
+        }
+    }
+}

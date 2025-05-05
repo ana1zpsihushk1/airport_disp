@@ -3,8 +3,8 @@
 
 #include "Cargo.h"
 
-Cargo::Cargo(int fuel = 100, int circles = 3, int minus = 5)
-	: fuel(fuel), circles(circles), minus(minus) {}
+Cargo::Cargo(int fuel, int circles, int minus, float speed)
+	: fuel(fuel), circles(circles), minus(minus), speed(speed) {}
 
 std::string Cargo::getType() const
 {
@@ -24,4 +24,9 @@ int Cargo::getMaxCircles() const
 int Cargo::getInitMinus() const
 {
 	return minus;
+}
+
+float Cargo::getSpeed() const
+{
+	return speed;
 }

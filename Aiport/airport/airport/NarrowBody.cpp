@@ -3,8 +3,8 @@
 
 #include "NarrowBody.h"
 
-NarrowBody::NarrowBody(int fuel = 80, int circles = 2, int minus = 4)
-	: fuel(fuel), circles(circles), minus(minus) {}
+NarrowBody::NarrowBody(int fuel, int circles, int minus, float speed)
+	: fuel(fuel), circles(circles), minus(minus), speed(speed) {}
 
 std::string NarrowBody::getType() const
 {
@@ -24,5 +24,10 @@ int NarrowBody::getMaxCircles() const
 int NarrowBody::getInitMinus() const
 {
 	return minus;
+}
+
+float NarrowBody::getSpeed() const
+{
+	return speed;
 }
 
