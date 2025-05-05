@@ -83,8 +83,7 @@
               "RelativeToolTip": "airport\\stateMachine.h",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-02T16:42:04.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T16:42:04.64Z"
             },
             {
               "$type": "Document",
@@ -96,8 +95,7 @@
               "RelativeToolTip": "airport\\Button.cpp",
               "ViewState": "AgIAABIAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-02T16:31:30.077Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T16:31:30.077Z"
             },
             {
               "$type": "Document",
@@ -109,8 +107,7 @@
               "RelativeToolTip": "airport\\rulesState.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-02T15:47:54.596Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T15:47:54.596Z"
             },
             {
               "$type": "Document",
@@ -122,8 +119,7 @@
               "RelativeToolTip": "airport\\rulesState.h",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-02T15:47:53.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T15:47:53.317Z"
             },
             {
               "$type": "Document",
@@ -135,8 +131,7 @@
               "RelativeToolTip": "airport\\menuState.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-02T15:46:26.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T15:46:26.047Z"
             },
             {
               "$type": "Document",
@@ -148,8 +143,7 @@
               "RelativeToolTip": "airport\\menuState.cpp",
               "ViewState": "AgIAACcAAAAAAAAAAAAAADcAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-02T13:29:33.037Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T13:29:33.037Z"
             },
             {
               "$type": "Document",
@@ -161,8 +155,7 @@
               "RelativeToolTip": "airport\\initState.cpp",
               "ViewState": "AgIAACIAAAAAAAAAAADwvzgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-02T10:34:56.053Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T10:34:56.053Z"
             },
             {
               "$type": "Document",
@@ -174,8 +167,7 @@
               "RelativeToolTip": "airport\\initState.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-02T10:33:18.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T10:33:18.916Z"
             },
             {
               "$type": "Document",
@@ -187,8 +179,7 @@
               "RelativeToolTip": "airport\\Engine.h",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAABkAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-02T09:40:26.366Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T09:40:26.366Z"
             },
             {
               "$type": "Document",
@@ -200,8 +191,7 @@
               "RelativeToolTip": "airport\\Main.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-02T07:47:22.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T07:47:22.326Z"
             }
           ]
         }
