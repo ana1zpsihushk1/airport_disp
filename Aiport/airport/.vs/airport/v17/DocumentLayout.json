@@ -66,8 +66,7 @@
               "RelativeToolTip": "airport\\rulesState.cpp",
               "ViewState": "AgIAACoAAAAAAAAAAAAAADoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-05T10:07:52.773Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T10:07:52.773Z"
             },
             {
               "$type": "Document",
@@ -79,8 +78,7 @@
               "RelativeToolTip": "airport\\initState.cpp",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-05T10:05:48.977Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T10:05:48.977Z"
             },
             {
               "$type": "Document",
@@ -92,8 +90,7 @@
               "RelativeToolTip": "airport\\menuState.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-05T09:46:46.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T09:46:46.416Z"
             },
             {
               "$type": "Document",
@@ -105,8 +102,7 @@
               "RelativeToolTip": "airport\\menuState.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-05T09:46:39.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T09:46:39.541Z"
             },
             {
               "$type": "Document",
@@ -118,8 +114,7 @@
               "RelativeToolTip": "airport\\simulationState1.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-05T09:32:48.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T09:32:48.003Z"
             },
             {
               "$type": "Document",
@@ -131,8 +126,7 @@
               "RelativeToolTip": "airport\\simulationState1.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-05T09:32:45.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T09:32:45.849Z"
             },
             {
               "$type": "Document",
@@ -157,8 +151,7 @@
               "RelativeToolTip": "airport\\Engine.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-05T09:10:24.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T09:10:24.834Z"
             },
             {
               "$type": "Document",
@@ -170,8 +163,7 @@
               "RelativeToolTip": "airport\\Engine.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-02T09:40:26.366Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T09:40:26.366Z"
             },
             {
               "$type": "Document",
@@ -183,8 +175,7 @@
               "RelativeToolTip": "airport\\Main.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-02T07:47:22.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T07:47:22.326Z"
             }
           ]
         }
