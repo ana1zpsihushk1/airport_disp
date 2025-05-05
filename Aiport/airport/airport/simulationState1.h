@@ -3,6 +3,11 @@
 #include "Engine.h"
 #include "state.h"
 
+#include "AirportPlayer.h"
+#include "AirportNpc.h"
+#include "Airplane.h"
+#include "RoleFabric.h"
+
 class simulationState1 : public state
 {
 public:
@@ -16,6 +21,8 @@ public:
 private:
 	GameDataRef _data;
 
-	sf::Sprite _background;
-	sf::Text _label;
+	std::shared_ptr<AirportPlayer> AirPlayer;
+	std::shared_ptr<AirportNpc> AirNpc;
+	std::vector<std::shared_ptr<Airplane>> activePlanes;
+	int planeId = 0;
 };

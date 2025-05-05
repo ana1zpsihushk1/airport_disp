@@ -31,6 +31,18 @@
     <Filter Include="Исходные файлы\UI">
       <UniqueIdentifier>{cddf21d9-d7dc-4ef6-b527-aa2aa23744bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Airplane">
+      <UniqueIdentifier>{db3ba838-65d7-4bb8-bdf3-4e3cc83df691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Airport">
+      <UniqueIdentifier>{d2c274a9-99b2-4ca6-9a05-c3f2c5cb736b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Airplane">
+      <UniqueIdentifier>{cac27e07-44a1-4ba9-b53e-5df816eb5c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Airport">
+      <UniqueIdentifier>{e4e1c817-9dd5-44ff-8096-e944cbcefabe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -60,8 +72,38 @@
     <ClCompile Include="Button.cpp">
       <Filter>Исходные файлы\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Airplane.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="AirportNpc.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
+    <ClCompile Include="AirportPlayer.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
+    <ClCompile Include="Strip.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
+    <ClCompile Include="Cargo.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Исходные файлы\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Local.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="NarrowBody.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="WideBody.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
     <ClCompile Include="simulationState1.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Regional.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +139,45 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Файлы заголовков\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Airplane.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Cargo.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Role.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Local.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="RoleFabric.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="NarrowBody.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Regional.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="WideBody.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="Airport.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="Strip.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="AirportNpc.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="AirportPlayer.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Файлы заголовков\Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

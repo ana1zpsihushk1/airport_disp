@@ -131,29 +131,52 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Airplane.cpp" />
+    <ClCompile Include="AirportNpc.cpp" />
+    <ClCompile Include="AirportPlayer.cpp" />
     <ClCompile Include="assetManager.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Cargo.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="initState.cpp" />
     <ClCompile Include="inputManager.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="Local.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="menuState.cpp" />
+    <ClCompile Include="NarrowBody.cpp" />
+    <ClCompile Include="Regional.cpp" />
     <ClCompile Include="rulesState.cpp" />
     <ClCompile Include="simulationState1.cpp" />
     <ClCompile Include="stateMachine.cpp" />
+    <ClCompile Include="Strip.cpp" />
+    <ClCompile Include="WideBody.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Airplane.h" />
+    <ClInclude Include="Airport.h" />
+    <ClInclude Include="AirportNpc.h" />
+    <ClInclude Include="AirportPlayer.h" />
     <ClInclude Include="assetManager.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Cargo.h" />
     <ClInclude Include="definitions.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="initState.h" />
     <ClInclude Include="inputManager.h" />
+    <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="Local.h" />
     <ClInclude Include="menuState.h" />
+    <ClInclude Include="NarrowBody.h" />
+    <ClInclude Include="Regional.h" />
+    <ClInclude Include="Role.h" />
+    <ClInclude Include="RoleFabric.h" />
     <ClInclude Include="rulesState.h" />
     <ClInclude Include="simulationState1.h" />
     <ClInclude Include="state.h" />
     <ClInclude Include="stateMachine.h" />
+    <ClInclude Include="Strip.h" />
+    <ClInclude Include="WideBody.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
