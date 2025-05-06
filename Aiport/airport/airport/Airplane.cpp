@@ -6,7 +6,8 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> role)
     : id(std::move(id)), role(std::move(role)),
     fuel(role->getInitFuel()),
     circles(role->getMaxCircles()),
-    status(AirplaneStatus::waitTakeoff) 
+    status(AirplaneStatus::waitTakeoff),
+    hasStartedFlight(false)
 {
     sprite.setRadius(10.f);
     sprite.setFillColor(sf::Color::Black); //потом цвета менять будем
@@ -15,8 +16,23 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> role)
 
 void Airplane::tick() //если надо - поправим
 {
-    updateMovement(); // ПРАВИТЬ СКОРЕЕ ВСЕГО НАДО БУДЕТ
+    updateMovement();
+
+    // если только что завершили взлёт
+    /*if (status == AirplaneStatus::inSky && fromNpc && !hasStartedFlight)
+    {
+        sf::Vector2f flightTarget = (sprite.getPosition().y < 400)
+            ? sf::Vector2f(100.f, 600.f)
+            : sf::Vector2f(1150.f, 100.f);
+
+        std::cout << "Plane " << id << " start to fly to "
+            << flightTarget.x << ", " << flightTarget.y << "\n";
+        startFlight(flightTarget);
+        hasStartedFlight = true;
+    }*/
+
     updateFlight();
+
     if ((status == AirplaneStatus::inSky) || (status == AirplaneStatus::takingOff)
         || (status == AirplaneStatus::landing))
     {
@@ -26,6 +42,14 @@ void Airplane::tick() //если надо - поправим
             crash();
         }
     }
+    std::cout << "[TICK] Plane " << id
+        << " | Status: " << static_cast<int>(status)
+        << " | Pos: (" << sprite.getPosition().x << ", " << sprite.getPosition().y << ")"
+        << " | Vel: (" << velocity.x << ", " << velocity.y << ")"
+        << " | Speed: " << role->getSpeed()
+        << " | Progress: " << takeoffProgress << "/" << takeoffDistance
+        << " | FromNpc: " << fromNpc
+        << " | HasStartedFlight: " << hasStartedFlight << "\n";
 }
 
 void Airplane::crash()
@@ -84,25 +108,18 @@ void Airplane::draw(sf::RenderWindow& window)
 
 void Airplane::startTakeoff(Strip* target, bool isPlayer)
 {
+    
     if (!target || !target->isAvailable()) return;
 
     currentStrip = target;
     currentStrip->occupy();
+    fromNpc = !isPlayer;
     status = AirplaneStatus::takingOff;
     takeoffProgress = 0.f;
-
-    sf::Vector2f start = currentStrip->getPosition();
-    sf::Vector2f end;
-
-    // направление зависит от типа аэропорта
-    if (isPlayer) {
-        // Полоса направлена вниз
-        end = start + sf::Vector2f(0.f, currentStrip->getLength());
-    }
-    else {
-        // Полоса направлена вверх
-        end = start - sf::Vector2f(0.f, currentStrip->getLength());
-    }
+    sf::Vector2f start = target->getPosition();
+    sf::Vector2f end = isPlayer
+        ? start + sf::Vector2f(0.f, currentStrip->getLength())
+        : start - sf::Vector2f(0.f, currentStrip->getLength());
 
     sprite.setPosition(start);
     targetPosition = end;
@@ -110,37 +127,80 @@ void Airplane::startTakeoff(Strip* target, bool isPlayer)
     sf::Vector2f dir = end - start;
     float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
     velocity = (len > 0) ? dir / len * role->getSpeed() : sf::Vector2f(0.f, 0.f);
+    takeoffDistance = len;
+    /*std::cout << "[TAKEOFF] " << id
+        << " | Speed: " << role->getSpeed()
+        << " | Dir: (" << dir.x << ", " << dir.y << ")"
+        << " | Vel: (" << velocity.x << ", " << velocity.y << ")"
+        << " | Distance: " << takeoffDistance << "\n";*/
+    //std::cout << "Takeoff dir = (" << dir.x << ", " << dir.y << "), length = " << takeoffDistance << "\n";
 }
 
-void Airplane::updateMovement() 
+/*void Airplane::updateMovement()
 {
+    std::cout << "updateMovement: id=" << id
+        << ", progress=" << takeoffProgress
+        << ", distance=" << takeoffDistance
+        << ", pos=(" << sprite.getPosition().x << ", " << sprite.getPosition().y << ")\n";
+
     if (status != AirplaneStatus::takingOff)
         return;
 
-    sprite.move(velocity);
-    takeoffProgress += std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+    float step = std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
 
-    // Расстояние до цели
-    sf::Vector2f delta = targetPosition - sprite.getPosition();
-    float dist = std::sqrt(delta.x * delta.x + delta.y * delta.y);
-
-    if (dist < 1.0f)
+    if (takeoffProgress + step >= takeoffDistance)
     {
         sprite.setPosition(targetPosition);
         currentStrip->release();
         velocity = { 0.f, 0.f };
         status = AirplaneStatus::inSky;
 
-        if (fromNpc)  // самолёт NPC — запускаем полёт
-        // для самолета игрока проверка на расписание и разрешение на вылет
+        std::cout << "Plane " << id << " end takingoff\n";
+
+        if (fromNpc)
         {
-            sf::Vector2f flightTarget = (sprite.getPosition().y < 400)
-                ? sf::Vector2f(100, 600)       // Игрок - NPC
-                : sf::Vector2f(1150, 100);     // NPC - игрок
+            sf::Vector2f flightTarget = sf::Vector2f(1150.f, 100.f);
+            std::cout << "Plane " << id << " start to fly to "
+                << flightTarget.x << ", " << flightTarget.y << "\n";
             startFlight(flightTarget);
+            hasStartedFlight = true;
         }
+
+        return;
     }
+
+    sprite.move(velocity);
+    takeoffProgress += step;
+}*/
+void Airplane::updateMovement()
+{
+    if (status != AirplaneStatus::takingOff)
+        return;
+
+    float step = std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+
+    if (takeoffProgress + step >= takeoffDistance)
+    {
+        sprite.setPosition(targetPosition);
+        currentStrip->release();
+        velocity = { 0.f, 0.f };
+        takeoffProgress = takeoffDistance; //
+        status = AirplaneStatus::inSky;
+
+        if (fromNpc && !hasStartedFlight)
+        {
+            sf::Vector2f flightTarget = sf::Vector2f(1150.f, 100.f);
+            startFlight(flightTarget);
+            hasStartedFlight = true;
+        }
+
+        return;
+    }
+
+    sprite.move(velocity);
+    takeoffProgress += step;
 }
+
 
 sf::Vector2f Airplane::getPosition() const
 {
@@ -149,9 +209,10 @@ sf::Vector2f Airplane::getPosition() const
 
 void Airplane::startFlight(sf::Vector2f target)
 {
+   
     flightTarget = target;
+    flightStart = sprite.getPosition();
     status = AirplaneStatus::inSky;
-
     //откалибруем продолжительность полета
     std::string type = role->getType();
     if (type == "WideBody" || type == "Cargo") flightDuration = 50.f;
@@ -161,11 +222,14 @@ void Airplane::startFlight(sf::Vector2f target)
 
     flightTimer = 0.f;
 
-    // Центр траектории (сдвиг)
-    sf::Vector2f start = sprite.getPosition();
-    float offsetX = (std::rand() % 200 - 100); // рандомно влево/вправо
-    float offsetY = (std::rand() % 150 - 75);  // вверх/вниз
-    flightControlPoint = (start + target) / 2.f + sf::Vector2f(offsetX, offsetY);
+    float offsetX = (std::rand() % 200 - 100);
+    float offsetY = (std::rand() % 150 - 75);
+    flightControlPoint = (flightStart + flightTarget) / 2.f + sf::Vector2f(offsetX, offsetY);
+    //std::cout << "Plane " << id << " start to fly to " << target.x << ", " << target.y << "\n";
+    std::cout << "[FLIGHT] " << id
+        << " | From: (" << flightStart.x << ", " << flightStart.y << ")"
+        << " To: (" << flightTarget.x << ", " << flightTarget.y << ")"
+        << " | Duration: " << flightDuration << "\n";
 }
 
 void Airplane::updateFlight()
@@ -177,14 +241,15 @@ void Airplane::updateFlight()
 
     if (t >= 1.f)
     {
-        // здесь позже будет startLanding()
+        sprite.setPosition(flightTarget);
         status = AirplaneStatus::landing;
         trail.clear();
+        std::cout << "Plane " << id << " finished flight, switching to landing\n";
         return;
     }
 
-    //кривая Безье
-    sf::Vector2f P0 = sprite.getPosition();
+    // Кривая Безье (только одна промежуточная точка)
+    sf::Vector2f P0 = flightStart;
     sf::Vector2f P1 = flightControlPoint;
     sf::Vector2f P2 = flightTarget;
 
@@ -192,9 +257,11 @@ void Airplane::updateFlight()
     sprite.setPosition(pos);
 
     // Пунктирная траектория
-    if (flightTimer == (int)flightTimer && (int)flightTimer % 3 == 0)
+    if ((int)flightTimer % 3 == 0)
     {
         trail.push_back(pos);
         if (trail.size() > 50) trail.pop_front();
     }
+
+    std::cout << "Tick flying  " << id << ", time: " << flightTimer << "\n";
 }

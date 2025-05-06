@@ -40,10 +40,10 @@ int main()
     int planeId = 0;
     //PLAYER
     auto playerPlane = std::make_shared<Airplane>("Plane_" + std::to_string(planeId++), createRandomRole());
-    playerPlane->setPosition({ playerPos.x + 100, playerPos.y + 50 });
-    playerPlane->setFromNpc(false);
-    activePlanes.push_back(playerPlane);
-    AirPlayer->acceptAirplane(playerPlane);
+   // playerPlane->setPosition({ playerPos.x + 100, playerPos.y + 50 });
+    //playerPlane->setFromNpc(false);
+  //  activePlanes.push_back(playerPlane);
+    //AirPlayer->acceptAirplane(playerPlane);
 
     //NPC
     auto npcPlane = std::make_shared<Airplane>("Plane_" + std::to_string(planeId++), createRandomRole());
@@ -60,12 +60,8 @@ int main()
                 window.close();
         }
 
-        // обновление логики - ТИК
-        AirPlayer->tick();
-        AirNpc->tick();
-
         AirNpc->processTakeoff();
-        AirPlayer->processTakeoff();
+        //AirPlayer->processTakeoff();
         for (auto& p : activePlanes)
         {
             p->tick();

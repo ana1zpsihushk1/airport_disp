@@ -57,17 +57,20 @@ private:
 	AirplaneStatus status;
 
 	bool fromNpc = false;
+	bool hasStartedFlight = false;
 
 	sf::CircleShape sprite;             
 	sf::Vector2f velocity = { 0.f, 0.f }; 
 	sf::Vector2f targetPosition;
 	sf::Vector2f taxiTarget;
 	float takeoffProgress = 0.f;
+	float takeoffDistance = 0.f;
 	Strip* currentStrip = nullptr;
 
 	float flightDuration = 0.f;
 	float flightTimer = 0.f;
 	sf::Vector2f flightTarget;
+	sf::Vector2f flightStart;
 	sf::Vector2f flightControlPoint; 
 	std::deque<sf::Vector2f> trail; // пунктир
 };
