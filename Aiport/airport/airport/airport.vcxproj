@@ -161,6 +161,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cargo.h" />
     <ClInclude Include="definitions.h" />
+    <ClInclude Include="Dispatcher.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="initState.h" />
     <ClInclude Include="inputManager.h" />

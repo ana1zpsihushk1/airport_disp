@@ -43,6 +43,12 @@
     <Filter Include="Исходные файлы\Airport">
       <UniqueIdentifier>{e4e1c817-9dd5-44ff-8096-e944cbcefabe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Dispatcher">
+      <UniqueIdentifier>{e3ed6b4b-bdd3-46fa-98a3-d5427d767443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Dispatcher">
+      <UniqueIdentifier>{c5281774-c542-450e-813b-cb226678146c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -178,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>Файлы заголовков\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatcher.h">
+      <Filter>Файлы заголовков\Dispatcher</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

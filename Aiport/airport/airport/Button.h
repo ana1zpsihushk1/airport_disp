@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "definitions.h"
 
 class Button {
 public:
@@ -15,6 +16,6 @@ private:
 	sf::RectangleShape shape;
 	sf::Text label;
 
-	sf::Color baseColor = sf::Color(144, 238, 144);  // light green
-	sf::Color hoverColor = sf::Color(0, 100, 0);     // dark green
+	sf::Color baseColor = sf::Color(BUTTON_MAIN_COLOR);
+	sf::Color hoverColor = sf::Color(BUTTON_HOVER_COLOR);
 };

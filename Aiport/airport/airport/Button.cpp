@@ -1,5 +1,7 @@
 #include "Button.h"
 
+#include "definitions.h"
+
 Button::Button(const sf::Vector2f& size, const sf::Vector2f& position, const std::string& text, sf::Font& font)
 {
 	shape.setSize(size);
@@ -11,7 +13,7 @@ Button::Button(const sf::Vector2f& size, const sf::Vector2f& position, const std
 	label.setFont(font);
 	label.setString(text);
 	label.setCharacterSize(32);
-	label.setFillColor(sf::Color::Black);
+	label.setFillColor(sf::Color(MAIN_BLACK_COLOR));
 
 	sf::FloatRect textBounds = label.getLocalBounds();
 	label.setOrigin(textBounds.left + textBounds.width / 2, textBounds.top + textBounds.height / 2);
@@ -27,9 +29,15 @@ void Button::draw(sf::RenderWindow& window)
 void Button::update(const sf::Vector2i& mousePos)
 {
 	if (shape.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos)))
+	{
 		shape.setFillColor(hoverColor);
+		label.setFillColor(sf::Color(MAIN_WHITE_COLOR));
+	}
 	else
+	{
 		shape.setFillColor(baseColor);
+		label.setFillColor(sf::Color(MAIN_BLACK_COLOR));
+	}
 }
 
 bool Button::isHovered(const sf::Vector2i& mousePos)

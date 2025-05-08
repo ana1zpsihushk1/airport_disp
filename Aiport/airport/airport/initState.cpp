@@ -16,8 +16,7 @@ void initState::Init()
 	_initText.setFont(_data->assets.GetFont("pixelBit_Font"));
 	_initText.setString("Tap SPACE to continue");
 	_initText.setCharacterSize(88);
-	_initText.setFillColor(sf::Color(180, 255, 80));
-	//_initText.setFillColor(sf::Color::White);
+	_initText.setFillColor(MENU_TEXT_COLOR);
 
 	sf::FloatRect bounds = _initText.getLocalBounds();
 	_initText.setOrigin(bounds.width / 2, bounds.height / 2);

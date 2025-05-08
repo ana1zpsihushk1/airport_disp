@@ -20,7 +20,7 @@ void rulesState::Init()
 	_rulesText.setFont(_data->assets.GetFont("menu_Font"));
 	_rulesText.setString("- You can make...\n- Avoid smth\n- Keep track of the time");
 	_rulesText.setCharacterSize(36);
-	_rulesText.setFillColor(sf::Color(180, 255, 80));
+	_rulesText.setFillColor(sf::Color(MENU_TEXT_COLOR));
 	_rulesText.setPosition(100, 160);
 
 	backButton = std::make_unique<Button>(
