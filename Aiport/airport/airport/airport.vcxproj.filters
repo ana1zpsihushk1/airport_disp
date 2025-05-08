@@ -111,6 +111,18 @@
     <ClCompile Include="Regional.cpp">
       <Filter>Исходные файлы\Airplane</Filter>
     </ClCompile>
+    <ClCompile Include="FlightSchedule.cpp">
+      <Filter>Исходные файлы\Dispatcher</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClock.cpp">
+      <Filter>Исходные файлы\Dispatcher</Filter>
+    </ClCompile>
+    <ClCompile Include="AirplaneUtils.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="ScheduleGenerator.cpp">
+      <Filter>Исходные файлы\Dispatcher</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -187,6 +199,18 @@
     </ClInclude>
     <ClInclude Include="Dispatcher.h">
       <Filter>Файлы заголовков\Dispatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClock.h">
+      <Filter>Файлы заголовков\Dispatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="FlightSchedule.h">
+      <Filter>Файлы заголовков\Dispatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="ScheduleGenerator.h">
+      <Filter>Файлы заголовков\Dispatcher</Filter>
+    </ClInclude>
+    <ClInclude Include="AirplaneUtils.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

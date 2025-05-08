@@ -1,21 +1,46 @@
 ﻿#include <iostream>
+#include <random>
+#include <sstream>
+#include <cmath>
+
 #include "Airplane.h"
+#include "AirplaneUtils.h"
 
-
-Airplane::Airplane(std::string id, std::unique_ptr<Role> role)
-    : id(std::move(id)), role(std::move(role)),
-    fuel(role->getInitFuel()),
-    circles(role->getMaxCircles()),
-    status(AirplaneStatus::waitTakeoff)
+static std::string generatePlaneName(const std::string& code)
 {
-    sprite.setRadius(10.f);
-    sprite.setFillColor(sf::Color::Black); //ïîòîì öâåòà ìåíÿòü áóäåì
-    sprite.setOrigin(10.f, 10.f); // öåíòð êðóãà
+    std::ostringstream oss;
+    oss << code << "-";
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, 9);
+    for (int i = 0; i < 4; ++i)
+        oss << dis(gen);
+    return oss.str();
 }
 
-void Airplane::tick() //åñëè íàäî - ïîïðàâèì
+Airplane::Airplane(std::string id, std::unique_ptr<Role> rolePtr, const sf::Font& font)
+    : id(std::move(id)), role(std::move(rolePtr)), fuel(role->getInitFuel()), circles(role->getMaxCircles()), status(AirplaneStatus::waitTakeoff)
 {
-    updateMovement(); // ÏÐÀÂÈÒÜ ÑÊÎÐÅÅ ÂÑÅÃÎ ÍÀÄÎ ÁÓÄÅÒ
+    sprite.setRadius(10.f);
+    sprite.setFillColor(sf::Color::Black);
+    sprite.setOrigin(10.f, 10.f);
+
+    name = generatePlaneName(role->getCode());
+
+    nameText.setFont(font);
+    nameText.setString(name);
+    nameText.setCharacterSize(14);
+    nameText.setFillColor(sf::Color::White);
+
+    sf::FloatRect bounds = nameText.getLocalBounds();
+    nameBackground.setSize({ bounds.width + 10.f, bounds.height + 6.f });
+    nameBackground.setFillColor(sf::Color(100, 100, 100, 180));
+    nameBackground.setOrigin(nameBackground.getSize().x / 2.f, nameBackground.getSize().y);
+}
+
+void Airplane::tick() //maybe we will fix it
+{
+    updateMovement(); // WE NEED TO FIX IT
     if ((status == AirplaneStatus::inSky) || (status == AirplaneStatus::takingOff)
         || (status == AirplaneStatus::landing))
     {
@@ -30,11 +55,11 @@ void Airplane::tick() //åñëè íàäî - ïîïðàâèì
 void Airplane::crash()
 {
     status = AirplaneStatus::crashed;
-    //ÀÍÈÌÀÖÈß???
+    // animation???
 }
 
-bool Airplane::requestLanding() //ÂÇÀÈÌÎÄÅÉÑÒÂÈÅ Ñ ÈÃÐÎÊÎÌ
-//ÁÓÄÅÌ ÏÐÀÂÈÒÜ 
+bool Airplane::requestLanding() // interaction with player
+// we are going to fix it
 {
     if (circles > 0)
     {
@@ -50,7 +75,7 @@ bool Airplane::requestLanding() //ÂÇÀÈÌÎÄÅÉÑÒÂÈÅ Ñ ÈÃÐÎÊÎÌ
 
 bool Airplane::requestTakingOff()
 {
-    //ÒÓÒ ÁÓÄÅÒ ÏÐÎÂÅÐÊÀ ÍÀ ÐÀÑÏÈÑÀÍÈÅ È ÎÒÂÅÒ ÄÅÑÏÅÒ×ÅÐÀ  
+    // it will be test of schedule and answer from dispatcher
     if (status == AirplaneStatus::waitTakeoff)
     {
         status = AirplaneStatus::takingOff;
@@ -59,15 +84,22 @@ bool Airplane::requestTakingOff()
     return false;
 }
 
-//îòðèñîâêà
 void Airplane::setPosition(sf::Vector2f pos)
 {
     sprite.setPosition(pos);
+    nameText.setPosition(pos.x, pos.y - 20.f);
+    nameBackground.setPosition(pos.x, pos.y - 20.f);
 }
 
 void Airplane::draw(sf::RenderWindow& window)
 {
     window.draw(sprite);
+
+    nameText.setPosition(sprite.getPosition().x, sprite.getPosition().y - 18.f);
+    nameBackground.setPosition(nameText.getPosition());
+
+    window.draw(nameBackground);
+    window.draw(nameText);
 }
 
 void Airplane::startTakeoff(Strip* target)
@@ -78,18 +110,15 @@ void Airplane::startTakeoff(Strip* target)
     currentStrip->occupy();
 
     sf::Vector2f stripPos = currentStrip->getPosition();
-    taxiTarget = stripPos + sf::Vector2f(20.f, 0.f); // íà÷àëî ïîëîñû (ïðèìåðíî öåíòð)
+    taxiTarget = stripPos + sf::Vector2f(20.f, 0.f);
+
     sf::Vector2f dir = taxiTarget - sprite.getPosition();
     float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
 
     if (len > 0)
-    {
         velocity = dir / len * role->getSpeed();
-    }
     else
-    {
-        velocity = { 0.f, 0.f };
-    }
+        velocity = sf::Vector2f{ 0.f, 0.f };
 
     status = AirplaneStatus::taxiingToStrip;
 
@@ -111,7 +140,8 @@ void Airplane::startTakeoff(Strip* target)
     if (len > 0)
         velocity = dir / len * role->getSpeed(); // ó÷¸ò ñêîðîñòè ïî ðîëè
     else
-        velocity = { 0.f, 0.f };*/
+        velocity = { 0.f, 0.f };
+    */
 }
 
 void Airplane::updateMovement()
@@ -126,7 +156,7 @@ void Airplane::updateMovement()
 
         if (std::sqrt(dx * dx + dy * dy) < 2.0f)
         {
-            // Íà÷àòü ðàçãîí
+            // start of taking off
             sf::Vector2f endPoint = currentStrip->getPosition() + sf::Vector2f(0.f, currentStrip->getLength() * 2);
             sf::Vector2f dir = endPoint - sprite.getPosition();
             float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
@@ -136,10 +166,10 @@ void Airplane::updateMovement()
             takeoffProgress = 0.f;
             status = AirplaneStatus::takingOff;
         }
-        return;
+        //return;
     }
 
-    if (status == AirplaneStatus::takingOff)
+    else if (status == AirplaneStatus::takingOff)
     {
         sprite.move(velocity);
         takeoffProgress += std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
@@ -162,4 +192,17 @@ void Airplane::updateMovement()
         velocity = { 0.f, 0.f };
         status = AirplaneStatus::inSky;
     }*/
+
+    nameText.setPosition(sprite.getPosition().x, sprite.getPosition().y - 20.f);
+    nameBackground.setPosition(sprite.getPosition().x, sprite.getPosition().y - 20.f);
+}
+
+void Airplane::setSchedule(const FlightSchedule& schedule)
+{
+    _schedule = schedule;
+}
+
+FlightSchedule Airplane::getSchedule() const
+{
+    return _schedule;
 }

@@ -15,9 +15,12 @@ public:
 	int getMaxCircles() const override;
 	int getInitMinus() const override;
 	float getSpeed() const override;
+
+	std::string getCode() const override { return "CG"; }
+
 private:
-	int fuel; //îòêàëèáðîâàòü
-	int circles; //îòêàëèáðîâàòü
+	int fuel; 
+	int circles;
 	int minus;
 	float speed;
 };

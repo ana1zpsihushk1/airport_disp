@@ -7,6 +7,7 @@
 
 #define FONT_FOR_MENU "C:/Users/Huawei/AppData/Local/Microsoft/Windows/Fonts/minecraft.ttf"
 #define FONT_FOR_GAME "C:/Users/Huawei/AppData/Local/Microsoft/Windows/Fonts/RuneScape-ENA.ttf"
+#define FONT_FOR_PLANES "C:/Users/Huawei/AppData/Local/Microsoft/Windows/Fonts/BleekerCyrillic.ttf"
 
 #define BACKGROUND_PNG "C:/Users/Huawei/Downloads/menu_background.png"
 
@@ -21,3 +22,7 @@ const sf::Color MAIN_BLACK_COLOR = sf::Color(0, 0, 0);
 const sf::Color MAIN_WHITE_COLOR = sf::Color(255, 255, 255);
 
 const sf::Color ATTINTION_COLOR = sf::Color(255, 60, 60);
+
+const sf::Color BACKGROUND_FOR_NAMES_OF_PLANES = sf::Color(100, 100, 100, 180);
+
+const float GAME_SPEED = 480.0f;		// speed of game session

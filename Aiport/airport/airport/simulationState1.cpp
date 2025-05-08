@@ -1,6 +1,9 @@
 #include "simulationState1.h"
 #include "definitions.h"
 #include "menuState.h"
+#include "GameClock.h"
+
+GameClock _gameClock;
 
 simulationState1::simulationState1(GameDataRef data) : _data(data) {}
 
@@ -8,6 +11,9 @@ void simulationState1::Init()
 {
 	const int windowWidth = SCREEN_WIDTH;
 	const int windowHeight = SCREEN_HEIGHT;
+
+	_data->assets.LoadFont("plane_Font", FONT_FOR_PLANES);
+	const sf::Font& planeFont = _data->assets.GetFont("plane_Font");
 
 	sf::Vector2f airportSize(300, 200);
 	sf::Vector2f playerPos(windowWidth - airportSize.x - 20, 20);
@@ -18,7 +24,11 @@ void simulationState1::Init()
 	AirPlayer->initStrip();
 	AirNpc->initStrip();
 
-	auto plane = std::make_shared<Airplane>("Plane_" + std::to_string(planeId++), createRandomRole());
+	auto plane = std::make_shared<Airplane>(
+		"Plane_" + std::to_string(planeId++),
+		createRandomRole(),
+		planeFont
+	);
 	plane->setPosition({ npcPos.x + 100, npcPos.y + 50 });
 	activePlanes.push_back(plane);
 	AirNpc->acceptAirplane(plane);
@@ -31,11 +41,15 @@ void simulationState1::HandleInput()
 	{
 		if (event.type == sf::Event::Closed)
 			_data->window.close();
+
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+			_data->machine.AddState(StateRef(new menuState(_data)), true); // Вернуться в меню
 	}
 }
 
 void simulationState1::Update(float dt)
 {
+	_gameClock.update(dt);
 	AirPlayer->tick();
 	AirNpc->tick();
 	AirNpc->processTakeoff();
@@ -57,6 +71,15 @@ void simulationState1::Draw(float dt)
 	{
 		p->draw(_data->window);
 	}
+
+	sf::Text clockText;
+	clockText.setFont(_data->assets.GetFont("menu_Font"));
+	clockText.setCharacterSize(32);
+	clockText.setFillColor(MAIN_BLACK_COLOR);
+	clockText.setString("Time: " + _gameClock.getTimeString());
+	clockText.setPosition(20, 20);
+
+	_data->window.draw(clockText);
 
 	_data->window.display();
 }

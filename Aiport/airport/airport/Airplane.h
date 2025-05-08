@@ -5,8 +5,10 @@
 #include <string>
 #include <memory>
 
+#include "definitions.h"
 #include "Role.h"
 #include "Strip.h"
+#include "FlightSchedule.h"
 
 enum class AirplaneStatus
 {
@@ -23,12 +25,12 @@ enum class AirplaneStatus
 class Airplane
 {
 public:
-	Airplane(std::string id, std::unique_ptr<Role> role);
+	Airplane(std::string id, std::unique_ptr<Role> role, const sf::Font& font);
 
-	void tick(); // èãðîâîé øàã, ïîêà òàì ïîòåðÿ òîïëèâà
+	void tick(); // playing step (it`s just losing of fuel now)
 	void crash();
 
-	//ôóíêöèè âçàèìîäåéñòâèÿ ñ èãðîêîì
+	//fuctions for player
 	bool requestLanding();
 	bool requestTakingOff();
 
@@ -39,13 +41,23 @@ public:
 
 	void setPosition(sf::Vector2f pos);
 	//void moveTo(sf::Vector2f targetPos);
-	void startTakeoff(Strip* targetStrip); // îñíîâíàÿ ëîãèêà âçë¸òà
-	void updateMovement();                 // âûçûâàåòñÿ êàæäûé òèê
+	void startTakeoff(Strip* targetStrip); // main logic of taking off
+	void updateMovement();                 // update tick
+
+	void setSchedule(const FlightSchedule& schedule);
+	FlightSchedule getSchedule() const;
+
 	void draw(sf::RenderWindow& window);
 
 private:
 	int fuel;
 	int circles;
+
+	std::string name;
+	sf::Text nameText;
+	sf::RectangleShape nameBackground;
+
+	FlightSchedule _schedule;
 
 	std::string id;
 	std::unique_ptr<Role> role;
