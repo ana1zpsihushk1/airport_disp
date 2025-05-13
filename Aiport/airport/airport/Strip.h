@@ -16,6 +16,7 @@ public:
 
     StripType getType() const { return type; }
     int getLength() const { return length; }
+    sf::Vector2f getSize() const { return shape.getSize(); }
     bool isAvailable() const { return !occupied; }
 
     void occupy() { occupied = true; }

@@ -12,11 +12,10 @@
 enum class AirplaneStatus
 {
 	waitTakeoff, //ожидание взлета
-	taxiingToStrip, //агрессивно подъезжаем к ВПП
-	takingOff, //взлет
+	movingToStrip,     // движение к началу ВПП
+	takingOff,         // движение по ВПП - взлет
 	inSky, //летит (в небе)
 	landing, //приземление
-	landedMove, // едет по земле
 	crashed // крушение
 };
 
@@ -26,12 +25,7 @@ class Airplane
 public:
 	Airplane(std::string id, std::unique_ptr<Role> role);
 
-	void tick(); // игровой шаг, пока там потеря топлива
 	void crash();
-
-    //функции взаимодействия с игроком
-    bool requestLanding();
-    bool requestTakingOff();
 
     const std::string& getId() const { return id; };
     int getFuel() const { return fuel; };
@@ -40,13 +34,22 @@ public:
 
 	void setFromNpc(bool val) { fromNpc = val; }
 	void setPosition(sf::Vector2f pos);
-	void startTakeoff(Strip* targetStrip, bool isPlayer); // взлёт
-	void updateMovement();                 // вызывается каждый тик
+	void setParkPosition(sf::Vector2f pos);
 	void draw(sf::RenderWindow& window);
-
 	sf::Vector2f getPosition() const;
-	void startFlight(sf::Vector2f target); // запуск полёта
-	void updateFlight();                   // вызывается каждый тик
+
+	//ДАВАЙ ПО НОВОЙ САНЯ
+	void tick(); // игровой шаг
+
+	void startMoveToStrip(Strip* strip);
+	void moveToStripStart();
+	void moveAlongStrip();
+
+	sf::Vector2f normalize(sf::Vector2f v);
+	bool reached(sf::Vector2f target);
+
+
+
 private:
 	int fuel;
 	int circles;
@@ -61,16 +64,12 @@ private:
 
 	sf::CircleShape sprite;             
 	sf::Vector2f velocity = { 0.f, 0.f }; 
-	sf::Vector2f targetPosition;
-	sf::Vector2f taxiTarget;
-	float takeoffProgress = 0.f;
-	float takeoffDistance = 0.f;
 	Strip* currentStrip = nullptr;
 
-	float flightDuration = 0.f;
-	float flightTimer = 0.f;
-	sf::Vector2f flightTarget;
-	sf::Vector2f flightStart;
-	sf::Vector2f flightControlPoint; 
-	std::deque<sf::Vector2f> trail; // пунктир
+	//ПО НОВОЙ
+	sf::Vector2f parkPosition;
+	sf::Vector2f stripStartPos;
+	sf::Vector2f stripEndPos;
+
+	std::deque<sf::Vector2f> trail;
 };

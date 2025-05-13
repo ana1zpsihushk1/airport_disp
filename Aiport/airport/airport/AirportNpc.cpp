@@ -9,22 +9,26 @@ void AirportNpc::tick()
     }
 }
 
-void AirportNpc::acceptAirplane(std::shared_ptr<Airplane> plane) 
+void AirportNpc::acceptAirplane(std::shared_ptr<Airplane> plane)
 {
+    // Пример позиции парковки — перед полосами
+    sf::Vector2f base = shape.getPosition();
+    sf::Vector2f parkPos = base + sf::Vector2f(50.f, -20.f);
+    plane->setPosition(parkPos);
+    plane->setParkPosition(parkPos); // сохранить позицию парковки
     airplanes.push_back(plane);
 }
 
 void AirportNpc::deleteAirplane(const std::string& id)
 {
     auto it = std::remove_if(airplanes.begin(), airplanes.end(),
-        [&](const std::shared_ptr<Airplane>& plane) 
+        [&](const std::shared_ptr<Airplane>& plane)
         {
             return plane->getId() == id;
         });
-    if (it != airplanes.end()) 
+    if (it != airplanes.end())
     {
         airplanes.erase(it, airplanes.end());
-        
     }
 }
 
@@ -91,20 +95,14 @@ Strip* AirportNpc::findSuitableStrip(const std::string& typeName)
 
 void AirportNpc::processTakeoff()
 {
-    //ЗДЕСЬ БУДЕТ ПРОВЕРКА РАСПИСАНИЯ
     for (auto& plane : airplanes)
     {
-        if (plane->getStatus() != AirplaneStatus::waitTakeoff)
+        if (plane->getStatus() == AirplaneStatus::waitTakeoff)
         {
-            continue;
-        }
-
-        Strip* strip = findSuitableStrip(plane->getTypeName());
-        if (strip)
-        {
-            if (plane->requestTakingOff()) 
+            Strip* strip = findSuitableStrip(plane->getTypeName());
+            if (strip)
             {
-                plane->startTakeoff(strip, false);
+                plane->startMoveToStrip(strip);
             }
         }
     }

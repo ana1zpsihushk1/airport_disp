@@ -8,16 +8,15 @@ void AirportPlayer::tick()
     }
 }
 
+//КОПИПАСТ (ЗЛО) С NPC ПОТОМ ПРАВИТЬ БУДЕМ
 void AirportPlayer::acceptAirplane(std::shared_ptr<Airplane> plane)
 {
-    if (hasFreeSlot()) 
-    {
-        airplanes.push_back(plane);
-    }
-    else 
-    {
-        // самолет уходить на круг (далее: новый запрос/падение/до NPC)
-    }
+    // Пример позиции парковки — перед полосами
+    sf::Vector2f base = shape.getPosition();
+    sf::Vector2f parkPos = base + sf::Vector2f(50.f, -20.f);
+    plane->setPosition(parkPos);
+    plane->setParkPosition(parkPos); // сохранить позицию парковки
+    airplanes.push_back(plane);
 }
 
 void AirportPlayer::setLevel(int level)
@@ -37,11 +36,11 @@ void AirportPlayer::setLevel(int level)
 void AirportPlayer::deleteAirplane(const std::string& id)
 {
     auto it = std::remove_if(airplanes.begin(), airplanes.end(),
-        [&](const std::shared_ptr<Airplane>& plane) 
+        [&](const std::shared_ptr<Airplane>& plane)
         {
             return plane->getId() == id;
         });
-    if (it != airplanes.end()) 
+    if (it != airplanes.end())
     {
         airplanes.erase(it, airplanes.end());
     }
@@ -66,9 +65,9 @@ void AirportPlayer::draw(sf::RenderWindow& window)
 void AirportPlayer::initStrip() 
 {
     strips.clear();
-    Strip universal(StripType::Universal, 100);
+    Strip universal(StripType::Universal, 200);
     universal.setPosition({ shape.getPosition().x + 20, shape.getPosition().y + shape.getSize().y + 10 });
-    Strip limitted(StripType::Limitted, 100);
+    Strip limitted(StripType::Limitted, 200);
     limitted.setPosition({ shape.getPosition().x + 80, shape.getPosition().y + shape.getSize().y + 10 });
     strips.push_back(universal);
     strips.push_back(limitted);
@@ -94,24 +93,19 @@ Strip* AirportPlayer::findSuitableStrip(const std::string& typeName)
     return nullptr;
 }
 
-void AirportPlayer::processTakeoff()
+//Логика для игрока 
+/*void AirportPlayer::processTakeoff()
 {
-    //ЗДЕСЬ БУДЕТ ПРОВЕРКА РАСПИСАНИЯ и ОТВЕТ ДИСПЕТЧЕРА
     for (auto& plane : airplanes)
     {
-        if (plane->getStatus() != AirplaneStatus::waitTakeoff)
+        if (plane->getStatus() == AirplaneStatus::waitTakeoff)
         {
-            continue;
-        }
-
-        Strip* strip = findSuitableStrip(plane->getTypeName());
-        if (strip)
-        {
-            if (plane->requestTakingOff())
+            Strip* strip = findSuitableStrip(plane->getTypeName());
+            if (strip)
             {
-                plane->startTakeoff(strip, true);
+                plane->startMoveToStrip(strip);
             }
         }
     }
-}
+}*/
 

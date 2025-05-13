@@ -3,7 +3,7 @@
 Strip::Strip(StripType type, int length) : 
 	type(type), length(length) 
 {
-    shape.setSize(sf::Vector2f(40.f, static_cast<float>(length*2)));
+    shape.setSize(sf::Vector2f(40.f, static_cast<float>(length)));
     shape.setFillColor(type == StripType::Universal ? sf::Color::Green : sf::Color(150, 75, 0));
 }
 
