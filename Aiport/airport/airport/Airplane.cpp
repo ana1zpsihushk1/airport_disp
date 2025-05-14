@@ -99,15 +99,22 @@ void Airplane::moveToStripStart()
 
 void Airplane::moveAlongStrip()
 {
-    if (reached(stripEndPos)) 
+    float distanceToEnd = std::sqrt(std::pow(stripEndPos.x - sprite.getPosition().x, 2) +
+        std::pow(stripEndPos.y - sprite.getPosition().y, 2));
+    float step = std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+
+    if (distanceToEnd <= step)
     {
         sprite.setPosition(stripEndPos);
-        currentStrip->release();
         velocity = { 0.f, 0.f };
-        status = AirplaneStatus::inSky; // ïîòîì ÏÒÈ×ÊÀ ÂÛËÅÒÅËÀ
-        return; //ËÅÒÈÌ...(ÍÀÄÅÞÑÜ)
+        currentStrip->release();
+        status = AirplaneStatus::inSky;
+        return;
     }
-    sprite.move(velocity);
+    else
+    {
+        sprite.move(velocity);
+    }
 }
 
 sf::Vector2f Airplane::normalize(sf::Vector2f v)
@@ -118,8 +125,7 @@ sf::Vector2f Airplane::normalize(sf::Vector2f v)
 
 bool Airplane::reached(sf::Vector2f target)
 {
-    sf::Vector2f dir = target - sprite.getPosition();
-    sf::Vector2f moveDir = normalize(velocity);
-
-    return (dir.x * moveDir.x + dir.y * moveDir.y) <= 0;
+    float dist = std::sqrt(std::pow(target.x - sprite.getPosition().x, 2) +
+        std::pow(target.y - sprite.getPosition().y, 2));
+    return dist <= role->getSpeed(); 
 }

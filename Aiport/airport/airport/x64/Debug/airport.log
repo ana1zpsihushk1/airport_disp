@@ -1,4 +1,6 @@
 ﻿  Airplane.cpp
+C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(102,25): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(128,16): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
 sfml-graphics-s-d.lib(Transformable.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Transformable.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Color.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Color.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Shape.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Shape.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
