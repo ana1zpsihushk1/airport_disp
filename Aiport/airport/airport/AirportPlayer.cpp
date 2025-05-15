@@ -1,10 +1,10 @@
 #include "AirportPlayer.h"
 
-void AirportPlayer::tick()
+void AirportPlayer::tick(float dt)
 {
     for (auto& plane : airplanes) 
     {
-        plane->tick();
+        plane->tick(dt);
     }
 }
 

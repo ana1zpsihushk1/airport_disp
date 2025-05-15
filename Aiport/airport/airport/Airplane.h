@@ -41,7 +41,7 @@ public:
 	sf::Vector2f getPosition() const;
 
 	//ДАВАЙ ПО НОВОЙ САНЯ
-	void tick(); // игровой шаг
+	void tick(float dt); // игровой шаг
 
 	//VZLET
 	void startMoveToStrip(Strip* strip);
@@ -53,7 +53,7 @@ public:
 
 	//POLET
 	void startFlight(Strip* targetStrip); // задаём путь
-	void updateFlight(); // вызывается каждый тик - топливо теряем
+	void updateFlight(float dt); // вызывается каждый тик - топливо теряем
 	void setDestinationAirport(Airport* airport);
 
 

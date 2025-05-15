@@ -1,11 +1,11 @@
 #include "AirportNpc.h"
 
-void AirportNpc::tick()
+void AirportNpc::tick(float dt)
 {
 // тут может будет время меняться?
     for (auto& plane : airplanes) 
     {
-        plane->tick();
+        plane->tick(dt);
     }
 }
 

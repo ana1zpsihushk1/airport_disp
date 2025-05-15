@@ -15,7 +15,7 @@ public:
 	const std::vector<std::shared_ptr<Airplane>>& getAirplanes() const { return airplanes; }
 	void deleteAirplane(const std::string& id);
 
-	void tick() override;
+	void tick(float dt) override;
 	void acceptAirplane(std::shared_ptr<Airplane> plane) override;
 
 	AirportPlayer(sf::Vector2f position, sf::Vector2f size);

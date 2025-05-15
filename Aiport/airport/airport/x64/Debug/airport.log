@@ -1,6 +1,16 @@
-﻿  Main.cpp
-C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(14,25): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(15,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  WideBody.cpp
-  Создание кода...
+﻿  Airplane.cpp
+C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(117,25): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(148,16): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(171,19): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+C:\Users\proek\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(172,19): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+sfml-graphics-s-d.lib(ImageLoader.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(ImageLoader.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(RenderTarget.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-graphics-s-d.lib(Texture.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Texture.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-graphics-s-d.lib(Transform.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Transform.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-graphics-s-d.lib(Transformable.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Transformable.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-graphics-s-d.lib(View.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(View.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-graphics-s-d.lib(Shape.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Shape.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-graphics-s-d.lib(CircleShape.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(CircleShape.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-window-s-d.lib(Window.obj) : warning LNK4099: "sfml-window-s.pdb" PDB не найден с "sfml-window-s-d.lib(Window.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-window-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-window-s-d.lib(JoystickImpl.obj) : warning LNK4099: "sfml-window-s.pdb" PDB не найден с "sfml-window-s-d.lib(JoystickImpl.obj)" или на "C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-window-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
   airport.vcxproj -> C:\Users\proek\Airport\airport_disp\Aiport\airport\x64\Debug\airport.exe

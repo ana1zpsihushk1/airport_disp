@@ -8,7 +8,7 @@
 class AirportNpc : public Airport
 {
 public:
-	void tick() override;
+	void tick(float dt) override;
 	void deleteAirplane(const std::string& id);
 	void acceptAirplane(std::shared_ptr<Airplane> plane) override;
 	Strip* findSuitableStrip(const std::string& typeName) override;

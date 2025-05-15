@@ -8,7 +8,7 @@
 class Airport
 {
 public:
-	virtual void tick() = 0;
+	virtual void tick(float dt) = 0;
 	virtual void acceptAirplane(std::shared_ptr<Airplane> plane) = 0;
 	virtual Strip* findSuitableStrip(const std::string& typeName) = 0;
 	virtual ~Airport() = default;

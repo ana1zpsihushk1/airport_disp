@@ -36,9 +36,11 @@ int main()
     activePlanes.push_back(npcPlane);
     airportNpc->acceptAirplane(npcPlane);
 
+    sf::Clock deltaClock;
     // Игровой цикл
     while (window.isOpen())
     {
+        float dt = deltaClock.restart().asSeconds();
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -47,11 +49,11 @@ int main()
         }
 
         airportNpc->processTakeoff(); // проверка на взлёт
-        airportNpc->tick();           // движение NPC-самолётов
-        airportPlayer->tick();        // игрок пока неактивен
+        airportNpc->tick(dt);           // движение NPC-самолётов
+        airportPlayer->tick(dt);        // игрок пока неактивен
 
         for (auto& p : activePlanes)
-            p->tick();
+            p->tick(dt);
 
         window.clear(sf::Color::White);
         airportNpc->draw(window);

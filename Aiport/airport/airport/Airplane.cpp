@@ -53,7 +53,7 @@ sf::Vector2f Airplane::getPosition() const
 
 //ÄÀÂÀÉ ÏÎ ÍÎÂÎÉ ÑÀÍß
 
-void Airplane::tick()
+void Airplane::tick(float dt)
 {
     switch (status)
     {
@@ -64,7 +64,7 @@ void Airplane::tick()
         moveAlongStrip();
         break;
     case AirplaneStatus::inSky:
-        updateFlight();
+        updateFlight(dt);
         break;
     case AirplaneStatus::landing:
         // ïîêà ïðîñòî îñòàíîâêà
@@ -123,9 +123,10 @@ void Airplane::moveAlongStrip()
         sprite.setPosition(stripEndPos);
         velocity = { 0.f, 0.f };
         currentStrip->release();
-        status = AirplaneStatus::inSky;
+        
         Strip* destStrip = destinationAirport->findSuitableStrip(role->getType());
-        if (destStrip) {
+        if (destStrip) 
+        {
             startFlight(destStrip);
         }
         return;
@@ -173,33 +174,27 @@ void Airplane::startFlight(Strip* targetStrip)
 
     // äëèòåëüíîñòü ïîë¸òà ÏÎÌÅÍßÅÌ ÅÑËÈ ÍÀÄÎ - ÒÓÒ ÐÀÑÏÈÑÀÍÈÅ ÂÒÓÏÀÅÒ Â ÑÈËÓ
     std::string type = role->getType();
-    if (type == "WideBody" || type == "Cargo") flightDuration = 300.f;
-    else if (type == "NarrowBody") flightDuration = 220.f;
-    else if (type == "Regional") flightDuration = 150.f;
-    else flightDuration = 100.f;
+    if (type == "WideBody" || type == "Cargo") flightDuration = 5.f;
+    else if (type == "NarrowBody") flightDuration = 5.f;
+    else if (type == "Regional") flightDuration = 5.f;
+    else flightDuration = 5.f;
 
     flightTimer = 0.f;
+    status = AirplaneStatus::inSky;
+    std::cout << "Start flight to strip at " << flightEnd.x << ", " << flightEnd.y << "\n";
 }
 
-void Airplane::updateFlight()
+
+void Airplane::updateFlight(float dt)
 {
     if (status != AirplaneStatus::inSky) return;
 
-    flightTimer += 1.f;
-    fuel--;
+    flightTimer += dt;
 
-    float t = flightTimer / flightDuration;
-    if (t >= 1.f)
-    {
-        // çàâåðøèòü ïîë¸ò, ïåðåéòè ê ïîñàäêå
-        sprite.setPosition(flightEnd);
-        currentStrip->release();
-        velocity = { 0.f, 0.f };
-        status = AirplaneStatus::landing; // ïîñàäêà - ÏÎÇÆÅ
-        trail.clear();
-        return;
-    }
-    // êðèâàÿ Áåçüå
+    //float t = std::min(flightTimer / flightDuration, 1.f);  // îãðàíè÷èì t ìàêñèìóìîì
+    float t = std::min(flightTimer / flightDuration, 1.f);
+
+    // Áåçüå
     sf::Vector2f P0 = flightStart;
     sf::Vector2f P1 = flightBezierControl;
     sf::Vector2f P2 = flightEnd;
@@ -207,14 +202,23 @@ void Airplane::updateFlight()
     sf::Vector2f pos = (1 - t) * (1 - t) * P0 + 2 * (1 - t) * t * P1 + t * t * P2;
     sprite.setPosition(pos);
 
-    // ñëåä
-    if ((int)flightTimer % 4 == 0)
+    if ((int)(flightTimer * 60) % 4 == 0)
     {
         trail.push_back(pos);
         if (trail.size() > 60) trail.pop_front();
     }
+
+    if (t >= 0.999f) 
+    {
+        sprite.setPosition(flightEnd);
+        currentStrip->release();
+        velocity = { 0.f, 0.f };
+        status = AirplaneStatus::landing;
+        return;
+    }
+
     if (fuel <= 0)
     {
-        crash(); //GAME OVER
+        crash();
     }
 }
