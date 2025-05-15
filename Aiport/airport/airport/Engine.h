@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 #include <memory>
 #include <iostream>
@@ -26,6 +27,8 @@ public:
 private:
 	const float dt = 1.0f / 60.0f;
 	sf::Clock _clock;
+	sf::Music _backgroundMusic;
+
 	GameDataRef _data = std::make_shared<GameData>();
 	void Run();
 };

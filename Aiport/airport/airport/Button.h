@@ -1,6 +1,10 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <stdexcept>
+#include <iostream>
+
 #include "definitions.h"
 
 class Button {
@@ -18,4 +22,7 @@ private:
 
 	sf::Color baseColor = sf::Color(BUTTON_MAIN_COLOR);
 	sf::Color hoverColor = sf::Color(BUTTON_HOVER_COLOR);
+
+	sf::SoundBuffer clickBuffer;
+	sf::Sound clickSound;
 };

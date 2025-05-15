@@ -15,12 +15,12 @@ void initState::Init()
 
 	_initText.setFont(_data->assets.GetFont("pixelBit_Font"));
 	_initText.setString("Tap SPACE to continue");
-	_initText.setCharacterSize(88);
+	_initText.setCharacterSize(120);
 	_initText.setFillColor(MENU_TEXT_COLOR);
 
 	sf::FloatRect bounds = _initText.getLocalBounds();
 	_initText.setOrigin(bounds.width / 2, bounds.height / 2);
-	_initText.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	_initText.setPosition(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3);
 }
 
 void initState::HandleInput()

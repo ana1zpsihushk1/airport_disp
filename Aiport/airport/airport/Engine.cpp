@@ -1,9 +1,22 @@
 #include "Engine.h"
 #include "initState.h"
+#include "definitions.h"
 
 Engine::Engine(int width, int height, std::string title)
 {
 	_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	
+	if (!_backgroundMusic.openFromFile(MAIN_THEME))
+	{
+		std::cerr << "[Engine] There is no such track\n";
+	}
+	else
+	{
+		_backgroundMusic.setLoop(true);
+		_backgroundMusic.setVolume(40.f);
+		_backgroundMusic.play();
+	}
+	
 	_data->machine.AddState(StateRef(new initState(this->_data)));
 
 	this->Run();
@@ -45,7 +58,7 @@ void Engine::Run()
 		}
 		catch (const std::exception& e)
 		{
-			std::cerr << "[Engine] Ошибка состояния: " << e.what() << std::endl;
+			std::cerr << "[Engine] Error: " << e.what() << std::endl;
 			_data->window.close();
 		}
 	}

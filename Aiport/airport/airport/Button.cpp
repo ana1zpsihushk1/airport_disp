@@ -1,5 +1,4 @@
 #include "Button.h"
-
 #include "definitions.h"
 
 Button::Button(const sf::Vector2f& size, const sf::Vector2f& position, const std::string& text, sf::Font& font)
@@ -18,6 +17,13 @@ Button::Button(const sf::Vector2f& size, const sf::Vector2f& position, const std
 	sf::FloatRect textBounds = label.getLocalBounds();
 	label.setOrigin(textBounds.left + textBounds.width / 2, textBounds.top + textBounds.height / 2);
 	label.setPosition(position.x + size.x / 2, position.y + size.y / 2);
+
+	if (!clickBuffer.loadFromFile(BUTTON_SOUND_EFFECT)) {
+		std::cerr << "[Button] There is no sound: " << BUTTON_SOUND_EFFECT << std::endl;
+	}
+	else {
+		clickSound.setBuffer(clickBuffer);
+	}
 }
 
 void Button::draw(sf::RenderWindow& window)
@@ -47,5 +53,10 @@ bool Button::isHovered(const sf::Vector2i& mousePos)
 
 bool Button::isClicked(const sf::Vector2i& mousePos)
 {
+	if (isHovered(mousePos)) {
+		clickSound.play();
+		return true;
+	}
+
 	return isHovered(mousePos);
 }

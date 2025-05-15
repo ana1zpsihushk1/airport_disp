@@ -9,7 +9,12 @@
 #define FONT_FOR_GAME "C:/Users/Huawei/AppData/Local/Microsoft/Windows/Fonts/RuneScape-ENA.ttf"
 #define FONT_FOR_PLANES "C:/Users/Huawei/AppData/Local/Microsoft/Windows/Fonts/BleekerCyrillic.ttf"
 
-#define BACKGROUND_PNG "C:/Users/Huawei/Downloads/menu_background.png"
+#define BUTTON_SOUND_EFFECT "C:/Users/Huawei/Downloads/minecraft_click.ogg"
+
+#define MAIN_THEME "C:/Users/Huawei/Downloads/Main_Theme.wav"
+
+#define BACKGROUND_PN "C:/Users/Huawei/Downloads/menu_background.png"
+#define BACKGROUND_PNG "C:/Users/Huawei/Downloads/menu_background_title.png"
 
 const sf::Color MENU_TEXT_COLOR = sf::Color(180, 255, 80);
 const sf::Color RULES_TEXT_COLOR = sf::Color(0, 255, 255);
