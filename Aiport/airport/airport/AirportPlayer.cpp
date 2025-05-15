@@ -77,15 +77,9 @@ Strip* AirportPlayer::findSuitableStrip(const std::string& typeName)
 {
     for (auto& s : strips)
     {
-        if (!s.isAvailable())
-        {
-            continue;
-        }
-        if (s.getType() == StripType::Universal)
-        {
-            return &s;
-        }
-        if ((s.getType() == StripType::Limitted && typeName == "WideBody") || (s.getType() == StripType::Limitted && typeName == "Cargo"))
+        if (!s.isAvailable()) continue;
+        if (s.getType() == StripType::Universal ||
+            (s.getType() == StripType::Limitted && (typeName == "WideBody" || typeName == "Cargo")))
         {
             return &s;
         }

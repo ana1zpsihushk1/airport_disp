@@ -78,20 +78,19 @@ Strip* AirportNpc::findSuitableStrip(const std::string& typeName)
 {
     for (auto& s : strips)
     {
-        if (!s.isAvailable())
-        {
-            continue;
-        }
-        if (s.getType() == StripType::Universal)
-        {
-            return &s;
-        }
-        if ((s.getType() == StripType::Limitted && typeName == "WideBody") || (s.getType() == StripType::Limitted && typeName == "Cargo"))
+        if (!s.isAvailable()) continue;
+        if (s.getType() == StripType::Universal ||
+            (s.getType() == StripType::Limitted && (typeName == "WideBody" || typeName == "Cargo")))
         {
             return &s;
         }
     }
     return nullptr;
+}
+
+void AirportNpc::setPlayerAirport(Airport* airport)
+{
+    playerAirport = airport;
 }
 
 void AirportNpc::processTakeoff()
@@ -103,6 +102,7 @@ void AirportNpc::processTakeoff()
             Strip* strip = findSuitableStrip(plane->getTypeName());
             if (strip)
             {
+                plane->setDestinationAirport(playerAirport);
                 plane->startMoveToStrip(strip);
             }
         }

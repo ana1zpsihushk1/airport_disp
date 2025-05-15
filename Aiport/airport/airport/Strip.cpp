@@ -17,6 +17,11 @@ sf::Vector2f Strip::getPosition() const
     return shape.getPosition();
 }
 
+sf::Vector2f Strip::getEndPosition() const
+{
+    return shape.getPosition() + sf::Vector2f(0.f, shape.getSize().y);
+}
+
 void Strip::setSize(sf::Vector2f size) 
 {
     shape.setSize(size);

@@ -25,12 +25,14 @@ int main()
 
     airportNpc->initStrip();
     airportPlayer->initStrip();
-
+    airportNpc->setOppositeAirport(airportPlayer.get());
+    airportPlayer->setOppositeAirport(airportNpc.get());
     std::vector<std::shared_ptr<Airplane>> activePlanes;
 
     // Добавляем самолёт NPC
     auto npcPlane = std::make_shared<Airplane>("NPC_1", createRandomRole());
     npcPlane->setFromNpc(true);
+    airportNpc->setPlayerAirport(airportPlayer.get());
     activePlanes.push_back(npcPlane);
     airportNpc->acceptAirplane(npcPlane);
 

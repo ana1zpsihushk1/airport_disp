@@ -9,6 +9,8 @@
 #include "Role.h"
 #include "Strip.h"
 
+class Airport;
+
 enum class AirplaneStatus
 {
 	waitTakeoff, //ожидание взлета
@@ -41,12 +43,19 @@ public:
 	//ДАВАЙ ПО НОВОЙ САНЯ
 	void tick(); // игровой шаг
 
+	//VZLET
 	void startMoveToStrip(Strip* strip);
 	void moveToStripStart();
 	void moveAlongStrip();
 
 	sf::Vector2f normalize(sf::Vector2f v);
 	bool reached(sf::Vector2f target);
+
+	//POLET
+	void startFlight(Strip* targetStrip); // задаём путь
+	void updateFlight(); // вызывается каждый тик - топливо теряем
+	void setDestinationAirport(Airport* airport);
+
 
 
 
@@ -70,6 +79,15 @@ private:
 	sf::Vector2f parkPosition;
 	sf::Vector2f stripStartPos;
 	sf::Vector2f stripEndPos;
-
 	std::deque<sf::Vector2f> trail;
+
+	float flightTimeRemaining = 0.f;
+	float flightDuration = 0.f;
+	float flightTimer = 0.f;
+
+	sf::Vector2f flightStart;
+	sf::Vector2f flightEnd;
+	sf::Vector2f flightBezierControl;
+
+	Airport* destinationAirport = nullptr;
 };

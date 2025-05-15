@@ -8,6 +8,7 @@
 class AirportPlayer : public Airport
 {
 public:
+	Strip* findSuitableStrip(const std::string& typeName) override;
 	bool hasFreeSlot() const { return airplanes.size() < capacity; }
 	void setLevel(int level);
 	int getCurLoad() const { return airplanes.size(); }
@@ -22,7 +23,7 @@ public:
 
 	void initStrip();
 	void processTakeoff();
-	Strip* findSuitableStrip(const std::string& typeName);
+	
 private:
 	std::vector<std::shared_ptr<Airplane>> airplanes;
 	int curLevel = 0;

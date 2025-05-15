@@ -3,6 +3,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+class Airport;
 enum class StripType 
 { 
     Universal,
@@ -24,8 +25,13 @@ public:
 
     void setPosition(sf::Vector2f pos);
     sf::Vector2f getPosition() const;
+    sf::Vector2f getEndPosition() const;
     void setSize(sf::Vector2f size);
     void draw(sf::RenderWindow& window);
+
+    Airport* owner = nullptr;
+    void setOwner(Airport* a) { owner = a; }
+    Airport* getOwner() const { return owner; }
 private:
     StripType type;
     int length;

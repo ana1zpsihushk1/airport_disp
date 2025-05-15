@@ -10,7 +10,7 @@
 class Local : public Role
 {
 public:
-	Local(int fuel = 40, int circles = 1, int minus = 2, float speed = 2.0f);
+	Local(int fuel = 4000, int circles = 1, int minus = 2, float speed = 2.0f);
 	std::string getType() const override;
 	int getInitFuel() const override;
 	int getMaxCircles() const override;

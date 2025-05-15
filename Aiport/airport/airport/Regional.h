@@ -9,7 +9,7 @@
 class Regional : public Role
 {
 public:
-	Regional(int fuel = 60, int circles = 2, int minus = 3, float speed = 2.0f);
+	Regional(int fuel = 60000, int circles = 2, int minus = 3, float speed = 2.0f);
 	std::string getType() const override;
 	int getInitFuel() const override;
 	int getMaxCircles() const override;

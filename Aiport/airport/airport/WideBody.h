@@ -9,7 +9,7 @@
 class WideBody : public Role
 {
 public:
-	WideBody(int fuel = 100, int circles = 3, int minus = 5, float speed = 2.0f);
+	WideBody(int fuel = 100000, int circles = 3, int minus = 5, float speed = 2.0f);
 	std::string getType() const override;
 	int getInitFuel() const override;
 	int getMaxCircles() const override;
