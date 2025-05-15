@@ -52,22 +52,23 @@ void AirportNpc::initStrip()
 {
     strips.clear();
 
-    float lineHeight = 200.f;
+    float stripHeight = 200.f;
     float stripGap = 10.f;
+    float stripWidth = 40.f;
 
     sf::Vector2f base = shape.getPosition();
-    float topY = base.y;
+    float bottomY = base.y + shape.getSize().y;
 
-    float offsetX1 = base.x + 20;
-    float offsetX2 = base.x + 80;
+    float offsetX1 = base.x + 20.f;
+    float offsetX2 = base.x + 80.f;
 
-    Strip universal(StripType::Universal, (int)lineHeight);
-    universal.setSize(sf::Vector2f(40, lineHeight));
-    universal.setPosition({ offsetX1, topY - lineHeight - stripGap });
+    Strip universal(StripType::Universal, (int)stripHeight);
+    universal.setSize(sf::Vector2f(stripWidth, stripHeight));
+    universal.setPosition({ offsetX1, bottomY + stripGap });
 
-    Strip limitted(StripType::Limitted, (int)lineHeight);
-    limitted.setSize(sf::Vector2f(40, lineHeight));
-    limitted.setPosition({ offsetX2, topY - lineHeight - stripGap });
+    Strip limitted(StripType::Limitted, (int)stripHeight);
+    limitted.setSize(sf::Vector2f(stripWidth, stripHeight));
+    limitted.setPosition({ offsetX2, bottomY + stripGap });
 
     strips.push_back(universal);
     strips.push_back(limitted);

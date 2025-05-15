@@ -17,7 +17,7 @@ int main()
     window.setFramerateLimit(60); //или всё-таки 30?
 
     sf::Vector2f airportSize(300.f, 200.f);
-    sf::Vector2f npcPos(20.f, windowHeight - airportSize.y - 20.f);
+    sf::Vector2f npcPos(20.f, 20.f);
     sf::Vector2f playerPos(windowWidth - airportSize.x - 20.f, 20.f);
 
     auto airportNpc = std::make_shared<AirportNpc>(npcPos, airportSize);
