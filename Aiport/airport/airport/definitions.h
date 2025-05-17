@@ -11,8 +11,8 @@
 
 #define BUTTON_SOUND_EFFECT "C:/Users/Huawei/Downloads/minecraft_click.ogg"
 
-#define MAIN_GAME_THEME "C:/Windows/Media/inecraft_mutation.wav"
-#define MAIN_THEME "C:/Windows/Media/Smesh.wav"
+#define MAIN_THEME "C:/Windows/Media/inecraft_mutation.wav"
+#define MAIN_GAME_THEME "C:/Windows/Media/Smesh.wav"
 
 #define BACKGROUND_PN "C:/Users/Huawei/Downloads/menu_background.png"
 #define BACKGROUND_PNG "C:/Users/Huawei/Downloads/menu_background_title.png"

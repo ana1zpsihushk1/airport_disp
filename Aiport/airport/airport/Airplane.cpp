@@ -27,6 +27,9 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> rolePtr, const sf::Font
 
     name = generatePlaneName(role->getCode());
 
+    takeoffDuration = role->getTakeoffDuration();
+    landingDuration = role->getLandingDuration();
+
     nameText.setFont(font);
     nameText.setString(name);
     nameText.setCharacterSize(14);

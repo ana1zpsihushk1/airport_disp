@@ -17,5 +17,8 @@ public:
 	virtual int getInitMinus() const = 0;
 	virtual float getSpeed() const = 0;
 	
+	virtual float getTakeoffDuration() const = 0;
+	virtual float getLandingDuration() const = 0;
+
 	virtual std::string getCode() const = 0;
 };

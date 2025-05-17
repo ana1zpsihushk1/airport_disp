@@ -70,4 +70,7 @@ private:
 	sf::Vector2f taxiTarget;
 	float takeoffProgress = 0.f;
 	Strip* currentStrip = nullptr;
+
+	float takeoffDuration = 0.f;
+	float landingDuration = 0.f;
 };

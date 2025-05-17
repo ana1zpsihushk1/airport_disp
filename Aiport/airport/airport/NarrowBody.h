@@ -16,6 +16,9 @@ public:
 	int getInitMinus() const override;
 	float getSpeed() const override;
 
+	float getTakeoffDuration() const override { return 9.0f; }
+	float getLandingDuration() const override { return 11.0f; }
+
 	std::string getCode() const override { return "NB"; }
 
 private:
