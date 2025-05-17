@@ -132,31 +132,36 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Airplane.cpp" />
-    <ClCompile Include="AirportNpc.cpp" />
-    <ClCompile Include="AirportPlayer.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="mus-Airplane.cpp" />
+    <ClCompile Include="mus-AirportNpc.cpp" />
+    <ClCompile Include="mus-AirportPlayer.cpp" />
     <ClCompile Include="Cargo.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="Local.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="mus-Main.cpp" />
     <ClCompile Include="NarrowBody.cpp" />
     <ClCompile Include="Regional.cpp" />
-    <ClCompile Include="WideBody.cpp" />
     <ClCompile Include="Strip.cpp" />
+    <ClCompile Include="WideBody.cpp" />
+    <ClCompile Include="mus-Strip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h" />
+    <ClInclude Include="mus-Airplane.h" />
     <ClInclude Include="Airport.h" />
-    <ClInclude Include="AirportNpc.h" />
-    <ClInclude Include="AirportPlayer.h" />
+    <ClInclude Include="mus-AirportNpc.h" />
+    <ClInclude Include="mus-AirportPlayer.h" />
     <ClInclude Include="Cargo.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Local.h" />
     <ClInclude Include="NarrowBody.h" />
     <ClInclude Include="Regional.h" />
     <ClInclude Include="RoleFabric.h" />
+    <ClInclude Include="Strip.h" />
     <ClInclude Include="WideBody.h" />
     <ClInclude Include="Role.h" />
-    <ClInclude Include="Strip.h" />
+    <ClInclude Include="mus-Strip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

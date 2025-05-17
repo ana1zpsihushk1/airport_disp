@@ -4,90 +4,65 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include <deque>
 
 #include "Role.h"
-#include "Strip.h"
+#include "Strip.h"  
 
-class Airport;
-
-enum class AirplaneStatus
+enum class Status 
 {
-	waitTakeoff, //ожидание взлета
-	movingToStrip,     // движение к началу ВПП
-	takingOff,         // движение по ВПП - взлет
-	inSky, //летит (в небе)
-	landing, //приземление
-	crashed // крушение
+    awaitingTakeoff,
+    takingOff,
+    inAir,
+    awaitingLanding,
+    landing,
+    getCircle,
+    landed,
+    crashed
 };
 
+class Strip;
 
-class Airplane
+class Airplane 
 {
 public:
-	Airplane(std::string id, std::unique_ptr<Role> role);
+    Airplane(std::string id, std::unique_ptr<Role> role, sf::Time scheduleTime);
 
-	void crash();
+    void update(sf::Time deltaTime);
+    void assignStrip(std::shared_ptr<Strip> strip);
 
-    const std::string& getId() const { return id; };
-    int getFuel() const { return fuel; };
-    AirplaneStatus getStatus() const { return status; };
-    std::string getTypeName() const { return role->getType(); };
+    std::string getId() const;
+    std::string getRoleType() const;
+    Status getStatus() const;
+    int getFuel() const;
+    float getSpeed() const;
+    int getRemainingCircles() const;
 
-	void setFromNpc(bool val) { fromNpc = val; }
-	void setPosition(sf::Vector2f pos);
-	void setParkPosition(sf::Vector2f pos);
-	void draw(sf::RenderWindow& window);
-	sf::Vector2f getPosition() const;
+    void setStatus(Status status);
+    bool hasFuel() const;
+    void consumeFuel(int amount);
 
-	//ДАВАЙ ПО НОВОЙ САНЯ
-	void tick(float dt); // игровой шаг
+    sf::Time getScheduleTime() const;
+    std::shared_ptr<Strip> getAssignedStrip() const;
+    void reduceCircle();
 
-	//VZLET
-	void startMoveToStrip(Strip* strip);
-	void moveToStripStart();
-	void moveAlongStrip();
+    // Запросы взлет/посадка
+    bool requestLanding(const std::vector<std::shared_ptr<Strip>>& strips, sf::Time currentTime);
+    bool requestTakeoff(const std::vector<std::shared_ptr<Strip>>& strips, sf::Time currentTime);
 
-	sf::Vector2f normalize(sf::Vector2f v);
-	bool reached(sf::Vector2f target);
-
-	//POLET
-	void startFlight(Strip* targetStrip); // задаём путь
-	void updateFlight(float dt); // вызывается каждый тик - топливо теряем
-	void setDestinationAirport(Airport* airport);
-
-
-
+    void crash();
+    void land();
+    void takeoff();
+    void minus(); //штраф
 
 private:
-	int fuel;
-	int circles;
+    std::string id;
+    std::unique_ptr<Role> role;
+    Status status;
 
-	std::string id;
-	std::unique_ptr<Role> role;
+    int fuel;
+    int circlesRemaining;
 
-	AirplaneStatus status;
-
-	bool fromNpc = false;
-	bool hasStartedFlight = false;
-
-	sf::CircleShape sprite;             
-	sf::Vector2f velocity = { 0.f, 0.f }; 
-	Strip* currentStrip = nullptr;
-
-	//ПО НОВОЙ
-	sf::Vector2f parkPosition;
-	sf::Vector2f stripStartPos;
-	sf::Vector2f stripEndPos;
-	std::deque<sf::Vector2f> trail;
-
-	float flightTimeRemaining = 0.f;
-	float flightDuration = 0.f;
-	float flightTimer = 0.f;
-
-	sf::Vector2f flightStart;
-	sf::Vector2f flightEnd;
-	sf::Vector2f flightBezierControl;
-
-	Airport* destinationAirport = nullptr;
+    sf::Time scheduleTime;
+    std::shared_ptr<Strip> stripAssigned;
+    int accumulatedMinus = 0;
 };

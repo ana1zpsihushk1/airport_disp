@@ -1,41 +1,44 @@
 #pragma once
 
-#include <string>
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <string>
+#include <memory>
 
-class Airport;
+class Airplane;
+class Role;
+
 enum class StripType 
-{ 
-    Universal,
-    Limitted
+{
+    CargoOnly,
+    LocalOnly,
+    NarrowbodyOnly,
+    WidebodyOnly,
+    RegionalOnly
 };
 
-class Strip
+class Strip 
 {
 public:
-    Strip(StripType type, int length);
+    Strip(int id, StripType type);
 
-    StripType getType() const { return type; }
-    int getLength() const { return length; }
-    sf::Vector2f getSize() const { return shape.getSize(); }
-    bool isAvailable() const { return !occupied; }
+    bool isAvailableAt(sf::Time time) const;
+    bool canAccept(const Role& role) const;
 
-    void occupy() { occupied = true; }
-    void release() { occupied = false; }
+    void reserveUntil(sf::Time time); //бронь
+    sf::Time getAvailableTime() const;
+    StripType getType() const;
+    int getId() const;
 
-    void setPosition(sf::Vector2f pos);
-    sf::Vector2f getPosition() const;
-    sf::Vector2f getEndPosition() const;
-    void setSize(sf::Vector2f size);
-    void draw(sf::RenderWindow& window);
+    //draw
+    void setShapeGeometry(sf::Vector2f size, sf::Vector2f position, sf::Color color);
+    void draw(sf::RenderWindow& window) const;
 
-    Airport* owner = nullptr;
-    void setOwner(Airport* a) { owner = a; }
-    Airport* getOwner() const { return owner; }
 private:
+    int id; //need or not? idk
     StripType type;
-    int length;
-    bool occupied = false;
+    sf::Time availableUntil;
 
+    //draw
     sf::RectangleShape shape;
 };

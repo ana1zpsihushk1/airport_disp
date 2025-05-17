@@ -1,4 +1,6 @@
-#include <iostream>
+//hz nado ili net
+
+/*#include <iostream>
 
 #include "LevelManager.h"
 
@@ -36,4 +38,4 @@ void LevelManager::checkFailure()
             return;
         }
     }
-}
+}*/

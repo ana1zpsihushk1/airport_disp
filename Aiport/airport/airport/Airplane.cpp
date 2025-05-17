@@ -1,224 +1,180 @@
-#include <iostream>
 #include "Airplane.h"
-#include "Airport.h"
 
-Airplane::Airplane(std::string id, std::unique_ptr<Role> role)
-    : id(std::move(id)), role(std::move(role)),
-    fuel(role->getInitFuel()),
-    circles(role->getMaxCircles()),
-    status(AirplaneStatus::waitTakeoff),
-    hasStartedFlight(false)
+Airplane::Airplane(std::string id, std::unique_ptr<Role> role, sf::Time scheduleTime)
+    : id(std::move(id)),
+    role(std::move(role)),
+    status(Status::awaitingTakeoff),
+    fuel(this->role->getInitFuel()),
+    circlesRemaining(this->role->getMaxCircles()),
+    scheduleTime(scheduleTime) {}
+
+void Airplane::update(sf::Time deltaTime) 
 {
-    sprite.setRadius(10.f);
-    sprite.setFillColor(sf::Color::Black); //потом цвета менять будем
-    sprite.setOrigin(10.f, 10.f); // центр круга
+    if (status == Status::inAir || status == Status::getCircle) 
+    {
+        consumeFuel(static_cast<int>(deltaTime.asSeconds()));
+        if (!hasFuel()) 
+        {
+            status = Status::crashed;
+            //GAME OVER
+        }
+    }
+}
+
+bool Airplane::requestLanding(const std::vector<std::shared_ptr<Strip>>& strips, sf::Time currentTime) 
+{
+    for (auto& strip : strips) 
+    {
+        // ЗДЕСЬ ДОЛЖЕН БЫТЬ ОТВЕТ ДИСПЕТЧЕРА
+        if (1) //диспетчер разрешил сесть... ДОПИСАТЬ
+        {
+            //проверяем на совместимость
+            if (strip->canAccept(*role) && strip->isAvailableAt(currentTime))
+            {
+                assignStrip(strip);
+                strip->reserveUntil(currentTime + sf::seconds(10));
+                //посадка (sfml координаты)
+                land();
+                return true;
+            }
+            else
+            {
+                status = Status::crashed;
+                crash();
+                return true;
+            }
+        }
+        else //отпарвили на второй круг
+        {
+            minus();
+            setStatus(Status::getCircle);
+            return false;
+        }
+    }
+}
+
+bool Airplane::requestTakeoff(const std::vector<std::shared_ptr<Strip>>& strips, sf::Time currentTime) 
+{
+    for (auto& strip : strips) 
+    {
+        // ЗДЕСЬ ДОЛЖЕН БЫТЬ ОТВЕТ ДИСПЕТЧЕРА
+        if (1) //диспетчер разрешил сесть... ДОПИСАТЬ
+        {
+            //проверяем на совместимость
+            if (strip->canAccept(*role) && strip->isAvailableAt(currentTime))
+            {
+                assignStrip(strip);
+                strip->reserveUntil(currentTime + sf::seconds(10));
+                takeoff();
+                return true;
+            }
+            else
+            {
+                status = Status::crashed;
+                crash();
+                return true;
+            }
+        }
+        else
+        {
+            // Задержка
+            minus();
+            setStatus(Status::awaitingTakeoff);
+            return false;
+        }
+    }
+}
+
+void Airplane::land() 
+{
+    setStatus(Status::landing);
+    //реализация посадки 
+}
+
+void Airplane::takeoff() 
+{
+    setStatus(Status::takingOff);
+    //реализация взлета
+}
+
+void Airplane::minus() 
+{
+    accumulatedMinus += role->getInitMinus();
+}
+
+
+void Airplane::assignStrip(std::shared_ptr<Strip> strip) 
+{
+    stripAssigned = strip;
+}
+
+void Airplane::setStatus(Status newStatus)
+{
+    status = newStatus;
+}
+
+std::string Airplane::getId() const 
+{
+    return id;
+}
+
+std::string Airplane::getRoleType() const 
+{
+    return role->getType();
+}
+
+Status Airplane::getStatus() const 
+{
+    return status;
+}
+
+int Airplane::getFuel() const 
+{
+    return fuel;
+}
+
+std::shared_ptr<Strip> Airplane::getAssignedStrip() const
+{
+    return stripAssigned;
+}
+
+float Airplane::getSpeed() const
+{
+    return role->getSpeed();
+}
+
+int Airplane::getRemainingCircles() const
+{
+    return circlesRemaining;
+}
+
+void Airplane::reduceCircle()
+{
+    if (circlesRemaining > 0)
+    {
+        --circlesRemaining;
+    }
+}
+
+bool Airplane::hasFuel() const 
+{
+    return fuel > 0;
+}
+
+void Airplane::consumeFuel(int amount) 
+{
+    fuel -= amount;
+    if (fuel < 0) fuel = 0;
 }
 
 void Airplane::crash()
 {
-    status = AirplaneStatus::crashed;
-    //АНИМАЦИЯ???
+    //ВЫЗОВ КОНЦА ИГРЫ???
+    
 }
 
-void Airplane::setPosition(sf::Vector2f pos) 
+//SCHEDULE MOMENT
+sf::Time Airplane::getScheduleTime() const 
 {
-    sprite.setPosition(pos);
-}
-void Airplane::setParkPosition(sf::Vector2f pos) 
-{
-    parkPosition = pos;
-}
-
-void Airplane::draw(sf::RenderWindow& window)
-{
-    if (status == AirplaneStatus::inSky && !trail.empty())
-    {
-        for (const auto& point : trail)
-        {
-            sf::CircleShape dot(2.f);
-            dot.setFillColor(sf::Color(150, 150, 150)); // серый пунктир
-            dot.setOrigin(1.f, 1.f);
-            dot.setPosition(point);
-            window.draw(dot);
-        }
-    }
-    window.draw(sprite);
-}
-
-
-sf::Vector2f Airplane::getPosition() const
-{
-    return sprite.getPosition();
-}
-
-//ДАВАЙ ПО НОВОЙ САНЯ
-
-void Airplane::tick(float dt)
-{
-    switch (status)
-    {
-    case AirplaneStatus::movingToStrip:
-        moveToStripStart();
-        break;
-    case AirplaneStatus::takingOff:
-        moveAlongStrip();
-        break;
-    case AirplaneStatus::inSky:
-        updateFlight(dt);
-        break;
-    case AirplaneStatus::landing:
-        // пока просто остановка
-        velocity = { 0.f, 0.f };
-        break;
-    default:
-        break;
-    }
-
-    if (status == AirplaneStatus::inSky)
-    {
-        fuel--;
-        if (fuel <= 0)
-            crash();
-    }
-}
-
-
-
-// VZLET
-void Airplane::startMoveToStrip(Strip* strip)
-{
-    currentStrip = strip;
-    currentStrip->occupy();
-    stripStartPos = strip->getPosition();
-    //stripEndPos = stripStartPos - sf::Vector2f(0.f, strip->getLength());
-    stripEndPos = stripStartPos + sf::Vector2f(0.f, strip->getSize().y);
-
-    velocity = normalize(stripStartPos - parkPosition) * role->getSpeed();
-    sprite.setPosition(parkPosition);
-    status = AirplaneStatus::movingToStrip;
-}
-
-void Airplane::moveToStripStart()
-{
-    if (reached(stripStartPos)) 
-    {
-        sprite.setPosition(stripStartPos);
-        velocity = normalize(stripEndPos - stripStartPos) * role->getSpeed();
-        status = AirplaneStatus::takingOff;
-    }
-    else 
-    {
-        sprite.move(velocity);
-    }
-}
-
-void Airplane::moveAlongStrip()
-{
-    float distanceToEnd = std::sqrt(std::pow(stripEndPos.x - sprite.getPosition().x, 2) +
-        std::pow(stripEndPos.y - sprite.getPosition().y, 2));
-    float step = std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
-
-    if (distanceToEnd <= step)
-    {
-        sprite.setPosition(stripEndPos);
-        velocity = { 0.f, 0.f };
-        currentStrip->release();
-        
-        Strip* destStrip = destinationAirport->findSuitableStrip(role->getType());
-        if (destStrip) 
-        {
-            startFlight(destStrip);
-        }
-        return;
-    }
-    else
-    {
-        sprite.move(velocity);
-    }
-}
-
-sf::Vector2f Airplane::normalize(sf::Vector2f v)
-{
-    float len = std::sqrt(v.x * v.x + v.y * v.y);
-    return (len != 0) ? v / len : sf::Vector2f(0, 0);
-}
-
-bool Airplane::reached(sf::Vector2f target)
-{
-    float dist = std::sqrt(std::pow(target.x - sprite.getPosition().x, 2) +
-        std::pow(target.y - sprite.getPosition().y, 2));
-    return dist <= role->getSpeed(); 
-}
-
-// POLET (I BELIEVE I CAN FLY)
-void Airplane::setDestinationAirport(Airport* airport)
-{
-    destinationAirport = airport;
-}
-
-void Airplane::startFlight(Strip* targetStrip)
-{
-    if (!targetStrip) return;
-
-    currentStrip = targetStrip;
-    currentStrip->occupy();
-
-    flightStart = sprite.getPosition();
-    flightEnd = targetStrip->getEndPosition(); // ДАЛЬНИЙ конец полосы
-
-    // случайная точка управления (в центре + смещение)
-    sf::Vector2f center = (flightStart + flightEnd) / 2.f;
-    float offsetX = std::rand() % 200 - 100;
-    float offsetY = std::rand() % 150 - 75;
-    flightBezierControl = center + sf::Vector2f(offsetX, offsetY);
-
-    // длительность полёта ПОМЕНЯЕМ ЕСЛИ НАДО - ТУТ РАСПИСАНИЕ ВТУПАЕТ В СИЛУ
-    std::string type = role->getType();
-    if (type == "WideBody" || type == "Cargo") flightDuration = 5.f;
-    else if (type == "NarrowBody") flightDuration = 5.f;
-    else if (type == "Regional") flightDuration = 5.f;
-    else flightDuration = 5.f;
-
-    flightTimer = 0.f;
-    status = AirplaneStatus::inSky;
-    std::cout << "Start flight to strip at " << flightEnd.x << ", " << flightEnd.y << "\n";
-}
-
-
-void Airplane::updateFlight(float dt)
-{
-    if (status != AirplaneStatus::inSky) return;
-
-    flightTimer += dt;
-
-    //float t = std::min(flightTimer / flightDuration, 1.f);  // ограничим t максимумом
-    float t = std::min(flightTimer / flightDuration, 1.f);
-
-    // Безье
-    sf::Vector2f P0 = flightStart;
-    sf::Vector2f P1 = flightBezierControl;
-    sf::Vector2f P2 = flightEnd;
-
-    sf::Vector2f pos = (1 - t) * (1 - t) * P0 + 2 * (1 - t) * t * P1 + t * t * P2;
-    sprite.setPosition(pos);
-
-    if ((int)(flightTimer * 60) % 4 == 0)
-    {
-        trail.push_back(pos);
-        if (trail.size() > 60) trail.pop_front();
-    }
-
-    if (t >= 0.999f) 
-    {
-        sprite.setPosition(flightEnd);
-        currentStrip->release();
-        velocity = { 0.f, 0.f };
-        status = AirplaneStatus::landing;
-        return;
-    }
-
-    if (fuel <= 0)
-    {
-        crash();
-    }
+    return scheduleTime;
 }

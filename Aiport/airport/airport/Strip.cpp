@@ -1,33 +1,64 @@
 #include "Strip.h"
+#include "Role.h"
 
-Strip::Strip(StripType type, int length) : 
-	type(type), length(length) 
+Strip::Strip(int id, StripType type)
+    : id(id), type(type), availableUntil(sf::Time::Zero) {}
+
+bool Strip::isAvailableAt(sf::Time time) const 
 {
-    shape.setSize(sf::Vector2f(40.f, static_cast<float>(length)));
-    shape.setFillColor(type == StripType::Universal ? sf::Color::Green : sf::Color(150, 75, 0));
+    return time >= availableUntil;
 }
 
-void Strip::setPosition(sf::Vector2f pos)
+bool Strip::canAccept(const Role& role) const 
 {
-    shape.setPosition(pos);
+    std::string rType = role.getType();
+
+    switch (type) 
+    {
+    case StripType::CargoOnly:
+        return rType == "Cargo";
+    case StripType::LocalOnly:
+        return rType == "Local";
+    case StripType::NarrowbodyOnly:
+        return rType == "NarrowBody";
+    case StripType::WidebodyOnly:
+        return rType == "WideBody";
+    case StripType::RegionalOnly:
+        return rType == "Regional";
+    default:
+        return false;
+    }
 }
 
-sf::Vector2f Strip::getPosition() const 
+void Strip::reserveUntil(sf::Time time)  //ZANYATO
 {
-    return shape.getPosition();
+    availableUntil = time;
 }
 
-sf::Vector2f Strip::getEndPosition() const
+sf::Time Strip::getAvailableTime() const 
 {
-    return shape.getPosition() + sf::Vector2f(0.f, shape.getSize().y);
+    return availableUntil;
 }
 
-void Strip::setSize(sf::Vector2f size) 
+StripType Strip::getType() const 
+{
+    return type;
+}
+
+int Strip::getId() const 
+{
+    return id;
+}
+
+//draw
+void Strip::setShapeGeometry(sf::Vector2f size, sf::Vector2f position, sf::Color color) 
 {
     shape.setSize(size);
+    shape.setPosition(position);
+    shape.setFillColor(color);
 }
 
-void Strip::draw(sf::RenderWindow& window)
+void Strip::draw(sf::RenderWindow& window) const 
 {
     window.draw(shape);
 }

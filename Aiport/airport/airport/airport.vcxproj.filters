@@ -25,25 +25,13 @@
     <Filter Include="Файлы заголовков\Airport">
       <UniqueIdentifier>{854b7c45-7593-4b11-af40-8c56f25d6a23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\MUSOR">
+      <UniqueIdentifier>{690356b9-dacb-4553-bec1-50a31b77d482}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Airplane.cpp">
-      <Filter>Исходные файлы\Airplane</Filter>
-    </ClCompile>
-    <ClCompile Include="AirportPlayer.cpp">
-      <Filter>Исходные файлы\Airport</Filter>
-    </ClCompile>
-    <ClCompile Include="AirportNpc.cpp">
-      <Filter>Исходные файлы\Airport</Filter>
-    </ClCompile>
     <ClCompile Include="LevelManager.cpp">
       <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Strip.cpp">
-      <Filter>Исходные файлы\Airport</Filter>
     </ClCompile>
     <ClCompile Include="WideBody.cpp">
       <Filter>Исходные файлы\Airplane</Filter>
@@ -60,28 +48,40 @@
     <ClCompile Include="Cargo.cpp">
       <Filter>Исходные файлы\Airplane</Filter>
     </ClCompile>
+    <ClCompile Include="mus-Airplane.cpp">
+      <Filter>Исходные файлы\MUSOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Airplane.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="mus-Strip.cpp">
+      <Filter>Исходные файлы\MUSOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Strip.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
+    <ClCompile Include="mus-Main.cpp">
+      <Filter>Исходные файлы\MUSOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="mus-AirportNpc.cpp">
+      <Filter>Исходные файлы\MUSOR</Filter>
+    </ClCompile>
+    <ClCompile Include="mus-AirportPlayer.cpp">
+      <Filter>Исходные файлы\MUSOR</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Airplane.h">
-      <Filter>Файлы заголовков\Airplane</Filter>
-    </ClInclude>
     <ClInclude Include="Role.h">
       <Filter>Файлы заголовков\Airplane</Filter>
-    </ClInclude>
-    <ClInclude Include="AirportPlayer.h">
-      <Filter>Файлы заголовков\Airport</Filter>
-    </ClInclude>
-    <ClInclude Include="AirportNpc.h">
-      <Filter>Файлы заголовков\Airport</Filter>
     </ClInclude>
     <ClInclude Include="Airport.h">
       <Filter>Файлы заголовков\Airport</Filter>
     </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Strip.h">
-      <Filter>Файлы заголовков\Airport</Filter>
     </ClInclude>
     <ClInclude Include="WideBody.h">
       <Filter>Файлы заголовков\Airplane</Filter>
@@ -100,6 +100,24 @@
     </ClInclude>
     <ClInclude Include="RoleFabric.h">
       <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="mus-Airplane.h">
+      <Filter>Исходные файлы\MUSOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Airplane.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="mus-Strip.h">
+      <Filter>Исходные файлы\MUSOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Strip.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="mus-AirportNpc.h">
+      <Filter>Исходные файлы\MUSOR</Filter>
+    </ClInclude>
+    <ClInclude Include="mus-AirportPlayer.h">
+      <Filter>Исходные файлы\MUSOR</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

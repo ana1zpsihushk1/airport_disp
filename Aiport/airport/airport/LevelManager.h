@@ -1,7 +1,9 @@
-#pragma once
+//hz nado ili net
+
+/*#pragma once
 #include <memory>
 
-#include "AirportPlayer.h"
+
 
 class LevelManager
 {
@@ -20,7 +22,7 @@ private:
 	int curLevel = 0;
 	std::shared_ptr<AirportPlayer> airportPlayer;
 };
-
+*/
 //тут должна быть логика штрафов
 
 
