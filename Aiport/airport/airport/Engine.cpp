@@ -6,6 +6,8 @@ Engine::Engine(int width, int height, std::string title)
 {
 	_data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 	
+	_data->engine = this;
+
 	if (!_backgroundMusic.openFromFile(MAIN_THEME))
 	{
 		std::cerr << "[Engine] There is no such track\n";
@@ -61,5 +63,39 @@ void Engine::Run()
 			std::cerr << "[Engine] Error: " << e.what() << std::endl;
 			_data->window.close();
 		}
+	}
+}
+
+void Engine::PlayMainTheme()
+{
+	if (_backgroundMusic.getStatus() == sf::Music::Playing)
+		_backgroundMusic.stop();
+
+	if (_backgroundMusic.openFromFile(MAIN_THEME))
+	{
+		_backgroundMusic.setLoop(true);
+		_backgroundMusic.setVolume(40.f);
+		_backgroundMusic.play();
+	}
+	else
+	{
+		std::cerr << "[Engine] MAIN_THEME file not found!\n";
+	}
+}
+
+void Engine::PlayGameTheme()
+{
+	if (_backgroundMusic.getStatus() == sf::Music::Playing)
+		_backgroundMusic.stop();
+
+	if (_backgroundMusic.openFromFile(MAIN_GAME_THEME))
+	{
+		_backgroundMusic.setLoop(true);
+		_backgroundMusic.setVolume(40.f);
+		_backgroundMusic.play();
+	}
+	else
+	{
+		std::cerr << "[Engine] MAIN_GAME_THEME file not found!\n";
 	}
 }

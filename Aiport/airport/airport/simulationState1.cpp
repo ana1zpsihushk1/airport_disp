@@ -12,6 +12,8 @@ void simulationState1::Init()
 	const int windowWidth = SCREEN_WIDTH;
 	const int windowHeight = SCREEN_HEIGHT;
 
+	_data->engine->PlayGameTheme();
+
 	_data->assets.LoadFont("plane_Font", FONT_FOR_PLANES);
 	const sf::Font& planeFont = _data->assets.GetFont("plane_Font");
 
