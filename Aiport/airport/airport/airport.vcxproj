@@ -176,6 +176,7 @@
     <ClInclude Include="Local.h" />
     <ClInclude Include="menuState.h" />
     <ClInclude Include="NarrowBody.h" />
+    <ClInclude Include="Positions.h" />
     <ClInclude Include="Regional.h" />
     <ClInclude Include="Role.h" />
     <ClInclude Include="RoleFabric.h" />
