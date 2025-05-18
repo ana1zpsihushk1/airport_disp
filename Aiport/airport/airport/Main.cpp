@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include "Strip.h"
+#include "Positions.h"
 
 int main()
 {

@@ -72,6 +72,18 @@
     <ClCompile Include="mus-AirportPlayer.cpp">
       <Filter>Исходные файлы\MUSOR</Filter>
     </ClCompile>
+    <ClCompile Include="FlightSchedule.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
+    <ClCompile Include="AirplaneUtils.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="ScheduleGenerator.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
+    <ClCompile Include="Positions.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Role.h">
@@ -118,6 +130,18 @@
     </ClInclude>
     <ClInclude Include="mus-AirportPlayer.h">
       <Filter>Исходные файлы\MUSOR</Filter>
+    </ClInclude>
+    <ClInclude Include="FlightSchedule.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="AirplaneUtils.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="ScheduleGenerator.h">
+      <Filter>Файлы заголовков\Airport</Filter>
+    </ClInclude>
+    <ClInclude Include="Positions.h">
+      <Filter>Файлы заголовков\Airport</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

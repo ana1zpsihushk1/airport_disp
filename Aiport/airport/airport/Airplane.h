@@ -5,8 +5,11 @@
 #include <string>
 #include <memory>
 
+//#include "definitions.h" - i can't do it
 #include "Role.h"
 #include "Strip.h"  
+#include "FlightSchedule.h"
+#include "Positions.h"
 
 enum class Status 
 {
@@ -54,6 +57,17 @@ public:
     void takeoff();
     void minus(); //רענאפ
 
+    //katsuki
+    void setSchedule(const FlightSchedule& schedule);
+    FlightSchedule getSchedule() const;
+
+    void draw(sf::RenderWindow& window);
+
+    //edem
+    void setPath(const std::vector<sf::Vector2f>& newPath);
+
+    //void updatePosition(float dt); // edem po puti
+
 private:
     std::string id;
     std::unique_ptr<Role> role;
@@ -65,4 +79,13 @@ private:
     sf::Time scheduleTime;
     std::shared_ptr<Strip> stripAssigned;
     int accumulatedMinus = 0;
+
+    FlightSchedule _schedule;
+
+    //draw // potom yberem, esly nado
+    std::vector<sf::Vector2f> path;
+    std::size_t pathIndex = 0;
+    bool moving = false;
+    sf::CircleShape shape;
+    
 };

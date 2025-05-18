@@ -1,4 +1,22 @@
+#include <random>
+#include <sstream>
+#include <cmath>
+
 #include "Airplane.h"
+#include "AirplaneUtils.h"
+
+static std::string generatePlaneName(const std::string& code)
+{
+    std::ostringstream oss;
+    oss << code << "-";
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, 9);
+    for (int i = 0; i < 4; ++i)
+        oss << dis(gen);
+    return oss.str();
+}
+
 
 Airplane::Airplane(std::string id, std::unique_ptr<Role> role, sf::Time scheduleTime)
     : id(std::move(id)),
@@ -6,10 +24,14 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> role, sf::Time schedule
     status(Status::awaitingTakeoff),
     fuel(this->role->getInitFuel()),
     circlesRemaining(this->role->getMaxCircles()),
-    scheduleTime(scheduleTime) {}
+    scheduleTime(scheduleTime) {/*возможно тут будет отрисовка*/ }
 
 void Airplane::update(sf::Time deltaTime) 
 {
+    if (moving)
+    {
+        //updatePosition(deltaTime.asSeconds());
+    }
     if (status == Status::inAir || status == Status::getCircle) 
     {
         consumeFuel(static_cast<int>(deltaTime.asSeconds()));
@@ -170,11 +192,73 @@ void Airplane::consumeFuel(int amount)
 void Airplane::crash()
 {
     //ВЫЗОВ КОНЦА ИГРЫ???
-    
 }
 
 //SCHEDULE MOMENT
-sf::Time Airplane::getScheduleTime() const 
+/*sf::Time Airplane::getScheduleTime() const
 {
     return scheduleTime;
+}*/ // hz teper nado ili net
+
+void Airplane::setSchedule(const FlightSchedule& schedule)
+{
+    _schedule = schedule;
 }
+
+FlightSchedule Airplane::getSchedule() const
+{
+    return _schedule;
+}
+
+void Airplane::draw(sf::RenderWindow& window)
+{
+    window.draw(shape);
+}
+
+//edem
+
+//vozmojno nado peredelat
+void Airplane::setPath(const std::vector<sf::Vector2f>& newPath)
+{
+    path = newPath;
+    pathIndex = 0;
+    moving = !path.empty();
+    if (moving)
+    {
+        shape.setPosition(path[0]);
+    }
+}
+
+//pod voprosom
+/*void Airplane::updatePosition(float dt)
+{
+    if (pathIndex >= path.size())
+    {
+        moving = false;
+        return;
+    }
+
+    sf::Vector2f currentPos = shape.getPosition();
+    sf::Vector2f target = path[pathIndex];
+    sf::Vector2f direction = target - currentPos;
+
+    float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+
+    if (distance < 1.f)
+    {
+        pathIndex++;
+        if (pathIndex >= path.size())
+        {
+            moving = false;
+            status = (status == Status::takingOff ? Status::inAir : Status::landed);
+        }
+        return;
+    }
+
+    // нормализуем направление
+    sf::Vector2f unit = direction / distance;
+
+    float speed = role->getSpeed() * 100.f; // масштабируем для пикселей
+    shape.move(unit * speed * dt);
+}*/
+
