@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "Airplane.h"
 #include "LevelManager.h"
 
 LevelManager::LevelManager(std::shared_ptr<AirportPlayer> airport)
@@ -35,7 +36,7 @@ void LevelManager::checkFailure()
 {
     for (const auto& plane : airportPlayer->getAirplanes())
     {
-        if (plane->getStatus() == AirplaneStatus::crashed)
+        if (plane->getStatus() == Status::crashed)
         {
             restartLevel();
             return;

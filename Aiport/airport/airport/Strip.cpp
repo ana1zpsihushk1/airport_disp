@@ -66,3 +66,40 @@ void Strip::draw(sf::RenderWindow& window)
 {
     window.draw(shape);
 }
+
+void Strip::setTakeoffPath(const std::vector<sf::Vector2f>& path)
+{
+    takeoffPath = path;
+}
+
+void Strip::setLandingPath(const std::vector<sf::Vector2f>& path)
+{
+    landingPath = path;
+}
+
+const std::vector<sf::Vector2f>& Strip::getTakeoffPath() const
+{
+    return takeoffPath;
+}
+
+const std::vector<sf::Vector2f>& Strip::getLandingPath() const
+{
+    return landingPath;
+}
+
+void Strip::reserveUntil(sf::Time time)
+{
+    availableUntil = time;
+}
+
+bool Strip::isAvailableAt(sf::Time time) const
+{
+    return time >= availableUntil;
+}
+
+bool Strip::canAccept(const Role& role) const
+{
+    std::string roleType = role.getType();
+
+    return std::find(allowedTypes.begin(), allowedTypes.end(), roleType) != allowedTypes.end();
+}

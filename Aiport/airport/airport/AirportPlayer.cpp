@@ -1,11 +1,11 @@
-﻿#include "AirportPlayer.h"
+﻿#include "Airport.h"
+#include "Airplane.h"
+#include "AirportPlayer.h"
 
 void AirportPlayer::tick()
 {
     for (auto& plane : airplanes)
-    {
-        plane->tick();
-    }
+        plane->update(sf::seconds(1.f));
 }
 
 void AirportPlayer::acceptAirplane(std::shared_ptr<Airplane> plane)
@@ -29,7 +29,7 @@ void AirportPlayer::setLevel(int level)
     }
     else if (level == 11)
     {
-        capacity += 10; //ÎÒÊÀËÈÁÐÎÂÀÒÜ
+        capacity += 15; //ÎÒÊÀËÈÁÐÎÂÀÒÜ
     }
 }
 
@@ -56,11 +56,11 @@ AirportPlayer::AirportPlayer(sf::Vector2f position, sf::Vector2f size)
 
 void AirportPlayer::draw(sf::RenderWindow& window)
 {
-    window.draw(shape);
+    /*window.draw(shape);
     for (auto& r : strips)
     {
         r.draw(window);
-    }
+    }*/
 }
 
 void AirportPlayer::initStrip()
@@ -79,9 +79,8 @@ Strip* AirportPlayer::findSuitableStrip(const std::string& typeName)
     for (auto& s : strips)
     {
         if (!s.isAvailable())
-        {
             continue;
-        }
+
         if (s.getType() == StripType::Universal)
         {
             return &s;
@@ -99,18 +98,18 @@ void AirportPlayer::processTakeoff()
     //ÇÄÅÑÜ ÁÓÄÅÒ ÏÐÎÂÅÐÊÀ ÐÀÑÏÈÑÀÍÈß è ÎÒÂÅÒ ÄÈÑÏÅÒ×ÅÐÀ
     for (auto& plane : airplanes)
     {
-        if (plane->getStatus() != AirplaneStatus::waitTakeoff)
+        if (plane->getStatus() != Status::awaitingTakeoff)
         {
             continue;
         }
 
-        Strip* strip = findSuitableStrip(plane->getTypeName());
+        Strip* strip = findSuitableStrip(plane->getRoleType());
         if (strip)
         {
-            if (plane->requestTakingOff())
-            {
-                plane->startTakeoff(strip);
-            }
+            
+            plane->assignStrip(std::make_shared<Strip>(*strip));
+            strip->reserveUntil(sf::seconds(10));
+            plane->takeoff();
         }
     }
 }

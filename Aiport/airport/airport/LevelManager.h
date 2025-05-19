@@ -2,6 +2,7 @@
 #include <memory>
 
 #include "AirportPlayer.h"
+#include "Airplane.h"
 
 class LevelManager
 {

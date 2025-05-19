@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Positions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Positions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\AirportPlayer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\AirportPlayer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Strip.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Airplane.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Strip.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\ScheduleGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\ScheduleGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\ScheduleGenerator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\ScheduleGenerator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\definitions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\definitions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Engine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Engine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\simulationState1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -39,16 +19,72 @@
       "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\simulationState1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\definitions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\definitions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Strip.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Strip.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Airplane.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Airplane.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\LevelManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\LevelManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\ScheduleGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\ScheduleGenerator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Dispatcher.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Dispatcher.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\AirportPlayer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\AirportPlayer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\LevelManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\LevelManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\ScheduleGenerator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\ScheduleGenerator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\initState.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\initState.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Positions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Positions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Positions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Positions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Role.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Role.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Button.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\initState.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{93381FA9-6C67-4BD5-92F4-0C44DA3D4055}|airport\\airport.vcxproj|solutionrelative:airport\\initState.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +94,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,44 +102,176 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Engine.cpp",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Engine.cpp",
+              "RelativeDocumentMoniker": "airport\\Engine.cpp",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Engine.cpp",
+              "RelativeToolTip": "airport\\Engine.cpp",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAUwGUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-19T20:07:27.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LevelManager.h",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\LevelManager.h",
+              "RelativeDocumentMoniker": "airport\\LevelManager.h",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\LevelManager.h",
+              "RelativeToolTip": "airport\\LevelManager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-19T18:23:29.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LevelManager.cpp",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\LevelManager.cpp",
+              "RelativeDocumentMoniker": "airport\\LevelManager.cpp",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\LevelManager.cpp",
+              "RelativeToolTip": "airport\\LevelManager.cpp",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-19T18:23:15.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Strip.h",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.h",
+              "RelativeDocumentMoniker": "airport\\Strip.h",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.h",
+              "RelativeToolTip": "airport\\Strip.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-17T11:52:43.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Strip.cpp",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.cpp",
+              "RelativeDocumentMoniker": "airport\\Strip.cpp",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.cpp",
+              "RelativeToolTip": "airport\\Strip.cpp",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAmwGQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-17T11:52:48.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Airplane.h",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.h",
+              "RelativeDocumentMoniker": "airport\\Airplane.h",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.h",
+              "RelativeToolTip": "airport\\Airplane.h",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-19T15:12:36.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Airplane.cpp",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.cpp",
+              "RelativeDocumentMoniker": "airport\\Airplane.cpp",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.cpp",
+              "RelativeToolTip": "airport\\Airplane.cpp",
+              "ViewState": "AgIAANQAAAAAAAAAAAAmwNoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-08T13:38:53.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Dispatcher.h",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Dispatcher.h",
+              "RelativeDocumentMoniker": "airport\\Dispatcher.h",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Dispatcher.h",
+              "RelativeToolTip": "airport\\Dispatcher.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-19T16:44:35.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Positions.cpp",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Positions.cpp",
+              "RelativeDocumentMoniker": "airport\\Positions.cpp",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Positions.cpp",
+              "RelativeToolTip": "airport\\Positions.cpp",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAUwH4AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-19T16:30:25.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Role.h",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Role.h",
+              "RelativeDocumentMoniker": "airport\\Role.h",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Role.h",
+              "RelativeToolTip": "airport\\Role.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-19T16:29:33.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AirportPlayer.h",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\AirportPlayer.h",
+              "RelativeDocumentMoniker": "airport\\AirportPlayer.h",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\AirportPlayer.h",
+              "RelativeToolTip": "airport\\AirportPlayer.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-19T16:28:17.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AirportPlayer.cpp",
+              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\AirportPlayer.cpp",
+              "RelativeDocumentMoniker": "airport\\AirportPlayer.cpp",
+              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\AirportPlayer.cpp",
+              "RelativeToolTip": "airport\\AirportPlayer.cpp",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-19T16:28:07.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "Positions.h",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Positions.h",
               "RelativeDocumentMoniker": "airport\\Positions.h",
               "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Positions.h",
               "RelativeToolTip": "airport\\Positions.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAUwHMAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-17T20:57:46.133Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Strip.cpp",
-              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.cpp",
-              "RelativeDocumentMoniker": "airport\\Strip.cpp",
-              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.cpp",
-              "RelativeToolTip": "airport\\Strip.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAiwB4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-17T11:52:48.095Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Strip.h",
-              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.h",
-              "RelativeDocumentMoniker": "airport\\Strip.h",
-              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Strip.h",
-              "RelativeToolTip": "airport\\Strip.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-17T11:52:43.119Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 19,
               "Title": "Button.cpp",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Button.cpp",
               "RelativeDocumentMoniker": "airport\\Button.cpp",
@@ -115,7 +283,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 20,
               "Title": "Button.h",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Button.h",
               "RelativeDocumentMoniker": "airport\\Button.h",
@@ -127,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "initState.cpp",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\initState.cpp",
               "RelativeDocumentMoniker": "airport\\initState.cpp",
@@ -135,11 +303,12 @@
               "RelativeToolTip": "airport\\initState.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-15T18:57:06.099Z"
+              "WhenOpened": "2025-05-15T18:57:06.099Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 14,
               "Title": "ScheduleGenerator.cpp",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\ScheduleGenerator.cpp",
               "RelativeDocumentMoniker": "airport\\ScheduleGenerator.cpp",
@@ -147,11 +316,12 @@
               "RelativeToolTip": "airport\\ScheduleGenerator.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-08T15:04:55.226Z"
+              "WhenOpened": "2025-05-08T15:04:55.226Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "ScheduleGenerator.h",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\ScheduleGenerator.h",
               "RelativeDocumentMoniker": "airport\\ScheduleGenerator.h",
@@ -159,55 +329,47 @@
               "RelativeToolTip": "airport\\ScheduleGenerator.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-08T14:42:08.388Z"
+              "WhenOpened": "2025-05-08T14:42:08.388Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "simulationState1.h",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\simulationState1.h",
               "RelativeDocumentMoniker": "airport\\simulationState1.h",
               "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\simulationState1.h",
               "RelativeToolTip": "airport\\simulationState1.h",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAswAwAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-08T13:40:26.223Z"
+              "WhenOpened": "2025-05-08T13:40:26.223Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "simulationState1.cpp",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\simulationState1.cpp",
               "RelativeDocumentMoniker": "airport\\simulationState1.cpp",
               "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\simulationState1.cpp",
               "RelativeToolTip": "airport\\simulationState1.cpp",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAiwFYAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAUwI8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-08T11:20:12.561Z"
+              "WhenOpened": "2025-05-08T11:20:12.561Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "definitions.h",
               "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\definitions.h",
               "RelativeDocumentMoniker": "airport\\definitions.h",
               "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\definitions.h",
               "RelativeToolTip": "airport\\definitions.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-08T11:03:36.333Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Airplane.cpp",
-              "DocumentMoniker": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.cpp",
-              "RelativeDocumentMoniker": "airport\\Airplane.cpp",
-              "ToolTip": "C:\\Users\\Huawei\\Desktop\\\u043C\u0423\u0447\u0451\u0431\u0430 \u0432 \u0412\u0428\u0423\\\u041F\u0440\u043E\u0433\u0430\\Airport\\airport_disp\\Aiport\\airport\\airport\\Airplane.cpp",
-              "RelativeToolTip": "airport\\Airplane.cpp",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAYwMMAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-08T13:38:53.194Z"
+              "WhenOpened": "2025-05-08T11:03:36.333Z",
+              "EditorCaption": ""
             }
           ]
         }

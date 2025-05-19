@@ -123,6 +123,9 @@
     <ClCompile Include="ScheduleGenerator.cpp">
       <Filter>Исходные файлы\Dispatcher</Filter>
     </ClCompile>
+    <ClCompile Include="Positions.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">

@@ -148,6 +148,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="menuState.cpp" />
     <ClCompile Include="NarrowBody.cpp" />
+    <ClCompile Include="Positions.cpp" />
     <ClCompile Include="Regional.cpp" />
     <ClCompile Include="rulesState.cpp" />
     <ClCompile Include="ScheduleGenerator.cpp" />

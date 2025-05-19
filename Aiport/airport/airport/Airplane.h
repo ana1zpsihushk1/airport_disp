@@ -7,70 +7,84 @@
 
 #include "definitions.h"
 #include "Role.h"
-#include "Strip.h"
+#include "Strip.h"  
 #include "FlightSchedule.h"
+#include "Positions.h"
 
-enum class AirplaneStatus
+enum class Status
 {
-	waitTakeoff,
-	taxiingToStrip,
-	takingOff,
-	inSky,
-	landing, 
-	landedMove,
-	crashed
+    awaitingTakeoff,
+    takingOff,
+    inAir,
+    awaitingLanding,
+    landing,
+    getCircle,
+    landed,
+    crashed
 };
 
+class Strip;
 
 class Airplane
 {
 public:
-	Airplane(std::string id, std::unique_ptr<Role> role, const sf::Font& font);
+    Airplane(std::string id, std::unique_ptr<Role> role, sf::Time scheduleTime);
 
-	void tick(); // playing step (it`s just losing of fuel now)
-	void crash();
+    void update(sf::Time deltaTime);
+    void assignStrip(std::shared_ptr<Strip> strip);
 
-	//fuctions for player
-	bool requestLanding();
-	bool requestTakingOff();
+    std::string getId() const;
+    std::string getRoleType() const;
+    Status getStatus() const;
+    int getFuel() const;
+    float getSpeed() const;
+    int getRemainingCircles() const;
 
-	const std::string& getId() const { return id; };
-	int getFuel() const { return fuel; };
-	AirplaneStatus getStatus() const { return status; };
-	std::string getTypeName() const { return role->getType(); };
+    void setStatus(Status status);
+    bool hasFuel() const;
+    void consumeFuel(int amount);
 
-	void setPosition(sf::Vector2f pos);
-	//void moveTo(sf::Vector2f targetPos);
-	void startTakeoff(Strip* targetStrip); // main logic of taking off
-	void updateMovement();                 // update tick
+    sf::Time getScheduleTime() const;
+    std::shared_ptr<Strip> getAssignedStrip() const;
+    void reduceCircle();
 
-	void setSchedule(const FlightSchedule& schedule);
-	FlightSchedule getSchedule() const;
+    // Take-off/landing requests
+    bool requestLanding(const std::vector<std::shared_ptr<Strip>>& strips, sf::Time currentTime);
+    bool requestTakeoff(const std::vector<std::shared_ptr<Strip>>& strips, sf::Time currentTime);
 
-	void draw(sf::RenderWindow& window);
+    void crash();
+    void land();
+    void takeoff();
+    void minus(); //penalty
+
+    void setSchedule(const FlightSchedule& schedule);
+    FlightSchedule getSchedule() const;
+
+    void draw(sf::RenderWindow& window);
+
+    //edem
+    void setPath(const std::vector<sf::Vector2f>& newPath);
+
+    //void updatePosition(float dt); // edem po puti
 
 private:
-	int fuel;
-	int circles;
+    std::string id;
+    std::unique_ptr<Role> role;
+    Status status;
 
-	std::string name;
-	sf::Text nameText;
-	sf::RectangleShape nameBackground;
+    int fuel;
+    int circlesRemaining;
 
-	FlightSchedule _schedule;
+    sf::Time scheduleTime;
+    std::shared_ptr<Strip> stripAssigned;
+    int accumulatedMinus = 0;
 
-	std::string id;
-	std::unique_ptr<Role> role;
+    FlightSchedule _schedule;
 
-	AirplaneStatus status;
+    //draw // potom yberem, esly nado
+    std::vector<sf::Vector2f> path;
+    std::size_t pathIndex = 0;
+    bool moving = false;
+    sf::CircleShape shape;
 
-	sf::CircleShape sprite;
-	sf::Vector2f velocity = { 0.f, 0.f };
-	sf::Vector2f targetPosition;
-	sf::Vector2f taxiTarget;
-	float takeoffProgress = 0.f;
-	Strip* currentStrip = nullptr;
-
-	float takeoffDuration = 0.f;
-	float landingDuration = 0.f;
 };

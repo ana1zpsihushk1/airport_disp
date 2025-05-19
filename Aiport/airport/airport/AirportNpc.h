@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <iostream>
 #include <queue>
 
@@ -24,4 +24,4 @@ private:
 	sf::RectangleShape shape;
 
 	std::vector<Strip> strips;
-};
+};*/

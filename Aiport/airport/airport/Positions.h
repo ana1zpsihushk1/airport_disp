@@ -92,10 +92,38 @@
 //	65 - {873;717}
 
 //  1-4-11-9-2- 20-30 - 45-55
-const std::vector<sf::Vector2f> ROUTE_STRIP_1 = {
+
+/*const std::vector<sf::Vector2f> ROUTE_STRIP_1 = {
     {196.f, 290.f},
     {847.f, 290.f},
     {846.f, 559.f},
     {355.f, 559.f},
     {355.f, 290.f}
 };
+*/
+
+//  TAKEOFF
+//  Cargo & WideBody 
+extern const std::vector<sf::Vector2f> TAKEOFF_BIG_1;
+extern const std::vector<sf::Vector2f> TAKEOFF_BIG_2;
+
+//  LANDING
+//  Cargo & WideBody 
+extern const std::vector<sf::Vector2f> LANDING_BIG_1;
+extern const std::vector<sf::Vector2f> LANDING_BIG_2;
+
+//  TAKEOFF
+//  NarrowBody & Regional & Local
+extern const std::vector<sf::Vector2f> TAKEOFF_SMALL_1;
+extern const std::vector<sf::Vector2f> TAKEOFF_SMALL_2;
+extern const std::vector<sf::Vector2f> TAKEOFF_SMALL_3;
+extern const std::vector<sf::Vector2f> TAKEOFF_SMALL_4;
+extern const std::vector<sf::Vector2f> TAKEOFF_SMALL_5;
+
+//  LANDING
+//  NarrowBody & Regional & Local
+extern const std::vector<sf::Vector2f> LANDING_SMALL_1;
+extern const std::vector<sf::Vector2f> LANDING_SMALL_2;
+extern const std::vector<sf::Vector2f> LANDING_SMALL_3;
+extern const std::vector<sf::Vector2f> LANDING_SMALL_4;
+extern const std::vector<sf::Vector2f> LANDING_SMALL_5;

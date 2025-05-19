@@ -1,4 +1,4 @@
-﻿#include "AirportNpc.h"
+﻿/*#include "AirportNpc.h"
 
 void AirportNpc::tick()
 {
@@ -108,4 +108,4 @@ void AirportNpc::processTakeoff()
             }
         }
     }
-}
+}*/

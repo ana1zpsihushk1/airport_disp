@@ -1,42 +1,5 @@
-﻿  Airplane.cpp
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(160,111): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(160,111): warning C4244:         with
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(160,111): warning C4244:         [
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(160,111): warning C4244:             T=float
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(160,111): warning C4244:         ]
-  AirportNpc.cpp
-  AirportPlayer.cpp
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(13,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+﻿  AirportPlayer.cpp
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(16,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
   (компиляция исходного файла "AirportPlayer.cpp")
   
-  Button.cpp
-  Cargo.cpp
-  Engine.cpp
-  GameClock.cpp
-  LevelManager.cpp
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(13,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-  (компиляция исходного файла "LevelManager.cpp")
-  
-  Local.cpp
-  Main.cpp
-  NarrowBody.cpp
-  Regional.cpp
-  WideBody.cpp
-  initState.cpp
-  menuState.cpp
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(13,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-  (компиляция исходного файла "menuState.cpp")
-  
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(14,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  (компиляция исходного файла "menuState.cpp")
-  
-  rulesState.cpp
-  simulationState1.cpp
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(13,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-  (компиляция исходного файла "simulationState1.cpp")
-  
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(14,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  (компиляция исходного файла "simulationState1.cpp")
-  
-  Создание кода...
   airport.vcxproj -> C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\airport.exe

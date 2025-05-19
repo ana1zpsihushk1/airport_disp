@@ -1,8 +1,11 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <memory>
+#include <vector>
 
 #include "Airport.h"
+#include "Airplane.h"
 #include "Strip.h"
 
 class AirportPlayer : public Airport

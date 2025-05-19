@@ -3,6 +3,7 @@
 #include <vector>
 #include <queue>
 #include <SFML/Graphics.hpp>
+#include "Role.h"
 
 class Airplane;
 
@@ -35,11 +36,25 @@ public:
     void addAllowedType(const std::string typeCode);
     void draw(sf::RenderWindow& window);
 
+    void setTakeoffPath(const std::vector<sf::Vector2f>& path);
+    void setLandingPath(const std::vector<sf::Vector2f>& path);
+    const std::vector<sf::Vector2f>& getTakeoffPath() const;
+    const std::vector<sf::Vector2f>& getLandingPath() const;
+
+    void reserveUntil(sf::Time time);
+    bool isAvailableAt(sf::Time time) const;
+
+    bool canAccept(const Role& role) const;
 private:
     StripType type;
     int length;
     bool occupied = false;
     float occupationTimeRemaining = 0.f;
+
+    sf::Time availableUntil;
+
+    std::vector<sf::Vector2f> takeoffPath;
+    std::vector<sf::Vector2f> landingPath;
 
     std::vector<std::string> allowedTypes;
     sf::RectangleShape shape;
