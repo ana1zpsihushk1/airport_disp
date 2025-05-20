@@ -25,12 +25,18 @@ const sf::Color BUTTON_MAIN_COLOR = sf::Color(144, 238, 144);
 const sf::Color BUTTON_HOVER_COLOR = sf::Color(0, 100, 0);
 const sf::Color BUTTON_PRESSED_COLOR = sf::Color(0, 100, 0);
 
+const sf::Color BUTTON_MAIN_RED_COLOR = sf::Color(240, 128, 128);
+const sf::Color BUTTON_HOVER_RED_COLOR = sf::Color(139, 0, 0);
+const sf::Color BUTTON_PRESSED_RED_COLOR = sf::Color(139, 0, 0);
+
 const sf::Color MAIN_BLACK_COLOR = sf::Color(0, 0, 0);
 const sf::Color MAIN_WHITE_COLOR = sf::Color(255, 255, 255);
 
 const sf::Color MAIN_SCREEN_COLOR = sf::Color(180, 210, 156);
 
-const sf::Color ATTINTION_COLOR = sf::Color(255, 60, 60);
+const sf::Color INFO_PANEL_COLOR = sf::Color(70, 70, 70, 220);
+
+const sf::Color ATTINTION_COLOR = sf::Color(255, 0, 0);
 
 const sf::Color BACKGROUND_FOR_NAMES_OF_PLANES = sf::Color(100, 100, 100, 180);
 

@@ -60,3 +60,10 @@ bool Button::isClicked(const sf::Vector2i& mousePos)
 
 	return isHovered(mousePos);
 }
+
+void Button::setColors(const sf::Color& base, const sf::Color& hover)
+{
+	baseColor = base;
+	hoverColor = hover;
+	shape.setFillColor(baseColor);
+}

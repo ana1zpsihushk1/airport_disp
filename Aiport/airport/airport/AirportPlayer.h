@@ -23,6 +23,9 @@ public:
 	AirportPlayer(sf::Vector2f position, sf::Vector2f size);
 	void draw(sf::RenderWindow& window);
 
+	std::vector<Strip>& getStrips() { return strips; }                 
+	const std::vector<Strip>& getStrips() const { return strips; }
+
 	void initStrip();
 	void processTakeoff();
 	Strip* findSuitableStrip(const std::string& typeName);

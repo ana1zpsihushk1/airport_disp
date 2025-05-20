@@ -126,6 +126,15 @@
     <ClCompile Include="Positions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Dispatcher.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="AirplaneFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="DispatcherUI.cpp">
+      <Filter>Файлы заголовков\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -217,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="Positions.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="AirplaneFactory.h">
+      <Filter>Файлы заголовков\Airplane</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

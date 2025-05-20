@@ -1,3 +1,5 @@
+#include "definitions.h"
+
 #include "Strip.h"
 
 Strip::Strip(StripType type, int length) :
@@ -40,6 +42,7 @@ void Strip::update(float dt)
             release();
         }
     }
+    updateColor();
 }
 
 void Strip::setPosition(sf::Vector2f pos)
@@ -85,6 +88,20 @@ const std::vector<sf::Vector2f>& Strip::getTakeoffPath() const
 const std::vector<sf::Vector2f>& Strip::getLandingPath() const
 {
     return landingPath;
+}
+
+void Strip::updateColor()
+{
+    if (occupied)
+        shape.setFillColor(BUTTON_MAIN_RED_COLOR);
+
+    else
+        shape.setFillColor(BUTTON_MAIN_COLOR);
+}
+
+void Strip::setHighlightColor(const sf::Color& color)
+{
+    shape.setFillColor(color);
 }
 
 void Strip::reserveUntil(sf::Time time)

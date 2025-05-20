@@ -132,12 +132,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Airplane.cpp" />
+    <ClCompile Include="AirplaneFactory.cpp" />
     <ClCompile Include="AirplaneUtils.cpp" />
     <ClCompile Include="AirportNpc.cpp" />
     <ClCompile Include="AirportPlayer.cpp" />
     <ClCompile Include="assetManager.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cargo.cpp" />
+    <ClCompile Include="Dispatcher.cpp" />
+    <ClCompile Include="DispatcherUI.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FlightSchedule.cpp" />
     <ClCompile Include="GameClock.cpp" />
@@ -159,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h" />
+    <ClInclude Include="AirplaneFactory.h" />
     <ClInclude Include="AirplaneUtils.h" />
     <ClInclude Include="Airport.h" />
     <ClInclude Include="AirportNpc.h" />

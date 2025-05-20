@@ -95,6 +95,7 @@ void simulationState1::Init()
 	_data->engine->PlayGameTheme();
 
 	_data->assets.LoadFont("plane_Font", FONT_FOR_PLANES);
+	_data->assets.LoadFont("menu_Font", FONT_FOR_GAME);
 	_data->assets.LoadTexture("game_background", MAIN_GAME_PNG);
 
 	backgroundSprite.setTexture(_data->assets.GetTexture("game_background"));
@@ -104,6 +105,8 @@ void simulationState1::Init()
 
 	AirPlayer = std::make_shared<AirportPlayer>(playerPos, airportSize);
 	AirPlayer->initStrip();
+
+	dispatcher = std::make_unique<Dispatcher>(AirPlayer, _data, _data->assets.GetFont("menu_Font"));
 }
 
 void simulationState1::HandleInput()
@@ -111,6 +114,7 @@ void simulationState1::HandleInput()
 	sf::Event event;
 	while (_data->window.pollEvent(event))
 	{
+		dispatcher->handleInput(sf::Mouse::getPosition(_data->window));
 		if (event.type == sf::Event::Closed)
 			_data->window.close();
 
@@ -122,6 +126,7 @@ void simulationState1::HandleInput()
 void simulationState1::Update(float dt)
 {
 	_gameClock.update(dt);
+	dispatcher->update(dt);
 	AirPlayer->tick();
 }
 
@@ -131,6 +136,7 @@ void simulationState1::Draw(float dt)
 
 	_data->window.draw(backgroundSprite);
 	AirPlayer->draw(_data->window);
+	dispatcher->draw(_data->window);
 
 	sf::Text clockText;
 	clockText.setFont(_data->assets.GetFont("menu_Font"));

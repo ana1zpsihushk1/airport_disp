@@ -16,6 +16,8 @@ public:
 	bool isHovered(const sf::Vector2i& mousePos);
 	bool isClicked(const sf::Vector2i& mousePos);
 
+	void setColors(const sf::Color& base, const sf::Color& hover);
+
 private:
 	sf::RectangleShape shape;
 	sf::Text label;

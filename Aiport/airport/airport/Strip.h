@@ -41,6 +41,10 @@ public:
     const std::vector<sf::Vector2f>& getTakeoffPath() const;
     const std::vector<sf::Vector2f>& getLandingPath() const;
 
+    void updateColor();
+
+    void setHighlightColor(const sf::Color& color);
+
     void reserveUntil(sf::Time time);
     bool isAvailableAt(sf::Time time) const;
 

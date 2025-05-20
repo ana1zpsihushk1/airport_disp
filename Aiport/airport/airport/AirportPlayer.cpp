@@ -2,6 +2,8 @@
 #include "Airplane.h"
 #include "AirportPlayer.h"
 
+#include "Positions.h"
+
 void AirportPlayer::tick()
 {
     for (auto& plane : airplanes)
@@ -65,11 +67,18 @@ void AirportPlayer::draw(sf::RenderWindow& window)
 
 void AirportPlayer::initStrip()
 {
-    strips.clear();
     Strip universal(StripType::Universal, 100);
-    universal.setPosition({ shape.getPosition().x + 20, shape.getPosition().y + shape.getSize().y + 10 });
+    universal.setPosition({ shape.getPosition().x + 20,
+        shape.getPosition().y + shape.getSize().y + 10 });
+    universal.setTakeoffPath(TAKEOFF_SMALL_1);
+    universal.setLandingPath(LANDING_SMALL_1);
+
     Strip limitted(StripType::Limitted, 100);
-    limitted.setPosition({ shape.getPosition().x + 80, shape.getPosition().y + shape.getSize().y + 10 });
+    limitted.setPosition({ shape.getPosition().x + 80,
+        shape.getPosition().y + shape.getSize().y + 10 });
+    limitted.setTakeoffPath(TAKEOFF_BIG_1);
+    limitted.setLandingPath(LANDING_BIG_1);
+
     strips.push_back(universal);
     strips.push_back(limitted);
 }
@@ -95,7 +104,7 @@ Strip* AirportPlayer::findSuitableStrip(const std::string& typeName)
 
 void AirportPlayer::processTakeoff()
 {
-    //ÇÄÅÑÜ ÁÓÄÅÒ ÏÐÎÂÅÐÊÀ ÐÀÑÏÈÑÀÍÈß è ÎÒÂÅÒ ÄÈÑÏÅÒ×ÅÐÀ
+    //  THERE WILL BE A SCHEDULE CHECK AND A DISPATCHER'S RESPONSE.
     for (auto& plane : airplanes)
     {
         if (plane->getStatus() != Status::awaitingTakeoff)

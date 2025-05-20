@@ -237,6 +237,16 @@ void Airplane::setPath(const std::vector<sf::Vector2f>& newPath)
     }
 }
 
+void Airplane::setDisplayName(const std::string& name)
+{
+    displayName = name;
+}
+
+std::string Airplane::getDisplayName() const
+{
+    return displayName;
+}
+
 //pod voprosom
 /*void Airplane::updatePosition(float dt)
 {

@@ -10,6 +10,6 @@ std::string generatePlaneName(const std::string& typeCode)
 	std::string name = typeCode + "-";
 	for (int i = 0; i < 4; ++i)
 		name += std::to_string(dist(rng));
-
+		//name += std::to_string(digit(rng));
 	return name;
 }

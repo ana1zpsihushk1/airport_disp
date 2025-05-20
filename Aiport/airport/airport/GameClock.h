@@ -13,6 +13,7 @@ public:
 	void update(float dt);
 	std::string getTimeString() const;
 	int getHour() const;
+	int getTotalSeconds() const;
 
 private:
 	float _inGameTimeSeconds;

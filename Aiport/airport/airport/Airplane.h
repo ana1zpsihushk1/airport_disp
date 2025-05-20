@@ -40,6 +40,8 @@ public:
     float getSpeed() const;
     int getRemainingCircles() const;
 
+    Role* getRole() const { return role.get(); }
+
     void setStatus(Status status);
     bool hasFuel() const;
     void consumeFuel(int amount);
@@ -67,6 +69,9 @@ public:
 
     //void updatePosition(float dt); // edem po puti
 
+    void setDisplayName(const std::string& name);
+    std::string getDisplayName() const;
+
 private:
     std::string id;
     std::unique_ptr<Role> role;
@@ -80,6 +85,8 @@ private:
     int accumulatedMinus = 0;
 
     FlightSchedule _schedule;
+
+    std::string displayName;
 
     //draw // potom yberem, esly nado
     std::vector<sf::Vector2f> path;
