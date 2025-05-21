@@ -4,6 +4,8 @@
 
 #include "Airplane.h"
 #include "AirplaneUtils.h"
+#include "GameClock.h"
+#include "definitions.h"
 
 static std::string generatePlaneName(const std::string& code)
 {
@@ -27,12 +29,16 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> role, sf::Time schedule
     scheduleTime(scheduleTime) {/*âîçìîæíî òóò áóäåò îòðèñîâêà*/
 }
 
-void Airplane::update(sf::Time deltaTime)
+void Airplane::update(sf::Time deltaTime, sf::Time currentTime)
 {
-    if (moving)
-        updatePosition(deltaTime.asSeconds());
+    if (!visible && currentTime >= scheduleTime) {
+        setVisible(true);
+    }
 
-    if (status == Status::inAir || status == Status::getCircle)
+    if (visible && moving)
+        updatePosition(deltaTime);
+
+    if (visible && (status == Status::inAir || status == Status::getCircle))
     {
         consumeFuel(static_cast<int>(deltaTime.asSeconds()));
         if (!hasFuel())
@@ -41,7 +47,6 @@ void Airplane::update(sf::Time deltaTime)
         }
     }
 
-    // Завершение движения
     if (!moving && (status == Status::landing || status == Status::takingOff))
         status = (status == Status::landing ? Status::landed : Status::inAir);
 }
@@ -220,9 +225,25 @@ FlightSchedule Airplane::getSchedule() const
     return _schedule;
 }
 
-void Airplane::draw(sf::RenderWindow& window)
+void Airplane::draw(sf::RenderWindow& window, sf::Font& font)
 {
+    if (!visible) return;
+
     window.draw(shape);
+
+    sf::Text label;
+    label.setFont(font);
+    label.setString(displayName);
+    label.setCharacterSize(14);
+    label.setFillColor(MAIN_WHITE_COLOR);
+    label.setPosition(shape.getPosition().x - 25.f, shape.getPosition().y - 35.f);
+
+    sf::RectangleShape bg(sf::Vector2f(label.getLocalBounds().width + 8.f, 20.f));
+    bg.setFillColor(sf::Color(0, 0, 0, 100));
+    bg.setPosition(label.getPosition().x - 4.f, label.getPosition().y - 2.f);
+
+    window.draw(bg);
+    window.draw(label);
 }
 
 //edem
@@ -249,8 +270,18 @@ std::string Airplane::getDisplayName() const
     return displayName;
 }
 
+bool Airplane::isVisible() const
+{
+    return visible;
+}
+
+void Airplane::setVisible(bool value)
+{
+    visible = value;
+}
+
 //pod voprosom
-void Airplane::updatePosition(float dt)
+void Airplane::updatePosition(sf::Time deltaTime)
 {
     if (pathIndex >= path.size())
     {
@@ -264,7 +295,7 @@ void Airplane::updatePosition(float dt)
 
     float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
-    if (distance < 1.f)
+    if (distance < 5.f)
     {
         pathIndex++;
         if (pathIndex >= path.size())
@@ -275,9 +306,10 @@ void Airplane::updatePosition(float dt)
         return;
     }
 
-    // normalize direction
     sf::Vector2f unit = direction / distance;
+    float speed = role->getSpeed() * 25.f;
+    shape.move(unit * speed * deltaTime.asSeconds());
 
-    float speed = role->getSpeed() * 100.f; // масштабируем для пикселей
-    shape.move(unit * speed * dt);
+    float angle = std::atan2(direction.y, direction.x) * 180.f / 3.14159265f;
+    shape.setRotation(angle);
 }

@@ -29,6 +29,8 @@ public:
 	void initStrip();
 	void processTakeoff();
 	std::shared_ptr<Strip> findSuitableStrip(const std::string& typeName);
+
+	void reset();
 private:
 	std::vector<std::shared_ptr<Airplane>> airplanes;
 	int curLevel = 0;

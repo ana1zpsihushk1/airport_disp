@@ -32,6 +32,8 @@ public:
 	std::vector<sf::Vector2f> chooseLandingPathByType(const std::string& type);
 
 	void createPlaneWithSchedule();
+
+	void resetGame();
 private:
 	int level = 0;
 	int points = 0;
@@ -53,8 +55,12 @@ private:
 	std::vector<Button> roundButtons;
 	std::vector<Button> lineButtons;
 
+	std::set<std::string> createdTypes;
+
+	float nextPlaneUI_YOffset = 70.f;
+
 	void initUI(sf::Font& font);
-	void createPlaneUI(std::shared_ptr<Airplane> plane);
+	void createPlaneUI(std::shared_ptr<Airplane> plane, float yOffset);
 	void handleChooseLine(std::shared_ptr<Airplane> plane);
 	void selectPlane(const sf::Vector2i& mousePos);
 	void issueTakeoff();

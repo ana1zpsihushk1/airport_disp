@@ -1,13 +1,17 @@
 ﻿#include "Airport.h"
 #include "Airplane.h"
 #include "AirportPlayer.h"
-
+#include "GameClock.h"
 #include "Positions.h"
+
+extern GameClock _gameClock;
 
 void AirportPlayer::tick()
 {
+    sf::Time currentTime = sf::seconds(_gameClock.getTotalSeconds());
+
     for (auto& plane : airplanes)
-        plane->update(sf::seconds(1.f));
+        plane->update(sf::seconds(1.f), currentTime);
 }
 
 void AirportPlayer::acceptAirplane(std::shared_ptr<Airplane> plane)
@@ -101,6 +105,13 @@ std::shared_ptr<Strip> AirportPlayer::findSuitableStrip(const std::string& typeN
         }
     }
     return nullptr;
+}
+
+void AirportPlayer::reset()
+{
+    airplanes.clear();
+    strips.clear();
+    initStrip();
 }
 
 void AirportPlayer::processTakeoff()

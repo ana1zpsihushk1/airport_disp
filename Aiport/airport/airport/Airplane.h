@@ -30,7 +30,7 @@ class Airplane
 public:
     Airplane(std::string id, std::unique_ptr<Role> role, sf::Time scheduleTime);
 
-    void update(sf::Time deltaTime);
+    void update(sf::Time deltaTime, sf::Time currentTime);
     void assignStrip(std::shared_ptr<Strip> strip);
 
     std::string getId() const;
@@ -62,17 +62,20 @@ public:
     void setSchedule(const FlightSchedule& schedule);
     FlightSchedule getSchedule() const;
 
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window, sf::Font& font);
 
     //edem
     void setPath(const std::vector<sf::Vector2f>& newPath);
 
-    void updatePosition(float dt); // edem po puti
+    void updatePosition(sf::Time deltaTime); // edem po puti
 
     void setDisplayName(const std::string& name);
     std::string getDisplayName() const;
 
     sf::CircleShape& getShape() { return shape; }
+
+    bool isVisible() const;
+    void setVisible(bool value);
 private:
     std::string id;
     std::unique_ptr<Role> role;
@@ -95,4 +98,5 @@ private:
     bool moving = false;
     sf::CircleShape shape;
 
+    bool visible = false;
 };

@@ -66,4 +66,6 @@ void Button::setColors(const sf::Color& base, const sf::Color& hover)
 	baseColor = base;
 	hoverColor = hover;
 	shape.setFillColor(baseColor);
+	shape.setOutlineThickness(2.f);
+	shape.setOutlineColor(hoverColor);
 }
