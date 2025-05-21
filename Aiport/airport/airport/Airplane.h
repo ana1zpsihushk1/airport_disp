@@ -67,11 +67,12 @@ public:
     //edem
     void setPath(const std::vector<sf::Vector2f>& newPath);
 
-    //void updatePosition(float dt); // edem po puti
+    void updatePosition(float dt); // edem po puti
 
     void setDisplayName(const std::string& name);
     std::string getDisplayName() const;
 
+    sf::CircleShape& getShape() { return shape; }
 private:
     std::string id;
     std::unique_ptr<Role> role;

@@ -23,17 +23,17 @@ public:
 	AirportPlayer(sf::Vector2f position, sf::Vector2f size);
 	void draw(sf::RenderWindow& window);
 
-	std::vector<Strip>& getStrips() { return strips; }                 
-	const std::vector<Strip>& getStrips() const { return strips; }
+	std::vector<std::shared_ptr<Strip>>& getStrips() { return strips; }
+	const std::vector<std::shared_ptr<Strip>>& getStrips() const { return strips; }
 
 	void initStrip();
 	void processTakeoff();
-	Strip* findSuitableStrip(const std::string& typeName);
+	std::shared_ptr<Strip> findSuitableStrip(const std::string& typeName);
 private:
 	std::vector<std::shared_ptr<Airplane>> airplanes;
 	int curLevel = 0;
 	int capacity = 5;
-	std::vector<Strip> strips;
+	std::vector<std::shared_ptr<Strip>> strips;
 
 	sf::RectangleShape shape;
 };

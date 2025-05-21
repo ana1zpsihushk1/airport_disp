@@ -12,11 +12,12 @@
 #define BUTTON_SOUND_EFFECT "C:/Users/Huawei/Downloads/minecraft_click.ogg"
 
 #define MAIN_THEME "C:/Windows/Media/inecraft_mutation.wav"
-#define MAIN_GAME_THEME "C:/Windows/Media/Smesh.wav"
+#define MAIN_GAME_THEME "C:/Users/Huawei/Downloads/Smeshariki.wav"
 
 #define BACKGROUND_PN "C:/Users/Huawei/Downloads/menu_background.png"
 #define BACKGROUND_PNG "C:/Users/Huawei/Downloads/menu_background_title.png"
 #define MAIN_GAME_PNG "C:/Users/Huawei/Downloads/Map.png"
+#define AIRPLANE_PNG "C:/Users/Huawei/Downloads/airplane.png"
 
 const sf::Color MENU_TEXT_COLOR = sf::Color(180, 255, 80);
 const sf::Color RULES_TEXT_COLOR = sf::Color(0, 255, 255);
@@ -40,4 +41,4 @@ const sf::Color ATTINTION_COLOR = sf::Color(255, 0, 0);
 
 const sf::Color BACKGROUND_FOR_NAMES_OF_PLANES = sf::Color(100, 100, 100, 180);
 
-const float GAME_SPEED = 480.0f;		// speed of game session
+const float GAME_SPEED = 240.0f;		// speed of game session

@@ -30,18 +30,20 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> role, sf::Time schedule
 void Airplane::update(sf::Time deltaTime)
 {
     if (moving)
-    {
-        //updatePosition(deltaTime.asSeconds());
-    }
+        updatePosition(deltaTime.asSeconds());
+
     if (status == Status::inAir || status == Status::getCircle)
     {
         consumeFuel(static_cast<int>(deltaTime.asSeconds()));
         if (!hasFuel())
         {
             status = Status::crashed;
-            //GAME OVER
         }
     }
+
+    // Завершение движения
+    if (!moving && (status == Status::landing || status == Status::takingOff))
+        status = (status == Status::landing ? Status::landed : Status::inAir);
 }
 
 bool Airplane::requestLanding(const std::vector<std::shared_ptr<Strip>>& strips, sf::Time currentTime)
@@ -248,7 +250,7 @@ std::string Airplane::getDisplayName() const
 }
 
 //pod voprosom
-/*void Airplane::updatePosition(float dt)
+void Airplane::updatePosition(float dt)
 {
     if (pathIndex >= path.size())
     {
@@ -273,9 +275,9 @@ std::string Airplane::getDisplayName() const
         return;
     }
 
-    // íîðìàëèçóåì íàïðàâëåíèå
+    // normalize direction
     sf::Vector2f unit = direction / distance;
 
-    float speed = role->getSpeed() * 100.f; // ìàñøòàáèðóåì äëÿ ïèêñåëåé
+    float speed = role->getSpeed() * 100.f; // масштабируем для пикселей
     shape.move(unit * speed * dt);
-}*/
+}

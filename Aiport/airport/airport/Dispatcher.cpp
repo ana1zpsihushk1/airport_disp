@@ -1,3 +1,6 @@
+#include <algorithm>
+#include <set>
+
 #include "Dispatcher.h"
 #include "menuState.h"
 #include "AirplaneUtils.h"
@@ -21,32 +24,131 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 	{
 		_data->engine->PlayMainTheme();
 		_data->machine.AddState(StateRef(new menuState(_data)), true);
+		return;
+	}
+
+	for (size_t i = 0; i < chooseButtons.size(); ++i)
+	{
+		chooseButtons[i].update(mousePos);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButtons[i].isClicked(mousePos))
+		{
+			handleChooseLine(displayPlanes[i]);
+			_selectedPlane = displayPlanes[i];
+			return;
+		}
+	}
+
+	for (size_t i = 0; i < roundButtons.size(); ++i)
+	{
+		roundButtons[i].update(mousePos);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && roundButtons[i].isClicked(mousePos))
+		{
+			auto plane = displayPlanes[i];
+			auto now = sf::seconds(_gameClock.getTotalSeconds());
+
+			if (plane->getStatus() == Status::awaitingTakeoff)
+				plane->requestTakeoff(_airport->getStrips(), now);
+
+			else if (plane->getStatus() == Status::inAir || plane->getStatus() == Status::getCircle)
+				plane->requestLanding(_airport->getStrips(), now);
+		}
+	}
+
+	for (size_t i = 0; i < lineButtons.size(); ++i)
+	{
+		lineButtons[i].update(mousePos);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && lineButtons[i].isClicked(mousePos))
+		{
+			auto& strip = _airport->getStrips()[i];
+			if (_selectedPlane && strip->canAccept(*_selectedPlane->getRole()))
+			{
+				_selectedPlane->assignStrip(strip);
+				lineButtons.clear();
+			}
+		}
 	}
 }
 
 void Dispatcher::update(float dt)
 {
-	scheduleTexts.clear(); // очищаем перед обновлением
+	scheduleTexts.clear();
 
-	float yOffset = 70.f; // начальна€ позици€ от заголовка
+	float yOffset = 70.f;
 
-	if (displayPlanes.size() < 3) // дл€ теста, создать 3 самолета
+	if (displayPlanes.size() < 5)
 		createPlaneWithSchedule();
+
+	for (auto it = displayPlanes.begin(); it != displayPlanes.end(); )
+	{
+		/*auto& plane = *it;
+		if (plane->getStatus() == Status::landed || plane->getStatus() == Status::inAir)
+		{
+			_airport->deleteAirplane(plane->getId());
+			it = displayPlanes.erase(it);
+		}
+		else ++it;*/
+
+		auto& plane = *it;
+		if (plane->getStatus() == Status::inAir && plane->getShape().getPosition().y < 0) {
+			_airport->deleteAirplane(plane->getId());
+			it = displayPlanes.erase(it);
+		}
+		else
+			++it;
+	}
 
 	for (const auto& plane : _airport->getAirplanes())
 	{
 		const FlightSchedule& sched = plane->getSchedule();
-		std::string line = plane->getId() + " | " + sched.getArrivalTimeString() + " - " + sched.getDepartureTimeString();
 
-		sf::Text text;
-		text.setFont(*titleText.getFont()); // используем тот же шрифт
-		text.setString(line);
-		text.setCharacterSize(20); // можно отрегулировать
-		text.setFillColor(MAIN_WHITE_COLOR);
-		text.setPosition(infoPanel.getPosition().x + 20.f, yOffset);
+		std::string mainLine = plane->getId() + " | " + sched.getDepartureTimeString() + " - " + sched.getArrivalTimeString();
+		std::string planeStatus;
+		sf::Color statusColor = MAIN_WHITE_COLOR;
 
-		yOffset += 30.f; // сдвигаем дл€ следующей строки
-		scheduleTexts.push_back(text);
+		switch (plane->getStatus()) {
+		case Status::awaitingTakeoff:
+		case Status::takingOff:
+			planeStatus = "   -> Takeoff";
+			break;
+		case Status::inAir:
+		case Status::awaitingLanding:
+		case Status::landing:
+			planeStatus = "   <- Landing";
+			break;
+		case Status::getCircle:
+			planeStatus = "   # Circle (" + std::to_string(plane->getRemainingCircles()) + " left)";
+			statusColor = ATTINTION_COLOR;
+			break;
+		case Status::landed:
+			planeStatus = "     + Landed";
+			break;
+		case Status::crashed:
+			planeStatus = "     * Crashed";
+			statusColor = ATTINTION_COLOR;
+			break;
+		default:
+			planeStatus = "";
+			break;
+		}
+
+		sf::Text text1;
+		text1.setFont(*titleText.getFont());
+		text1.setString(mainLine);
+		text1.setCharacterSize(20);
+		text1.setFillColor(MAIN_WHITE_COLOR);
+		text1.setPosition(infoPanel.getPosition().x + 20.f, yOffset);
+		yOffset += 25.f;
+
+		sf::Text text2;
+		text2.setFont(*titleText.getFont());
+		text2.setString(planeStatus);
+		text2.setCharacterSize(18);
+		text2.setFillColor(statusColor);
+		text2.setPosition(infoPanel.getPosition().x + 40.f, yOffset);
+		yOffset += 25.f;
+
+		scheduleTexts.push_back(text1);
+		scheduleTexts.push_back(text2);
 	}
 }
 
@@ -56,7 +158,8 @@ void Dispatcher::draw(sf::RenderWindow& window)
 	window.draw(titleText);
 	for (const auto& text : scheduleTexts)
 		window.draw(text);
-	if (exitButton) exitButton->draw(window);
+	if (exitButton) 
+		exitButton->draw(window);
 }
 
 void Dispatcher::initUI(sf::Font& font)
@@ -92,54 +195,133 @@ void Dispatcher::issueLanding()
 {
 }
 
-
 void Dispatcher::createPlaneWithSchedule() {
-	auto role = createRandomRole();
+	static std::set<std::string> createdTypes; // чтобы избежать дубликатов
 
-	int now = _gameClock.getTotalSeconds();
-	int dep = now - rand() % 300; // from 0 to 5 minutes back
-	int arr = now + 180 + rand() % 300; // in 3-8 minutes
+	std::vector<std::string> types = { "Local", "Regional", "NarrowBody", "Cargo", "WideBody" };
 
-	FlightSchedule sched;
-	sched.departureHour = dep / 3600;
-	sched.departureMinute = (dep % 3600) / 60;
-	sched.arrivalHour = arr / 3600;
-	sched.arrivalMinute = (arr % 3600) / 60;
+	for (const std::string& type : types)
+	{
+		if (createdTypes.find(type) != createdTypes.end()) continue;
 
-	auto plane = std::make_shared<Airplane>(generatePlaneName(role->getType()),
-		std::move(role), sf::seconds(dep));
-	plane->setSchedule(sched);
-	_airport->acceptAirplane(plane);
-	displayPlanes.push_back(plane);
+		auto role = createRoleByType(type);
+		std::string planeId = generatePlaneName(role->getType());
+		int now = _gameClock.getTotalSeconds();
 
-	createPlaneUI(plane);
+		// ќпределим сценарий Ч взлЄт или посадка
+		bool isDeparture = rand() % 2 == 0;
+
+		int dep = now + 30 + rand() % 120; // от 30 до 2.5 мин в будущем
+		int arr = now + 60 + rand() % 180; // прилЄт чуть позже
+
+		if (!isDeparture) std::swap(dep, arr); // если это посадка Ч прилет раньше
+
+		FlightSchedule sched;
+		sched.departureHour = dep / 3600;
+		sched.departureMinute = (dep % 3600) / 60;
+		sched.arrivalHour = arr / 3600;
+		sched.arrivalMinute = (arr % 3600) / 60;
+
+		auto plane = std::make_shared<Airplane>(planeId, std::move(role), sf::seconds(dep));
+		plane->setSchedule(sched);
+		plane->setDisplayName(planeId); // дл€ UI
+
+		// ”становим спрайт
+		sf::Texture& tex = _data->assets.GetTexture("AIRPLANE_PNG");
+		sf::Vector2f startPos;
+		std::vector<sf::Vector2f> path;
+
+		if (isDeparture)
+		{
+			plane->setStatus(Status::awaitingTakeoff);
+			path = chooseTakeoffPathByType(type); // random из возможных
+			startPos = path.front();
+		}
+		else
+		{
+			plane->setStatus(Status::inAir);
+			path = chooseLandingPathByType(type); // random из возможных
+			startPos = path.front();
+		}
+
+		plane->setPath(path);
+		plane->getShape().setTexture(&tex);
+		plane->getShape().setRadius(20.f); // или что подходит
+		plane->getShape().setOrigin(20.f, 20.f); // центр
+		plane->getShape().setPosition(startPos);
+
+		_airport->acceptAirplane(plane);
+		displayPlanes.push_back(plane);
+
+		createPlaneUI(plane);
+
+		createdTypes.insert(type);
+	}
+}
+
+std::vector<sf::Vector2f> Dispatcher::chooseTakeoffPathByType(const std::string& type)
+{
+	static std::vector<std::vector<sf::Vector2f>> big = { TAKEOFF_BIG_1, TAKEOFF_BIG_2 };
+	static std::vector<std::vector<sf::Vector2f>> small = { TAKEOFF_SMALL_1, TAKEOFF_SMALL_2, TAKEOFF_SMALL_3, TAKEOFF_SMALL_4, TAKEOFF_SMALL_5 };
+
+	if (type == "Cargo" || type == "WideBody")
+		return big[rand() % big.size()];
+	else
+		return small[rand() % small.size()];
+}
+
+std::vector<sf::Vector2f> Dispatcher::chooseLandingPathByType(const std::string& type)
+{
+	static std::vector<std::vector<sf::Vector2f>> big = { LANDING_BIG_1, LANDING_BIG_2 };
+	static std::vector<std::vector<sf::Vector2f>> small = { LANDING_SMALL_1, LANDING_SMALL_2, LANDING_SMALL_3, LANDING_SMALL_4, LANDING_SMALL_5 };
+
+	if (type == "Cargo" || type == "WideBody")
+		return big[rand() % big.size()];
+	else
+		return small[rand() % small.size()];
 }
 
 void Dispatcher::createPlaneUI(std::shared_ptr<Airplane> plane) {
 	float yOffset = 70.f + displayTexts.size() * 100.f;
 
 	sf::Text text;
-	text.setFont(_data->assets.GetFont("plane_Font")); // use FONT_FOR_PLANES
+	text.setFont(_data->assets.GetFont("plane_Font"));
 	text.setCharacterSize(20);
 	text.setFillColor(MAIN_WHITE_COLOR);
 	text.setPosition(infoPanel.getPosition().x + 20.f, yOffset);
 
-	const FlightSchedule& sched = plane->getSchedule();
+	FlightSchedule sched = plane->getSchedule();
 	text.setString(plane->getId() + " | " + sched.getDepartureTimeString() + " - " + sched.getArrivalTimeString());
 	displayTexts.push_back(text);
 
-	// Button Choose line
 	Button chooseBtn({ 120, 30 }, { infoPanel.getPosition().x + 20.f, yOffset + 30 }, "Choose line", _data->assets.GetFont("plane_Font"));
 	chooseBtn.setColors(BUTTON_MAIN_COLOR, BUTTON_HOVER_COLOR);
 	chooseButtons.push_back(chooseBtn);
 
-	// Button Next round
 	Button roundBtn({ 120, 30 }, { infoPanel.getPosition().x + 160.f, yOffset + 30 }, "Next round", _data->assets.GetFont("plane_Font"));
 	roundBtn.setColors(BUTTON_MAIN_RED_COLOR, BUTTON_HOVER_RED_COLOR);
 	roundButtons.push_back(roundBtn);
 }
 
-
 void Dispatcher::handleChooseLine(std::shared_ptr<Airplane> plane) {
-	// «аглушка Ч позже тут будет логика подсветки полос
+	lineButtons.clear();
+	auto& strips = _airport->getStrips();
+	float baseY = 70.f + displayTexts.size() * 100.f;
+	float x = infoPanel.getPosition().x + 20.f;
+	float y = baseY + 70.f;
+
+	for (size_t i = 0; i < strips.size(); ++i) {
+		auto& s = strips[i];
+		bool canLand = s->canAccept(*plane->getRole()) && s->isAvailable();
+		Button lineBtn({ 30, 30 }, { x + static_cast<float>(i) * 40.f, y }, std::to_string(i + 1), _data->assets.GetFont("plane_Font"));
+		if (canLand) {
+			lineBtn.setColors(BUTTON_MAIN_COLOR, BUTTON_HOVER_COLOR);
+			s->setHighlightColor(BUTTON_MAIN_COLOR);
+		}
+		else {
+			lineBtn.setColors(BUTTON_MAIN_RED_COLOR, BUTTON_HOVER_RED_COLOR);
+			s->setHighlightColor(BUTTON_MAIN_RED_COLOR);
+		}
+		lineButtons.push_back(lineBtn);
+	}
 }

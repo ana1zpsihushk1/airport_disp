@@ -67,36 +67,37 @@ void AirportPlayer::draw(sf::RenderWindow& window)
 
 void AirportPlayer::initStrip()
 {
-    Strip universal(StripType::Universal, 100);
-    universal.setPosition({ shape.getPosition().x + 20,
-        shape.getPosition().y + shape.getSize().y + 10 });
-    universal.setTakeoffPath(TAKEOFF_SMALL_1);
-    universal.setLandingPath(LANDING_SMALL_1);
+    auto universal = std::make_shared<Strip>(StripType::Universal, 100);
+    universal->setPosition({ shape.getPosition().x + 20,
+                             shape.getPosition().y + shape.getSize().y + 10 });
+    universal->setTakeoffPath(TAKEOFF_SMALL_1);
+    universal->setLandingPath(LANDING_SMALL_1);
 
-    Strip limitted(StripType::Limitted, 100);
-    limitted.setPosition({ shape.getPosition().x + 80,
-        shape.getPosition().y + shape.getSize().y + 10 });
-    limitted.setTakeoffPath(TAKEOFF_BIG_1);
-    limitted.setLandingPath(LANDING_BIG_1);
+    auto limited = std::make_shared<Strip>(StripType::Limitted, 100);
+    limited->setPosition({ shape.getPosition().x + 80,
+                           shape.getPosition().y + shape.getSize().y + 10 });
+    limited->setTakeoffPath(TAKEOFF_BIG_1);
+    limited->setLandingPath(LANDING_BIG_1);
 
     strips.push_back(universal);
-    strips.push_back(limitted);
+    strips.push_back(limited);
 }
 
-Strip* AirportPlayer::findSuitableStrip(const std::string& typeName)
+std::shared_ptr<Strip> AirportPlayer::findSuitableStrip(const std::string& typeName)
 {
     for (auto& s : strips)
     {
-        if (!s.isAvailable())
+        if (!s->isAvailable())
             continue;
 
-        if (s.getType() == StripType::Universal)
+        if (s->getType() == StripType::Universal)
         {
-            return &s;
+            return s;
         }
-        if ((s.getType() == StripType::Limitted && typeName == "WideBody") || (s.getType() == StripType::Limitted && typeName == "Cargo"))
+        if ((s->getType() == StripType::Limitted && typeName == "WideBody") ||
+            (s->getType() == StripType::Limitted && typeName == "Cargo"))
         {
-            return &s;
+            return s;
         }
     }
     return nullptr;
@@ -112,11 +113,10 @@ void AirportPlayer::processTakeoff()
             continue;
         }
 
-        Strip* strip = findSuitableStrip(plane->getRoleType());
+        std::shared_ptr<Strip> strip = findSuitableStrip(plane->getRoleType());
         if (strip)
         {
-            
-            plane->assignStrip(std::make_shared<Strip>(*strip));
+            plane->assignStrip(strip);
             strip->reserveUntil(sf::seconds(10));
             plane->takeoff();
         }

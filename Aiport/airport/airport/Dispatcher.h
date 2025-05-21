@@ -4,6 +4,7 @@
 #include <SFML/Audio.hpp>
 #include <memory>
 #include <vector>
+#include <set>
 
 #include "Engine.h"
 #include "Button.h"
@@ -27,6 +28,9 @@ public:
 	void update(float dt);
 	void draw(sf::RenderWindow& window);
 
+	std::vector<sf::Vector2f> chooseTakeoffPathByType(const std::string& type);
+	std::vector<sf::Vector2f> chooseLandingPathByType(const std::string& type);
+
 	void createPlaneWithSchedule();
 private:
 	int level = 0;
@@ -49,10 +53,9 @@ private:
 	std::vector<Button> roundButtons;
 	std::vector<Button> lineButtons;
 
+	void initUI(sf::Font& font);
 	void createPlaneUI(std::shared_ptr<Airplane> plane);
 	void handleChooseLine(std::shared_ptr<Airplane> plane);
-
-	void initUI(sf::Font& font);
 	void selectPlane(const sf::Vector2i& mousePos);
 	void issueTakeoff();
 	void issueLanding();

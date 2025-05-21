@@ -126,14 +126,14 @@
     <ClCompile Include="Positions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Dispatcher.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="AirplaneFactory.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="DispatcherUI.cpp">
       <Filter>Файлы заголовков\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="AirplaneFactory.cpp">
+      <Filter>Исходные файлы\Airplane</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispatcher.cpp">
+      <Filter>Исходные файлы\Dispatcher</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

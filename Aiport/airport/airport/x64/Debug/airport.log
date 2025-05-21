@@ -1,7 +1,14 @@
-﻿  AirportPlayer.cpp
+﻿  Airplane.cpp
+  AirplaneFactory.cpp
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(14,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  (компиляция исходного файла "AirplaneFactory.cpp")
+  
+  AirportPlayer.cpp
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(16,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
   (компиляция исходного файла "AirportPlayer.cpp")
   
+  Button.cpp
+  Cargo.cpp
   Dispatcher.cpp
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(16,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
   (компиляция исходного файла "Dispatcher.cpp")
@@ -9,20 +16,21 @@ C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\A
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(14,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   (компиляция исходного файла "Dispatcher.cpp")
   
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(110,32): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-  DispatcherUI.cpp
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(16,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-  (компиляция исходного файла "DispatcherUI.cpp")
-  
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(14,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  (компиляция исходного файла "DispatcherUI.cpp")
-  
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\DispatcherUI.cpp(22,38): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(47,53): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(225,81): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Engine.cpp
   GameClock.cpp
   LevelManager.cpp
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(16,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
   (компиляция исходного файла "LevelManager.cpp")
   
+  Local.cpp
+  Main.cpp
+  NarrowBody.cpp
+  Regional.cpp
+  Strip.cpp
+  WideBody.cpp
+  initState.cpp
   menuState.cpp
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(16,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
   (компиляция исходного файла "menuState.cpp")
@@ -30,6 +38,7 @@ C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\A
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(14,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   (компиляция исходного файла "menuState.cpp")
   
+  rulesState.cpp
   simulationState1.cpp
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\AirportPlayer.h(16,48): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
   (компиляция исходного файла "simulationState1.cpp")
@@ -37,22 +46,20 @@ C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\A
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(14,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   (компиляция исходного файла "simulationState1.cpp")
   
-  WideBody.cpp
   Создание кода...
-DispatcherUI.obj : error LNK2005: "private: void __cdecl Dispatcher::createPlaneUI(class std::shared_ptr<class Airplane>)" (?createPlaneUI@Dispatcher@@AEAAXV?$shared_ptr@VAirplane@@@std@@@Z) уже определен в Dispatcher.obj
-DispatcherUI.obj : error LNK2005: "public: void __cdecl Dispatcher::createPlaneWithSchedule(void)" (?createPlaneWithSchedule@Dispatcher@@QEAAXXZ) уже определен в Dispatcher.obj
-DispatcherUI.obj : error LNK2005: "private: void __cdecl Dispatcher::handleChooseLine(class std::shared_ptr<class Airplane>)" (?handleChooseLine@Dispatcher@@AEAAXV?$shared_ptr@VAirplane@@@std@@@Z) уже определен в Dispatcher.obj
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(111,1): warning C4715: Airplane::requestTakeoff: значение возвращается не при всех путях выполнения
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Airplane.cpp(79,1): warning C4715: Airplane::requestLanding: значение возвращается не при всех путях выполнения
 sfml-graphics-s-d.lib(Transformable.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(Transformable.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Color.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(Color.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(CircleShape.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(CircleShape.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(RenderTarget.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(RenderStates.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(RenderStates.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Shape.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(Shape.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-graphics-s-d.lib(VertexArray.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(VertexArray.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(RectangleShape.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(RectangleShape.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Texture.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(Texture.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Font.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(Font.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Text.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(Text.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
+sfml-graphics-s-d.lib(VertexArray.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(VertexArray.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(RenderWindow.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(RenderWindow.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Sprite.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(Sprite.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-graphics-s-d.lib(Transform.obj) : warning LNK4099: "" PDB не найден с "sfml-graphics-s-d.lib(Transform.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
@@ -123,4 +130,4 @@ sfml-system-s-d.lib(Thread.obj) : warning LNK4099: "" PDB не найден с "
 sfml-system-s-d.lib(FileInputStream.obj) : warning LNK4099: "" PDB не найден с "sfml-system-s-d.lib(FileInputStream.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-system-s-d.lib(MemoryInputStream.obj) : warning LNK4099: "" PDB не найден с "sfml-system-s-d.lib(MemoryInputStream.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
 sfml-system-s-d.lib(ThreadImpl.obj) : warning LNK4099: "" PDB не найден с "sfml-system-s-d.lib(ThreadImpl.obj)" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\airport.exe : fatal error LNK1169: обнаружен многократно определенный символ - один или более
+  airport.vcxproj -> C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\airport.exe
