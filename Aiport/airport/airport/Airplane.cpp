@@ -345,6 +345,11 @@ void Airplane::setParkingRoute(const std::vector<sf::Vector2f>& route)
     parkingRoute = route;
 }
 
+const std::vector<sf::Vector2f>& Airplane::getParkingRoute() const
+{
+    return parkingRoute;
+}
+
 //pod voprosom
 void Airplane::updatePosition(sf::Time deltaTime)
 {

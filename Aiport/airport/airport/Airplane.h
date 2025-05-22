@@ -87,6 +87,11 @@ public:
     bool getArrival() const { return isArrival; }
 
     void setParkingRoute(const std::vector<sf::Vector2f>& route);
+
+    const std::vector<sf::Vector2f>& getParkingRoute() const;
+
+    void setLastDirection(const sf::Vector2f& dir) { lastDirection = dir; }
+    sf::Vector2f getLastDirection() const { return lastDirection; }
 private:
     std::string id;
     std::unique_ptr<Role> role;

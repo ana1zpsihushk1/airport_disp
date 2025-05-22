@@ -7,3 +7,8 @@
 extern const std::vector<std::vector<sf::Vector2f>> PARKING_SMALL_ROUTES;
 // PARKING BIG
 extern const std::vector<std::vector<sf::Vector2f>> PARKING_BIG_ROUTES;
+
+// UNPARKING SMALL
+extern const std::vector<std::vector<sf::Vector2f>> PARKING_SMALL_ROUTES;
+// UNPARKING BIG
+extern const std::vector<std::vector<sf::Vector2f>> PARKING_BIG_ROUTES;

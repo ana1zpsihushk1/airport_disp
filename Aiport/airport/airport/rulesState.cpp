@@ -18,9 +18,17 @@ void rulesState::Init()
 	_rulesTitle.setPosition(100, 80);
 
 	_rulesText.setFont(_data->assets.GetFont("menu_Font"));
-	_rulesText.setString("- You can make...\n- Avoid smth\n- Keep track of the time");
+	_rulesText.setString(
+		"Play the role of an Airport Dispatcher!\n\n"
+		"- Your goal is to manage the airport to avoid aircraft collisions\n during takeoff/landing on the lanes.\n\n"
+		"- On the side panel there are schedules of take-offs and landings of airplanes.\n\n"
+		"- You can choose the trajectory for the subsequent movement of the airplane.\n\n"
+		"- When requesting a landing, you can send the plane on an additional circle,\n but be careful: the fuel may run out, which leads to a crash!\n\n"
+		"- If at least one airplane fails to take off or land successfully,\n the game will be lost.\n\n"
+		"May the forces be with you!"
+	);
 	_rulesText.setCharacterSize(36);
-	_rulesText.setFillColor(sf::Color(MENU_TEXT_COLOR));
+	_rulesText.setFillColor(sf::Color(MAIN_BLACK_COLOR));
 	_rulesText.setPosition(100, 160);
 
 	backButton = std::make_unique<Button>(
