@@ -89,14 +89,25 @@ void Dispatcher::update(float dt)
 	for (auto it = displayPlanes.begin(); it != displayPlanes.end(); )
 	{
 		auto& plane = *it;
-		if (plane->getStatus() == Status::landed || plane->getStatus() == Status::crashed ||
-			(plane->getStatus() == Status::inAir && plane->getShape().getPosition().y < 0))
-		{
+
+		if (plane->getStatus() == Status::crashed) {
 			_airport->deleteAirplane(plane->getId());
 			it = displayPlanes.erase(it);
+			continue;
 		}
-		else
-			++it;
+
+		if (plane->getStatus() == Status::inAir && plane->getShape().getPosition().y < 0) {
+			_airport->deleteAirplane(plane->getId());
+			it = displayPlanes.erase(it);
+			continue;
+		}
+
+		if (plane->getStatus() == Status::landed && !plane->isMoving()) {
+			it = displayPlanes.erase(it);
+			continue;
+		}
+
+		++it;
 	}
 
 	for (const auto& plane : _airport->getAirplanes())
@@ -221,7 +232,7 @@ void Dispatcher::createPlaneWithSchedule() {
 
 	std::vector<std::string> types = { "Local", "Regional", "NarrowBody", "Cargo", "WideBody" };
 
-	for (const std::string& type : types)
+	/*for (const std::string& type : types)
 	{
 		if (createdTypes.find(type) != createdTypes.end()) continue;
 
@@ -232,10 +243,14 @@ void Dispatcher::createPlaneWithSchedule() {
 		// ќпределим сценарий Ч взлЄт или посадка
 		bool isDeparture = rand() % 2 == 0;
 
-		int dep = now + 30 + rand() % 120; // от 30 до 2.5 мин в будущем
-		int arr = now + 60 + rand() % 180; // прилЄт чуть позже
+		int spacing = FLIGHT_DAY_DURATION / MAX_FLIGHTS_PER_DAY;
+		int baseTime = spacing * flightCounter + 300;
+		flightCounter++;
 
-		if (!isDeparture) std::swap(dep, arr); // если это посадка Ч прилет раньше
+		int dep = baseTime;
+		int arr = dep + 180;
+
+		if (!isDeparture) std::swap(dep, arr);
 
 		FlightSchedule sched;
 		sched.departureHour = dep / 3600;
@@ -245,7 +260,7 @@ void Dispatcher::createPlaneWithSchedule() {
 
 		auto plane = std::make_shared<Airplane>(planeId, std::move(role), sf::seconds(dep));
 		plane->setSchedule(sched);
-		plane->setDisplayName(planeId); // дл€ UI
+		plane->setDisplayName(planeId);
 
 		sf::Texture& tex = _data->assets.GetTexture("AIRPLANE_PNG");
 		sf::Vector2f startPos;
@@ -254,20 +269,28 @@ void Dispatcher::createPlaneWithSchedule() {
 		if (isDeparture)
 		{
 			plane->setStatus(Status::awaitingTakeoff);
-			path = chooseTakeoffPathByType(type); // random из возможных
+			plane->setArrival(false);
+			path = chooseTakeoffPathByType(type); 
 			startPos = path.front();
+
+			plane->setVisible(true); 
+			plane->setMoving(false);
 		}
 		else
 		{
 			plane->setStatus(Status::inAir);
-			path = chooseLandingPathByType(type); // random из возможных
+			plane->setArrival(true);
+			path = chooseLandingPathByType(type); 
 			startPos = path.front();
+
+			auto parkingRoute = assignParking(plane);
+			path.insert(path.end(), parkingRoute.begin(), parkingRoute.end());
 		}
 
 		plane->setPath(path);
 		plane->getShape().setTexture(&tex);
-		plane->getShape().setRadius(20.f); // или что подходит
-		plane->getShape().setOrigin(20.f, 20.f); // центр
+		plane->getShape().setRadius(20.f); 
+		plane->getShape().setOrigin(20.f, 20.f);
 		plane->getShape().setPosition(startPos);
 
 		_airport->acceptAirplane(plane);
@@ -276,7 +299,36 @@ void Dispatcher::createPlaneWithSchedule() {
 		createPlaneUI(plane, nextPlaneUI_YOffset);
 
 		createdTypes.insert(type);
+	}*/
+
+
+}
+
+std::vector<sf::Vector2f> Dispatcher::assignParking(std::shared_ptr<Airplane> plane)
+{
+	if (plane->getRole()->getType() == "Cargo" || plane->getRole()->getType() == "WideBody")
+	{
+		for (int i = 0; i < PARKING_BIG_ROUTES.size(); ++i) {
+			int parkingId = 56 + i;
+			if (!bigParkingOccupied[parkingId]) {
+				bigParkingOccupied[parkingId] = true;
+				plane->setParkingId(parkingId);
+				return PARKING_BIG_ROUTES[i];
+			}
+		}
 	}
+	else
+	{
+		for (int i = 0; i < PARKING_SMALL_ROUTES.size(); ++i) {
+			int parkingId = 45 + i;
+			if (!smallParkingOccupied[parkingId]) {
+				smallParkingOccupied[parkingId] = true;
+				plane->setParkingId(parkingId);
+				return PARKING_SMALL_ROUTES[i];
+			}
+		}
+	}
+	return {};
 }
 
 void Dispatcher::resetGame()

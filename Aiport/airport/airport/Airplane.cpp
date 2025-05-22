@@ -35,6 +35,9 @@ void Airplane::update(sf::Time deltaTime, sf::Time currentTime)
         setVisible(true);
     }
 
+    if (status == Status::landed)
+        return;
+
     if (visible && moving)
         updatePosition(deltaTime);
 
@@ -42,13 +45,16 @@ void Airplane::update(sf::Time deltaTime, sf::Time currentTime)
     {
         consumeFuel(static_cast<int>(deltaTime.asSeconds()));
         if (!hasFuel())
-        {
             status = Status::crashed;
-        }
     }
 
     if (!moving && (status == Status::landing || status == Status::takingOff))
+    {
         status = (status == Status::landing ? Status::landed : Status::inAir);
+
+        if (status == Status::landed)
+            lastDirection = { 0.f, 0.f };
+    }
 }
 
 bool Airplane::requestLanding(const std::vector<std::shared_ptr<Strip>>& strips, sf::Time currentTime)
@@ -87,15 +93,30 @@ bool Airplane::requestTakeoff(const std::vector<std::shared_ptr<Strip>>& strips,
 {
     for (auto& strip : strips)
     {
-        // ÇÄÅÑÜ ÄÎËÆÅÍ ÁÛÒÜ ÎÒÂÅÒ ÄÈÑÏÅÒ×ÅÐÀ
-        if (1) //äèñïåò÷åð ðàçðåøèë ñåñòü... ÄÎÏÈÑÀÒÜ
+        if (true)
         {
-            //ïðîâåðÿåì íà ñîâìåñòèìîñòü
             if (strip->canAccept(*role) && strip->isAvailableAt(currentTime))
             {
                 assignStrip(strip);
                 strip->reserveUntil(currentTime + sf::seconds(10));
-                takeoff();
+
+                std::vector<sf::Vector2f> takeoffPath = strip->getTakeoffPath(); // предполагается, что он у тебя есть
+                setPath(takeoffPath);
+                moving = true;
+                visible = true;
+                status = Status::takingOff;
+
+                if (takeoffPath.size() >= 2)
+                {
+                    sf::Vector2f dir = takeoffPath.back() - takeoffPath[takeoffPath.size() - 2];
+                    float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
+                    if (len != 0)
+                        dir /= len;
+
+                    sf::Vector2f offscreenTarget = takeoffPath.back() + dir * 1000.f;
+                    path.push_back(offscreenTarget);
+                }
+
                 return true;
             }
             else
@@ -107,12 +128,13 @@ bool Airplane::requestTakeoff(const std::vector<std::shared_ptr<Strip>>& strips,
         }
         else
         {
-            // Çàäåðæêà
             minus();
             setStatus(Status::awaitingTakeoff);
             return false;
         }
     }
+
+    return false;
 }
 
 void Airplane::land()
@@ -231,16 +253,35 @@ void Airplane::draw(sf::RenderWindow& window, sf::Font& font)
 
     window.draw(shape);
 
-    sf::Text label;
-    label.setFont(font);
-    label.setString(displayName);
-    label.setCharacterSize(14);
-    label.setFillColor(MAIN_WHITE_COLOR);
-    label.setPosition(shape.getPosition().x - 25.f, shape.getPosition().y - 35.f);
+    // Загрузим шрифт из определения (один раз)
+    static sf::Font labelFont;
+    static bool isLoaded = false;
+    if (!isLoaded) {
+        if (!labelFont.loadFromFile(FONT_FOR_PLANES)) {
+            std::cerr << "Ошибка: не удалось загрузить шрифт: " << FONT_FOR_PLANES << std::endl;
+            return;
+        }
+        isLoaded = true;
+    }
 
-    sf::RectangleShape bg(sf::Vector2f(label.getLocalBounds().width + 8.f, 20.f));
-    bg.setFillColor(sf::Color(0, 0, 0, 100));
-    bg.setPosition(label.getPosition().x - 4.f, label.getPosition().y - 2.f);
+    // Создаем подпись
+    sf::Text label;
+    label.setFont(labelFont);
+    label.setString(displayName.empty() ? "NO_NAME" : displayName);
+    label.setCharacterSize(18);
+    label.setFillColor(sf::Color::White);
+    //label.setStyle(sf::Text::Bold);
+
+    // Центрируем и позиционируем
+    sf::FloatRect textBounds = label.getLocalBounds();
+    label.setOrigin(textBounds.width / 2.f, textBounds.height / 2.f);
+    label.setPosition(shape.getPosition().x, shape.getPosition().y - shape.getRadius() - 20.f);
+
+    // Добавим фон
+    sf::RectangleShape bg(sf::Vector2f(textBounds.width + 10.f, textBounds.height + 10.f));
+    bg.setFillColor(sf::Color(0, 0, 0, 150));
+    bg.setOrigin(bg.getSize().x / 2.f, bg.getSize().y / 2.f);
+    bg.setPosition(label.getPosition());
 
     window.draw(bg);
     window.draw(label);
@@ -283,33 +324,43 @@ void Airplane::setVisible(bool value)
 //pod voprosom
 void Airplane::updatePosition(sf::Time deltaTime)
 {
-    if (pathIndex >= path.size())
-    {
-        moving = false;
-        return;
+    if (path.empty()) {
+        if (!isArrival && lastDirection != sf::Vector2f(0.f, 0.f)) {
+            sf::Vector2f currentPos = shape.getPosition();
+            sf::Vector2f offscreenTarget = currentPos + lastDirection * 1000.f;
+            path.push_back(offscreenTarget);
+        }
+        else {
+            moving = false;
+            return;
+        }
     }
 
     sf::Vector2f currentPos = shape.getPosition();
-    sf::Vector2f target = path[pathIndex];
-    sf::Vector2f direction = target - currentPos;
+    sf::Vector2f targetPos = path.front();
+    sf::Vector2f direction = targetPos - currentPos;
 
-    float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    float dist = std::hypot(direction.x, direction.y);
+    float step = speed * deltaTime.asSeconds();
 
-    if (distance < 5.f)
-    {
-        pathIndex++;
-        if (pathIndex >= path.size())
-        {
-            moving = false;
-            status = (status == Status::takingOff ? Status::inAir : Status::landed);
+    if (dist < step) {
+        shape.setPosition(targetPos);
+        path.erase(path.begin());
+
+        if (!path.empty()) {
+            // Пересчитаем новое направление
+            sf::Vector2f nextDir = path.front() - shape.getPosition();
+            float len = std::hypot(nextDir.x, nextDir.y);
+            if (len > 0)
+                lastDirection = nextDir / len;
         }
-        return;
+
+    }
+    else {
+        direction /= dist;
+        lastDirection = direction;  // <- критично: сохраняем направление
+        shape.move(direction * step);
     }
 
-    sf::Vector2f unit = direction / distance;
-    float speed = role->getSpeed() * 25.f;
-    shape.move(unit * speed * deltaTime.asSeconds());
-
-    float angle = std::atan2(direction.y, direction.x) * 180.f / 3.14159265f;
-    shape.setRotation(angle);
+    moving = true;
 }

@@ -76,6 +76,15 @@ public:
 
     bool isVisible() const;
     void setVisible(bool value);
+
+    void setParkingId(int id) { parkingId = id; }
+    int getParkingId() const { return parkingId; }
+
+    void setMoving(bool m) { moving = m; }
+    bool isMoving() const { return moving; }
+
+    void setArrival(bool value) { isArrival = value; }
+    bool getArrival() const { return isArrival; }
 private:
     std::string id;
     std::unique_ptr<Role> role;
@@ -88,6 +97,8 @@ private:
     std::shared_ptr<Strip> stripAssigned;
     int accumulatedMinus = 0;
 
+    sf::Vector2f lastDirection = { 0.f, 0.f };
+
     FlightSchedule _schedule;
 
     std::string displayName;
@@ -99,4 +110,11 @@ private:
     sf::CircleShape shape;
 
     bool visible = false;
+
+    int parkingId = -1;
+
+    bool isArrival = false;
+
+    // std::vector<sf::Vector2f> route;
+    float speed = 10.f;
 };

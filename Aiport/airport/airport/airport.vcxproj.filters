@@ -135,6 +135,9 @@
     <ClCompile Include="Dispatcher.cpp">
       <Filter>Исходные файлы\Dispatcher</Filter>
     </ClCompile>
+    <ClCompile Include="ParkingRoutes.cpp">
+      <Filter>Исходные файлы\Airport</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="AirplaneFactory.h">
       <Filter>Файлы заголовков\Airplane</Filter>
+    </ClInclude>
+    <ClInclude Include="ParkingRoutes.h">
+      <Filter>Файлы заголовков\Airport</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

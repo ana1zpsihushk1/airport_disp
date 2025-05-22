@@ -151,6 +151,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="menuState.cpp" />
     <ClCompile Include="NarrowBody.cpp" />
+    <ClCompile Include="ParkingRoutes.cpp" />
     <ClCompile Include="Positions.cpp" />
     <ClCompile Include="Regional.cpp" />
     <ClCompile Include="rulesState.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Local.h" />
     <ClInclude Include="menuState.h" />
     <ClInclude Include="NarrowBody.h" />
+    <ClInclude Include="ParkingRoutes.h" />
     <ClInclude Include="Positions.h" />
     <ClInclude Include="Regional.h" />
     <ClInclude Include="Role.h" />

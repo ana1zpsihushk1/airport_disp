@@ -18,6 +18,7 @@
 #include "Role.h"
 #include "RoleFabric.h"
 #include "AirplaneUtils.h"
+#include "ParkingRoutes.h"
 
 class Dispatcher
 {
@@ -33,10 +34,16 @@ public:
 
 	void createPlaneWithSchedule();
 
+	std::vector<sf::Vector2f> assignParking(std::shared_ptr<Airplane> plane);
+
 	void resetGame();
 private:
 	int level = 0;
 	int points = 0;
+
+	int flightCounter = 0;
+	const int MAX_FLIGHTS_PER_DAY = 60;
+	const int FLIGHT_DAY_DURATION = 43200;
 
 	GameDataRef _data;
 	std::shared_ptr<AirportPlayer> _airport;
@@ -58,6 +65,9 @@ private:
 	std::set<std::string> createdTypes;
 
 	float nextPlaneUI_YOffset = 70.f;
+
+	std::map<int, bool> smallParkingOccupied;
+	std::map<int, bool> bigParkingOccupied;
 
 	void initUI(sf::Font& font);
 	void createPlaneUI(std::shared_ptr<Airplane> plane, float yOffset);

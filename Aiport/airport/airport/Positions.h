@@ -127,3 +127,34 @@ extern const std::vector<sf::Vector2f> LANDING_SMALL_2;
 extern const std::vector<sf::Vector2f> LANDING_SMALL_3;
 extern const std::vector<sf::Vector2f> LANDING_SMALL_4;
 extern const std::vector<sf::Vector2f> LANDING_SMALL_5;
+
+
+//  PARKING
+// Small airplanes
+
+/*
+extern const std::vector<sf::Vector2f> PARKING_SMALL_1;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_2;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_3;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_4;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_5;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_6;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_7;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_8;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_9;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_10;
+extern const std::vector<sf::Vector2f> PARKING_SMALL_11;
+
+ Big airplanes
+extern const std::vector<sf::Vector2f> PARKING_BIG_1;
+extern const std::vector<sf::Vector2f> PARKING_BIG_2;
+extern const std::vector<sf::Vector2f> PARKING_BIG_3;
+extern const std::vector<sf::Vector2f> PARKING_BIG_4;
+extern const std::vector<sf::Vector2f> PARKING_BIG_5;
+extern const std::vector<sf::Vector2f> PARKING_BIG_6;
+extern const std::vector<sf::Vector2f> PARKING_BIG_7;
+extern const std::vector<sf::Vector2f> PARKING_BIG_8;
+extern const std::vector<sf::Vector2f> PARKING_BIG_9;
+extern const std::vector<sf::Vector2f> PARKING_BIG_10;
+
+*/
