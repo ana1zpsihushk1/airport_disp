@@ -141,14 +141,33 @@ void Airplane::land()
 {
     setStatus(Status::landing);
     if (stripAssigned)
-        setPath(stripAssigned->getLandingPath());
+    {
+        auto landingPath = stripAssigned->getLandingPath();
+        if (isArrival && !parkingRoute.empty())
+            landingPath.insert(landingPath.end(), parkingRoute.begin(), parkingRoute.end());
+        setPath(landingPath);
+    }
 }
 
 void Airplane::takeoff()
 {
     setStatus(Status::takingOff);
+
     if (stripAssigned)
-        setPath(stripAssigned->getTakeoffPath());
+    {
+        auto takeoffPath = stripAssigned->getTakeoffPath();
+
+        if (!parkingRoute.empty())
+        {
+            std::vector<sf::Vector2f> reverseParking = parkingRoute;
+            std::reverse(reverseParking.begin(), reverseParking.end());
+
+            reverseParking.insert(reverseParking.end(), takeoffPath.begin(), takeoffPath.end());
+            setPath(reverseParking);
+        }
+        else
+            setPath(takeoffPath);
+    }
 }
 
 void Airplane::minus()
@@ -319,6 +338,11 @@ bool Airplane::isVisible() const
 void Airplane::setVisible(bool value)
 {
     visible = value;
+}
+
+void Airplane::setParkingRoute(const std::vector<sf::Vector2f>& route)
+{
+    parkingRoute = route;
 }
 
 //pod voprosom

@@ -37,6 +37,8 @@ public:
 	std::vector<sf::Vector2f> assignParking(std::shared_ptr<Airplane> plane);
 
 	void resetGame();
+
+	int stripIndex(const std::shared_ptr<Strip>& strip);
 private:
 	int level = 0;
 	int points = 0;
@@ -60,18 +62,27 @@ private:
 
 	std::vector<Button> chooseButtons;
 	std::vector<Button> roundButtons;
-	std::vector<Button> lineButtons;
-
-	std::set<std::string> createdTypes;
 
 	float nextPlaneUI_YOffset = 70.f;
 
 	std::map<int, bool> smallParkingOccupied;
 	std::map<int, bool> bigParkingOccupied;
 
+	std::map<std::string, float> chooseLineOffsets;
+
+
+	std::vector<std::shared_ptr<Airplane>> departurePlanes;
+	std::vector<sf::Text> planeButtons;
+	std::map<std::string, float> planeButtonYOffsets;
+	std::shared_ptr<Airplane> selectedPlane;
+
+	std::vector<std::pair<Button, std::shared_ptr<Strip>>> lineButtons;
+	std::map<std::shared_ptr<Strip>, sf::Text> stripLabels;
+
+
 	void initUI(sf::Font& font);
 	void createPlaneUI(std::shared_ptr<Airplane> plane, float yOffset);
-	void handleChooseLine(std::shared_ptr<Airplane> plane);
+	void handleChooseLine(std::shared_ptr<Airplane> plane, float yOffset);
 	void selectPlane(const sf::Vector2i& mousePos);
 	void issueTakeoff();
 	void issueLanding();

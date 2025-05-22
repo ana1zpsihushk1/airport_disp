@@ -85,6 +85,8 @@ public:
 
     void setArrival(bool value) { isArrival = value; }
     bool getArrival() const { return isArrival; }
+
+    void setParkingRoute(const std::vector<sf::Vector2f>& route);
 private:
     std::string id;
     std::unique_ptr<Role> role;
@@ -113,8 +115,10 @@ private:
 
     int parkingId = -1;
 
+    std::vector<sf::Vector2f> parkingRoute;
+
     bool isArrival = false;
 
     // std::vector<sf::Vector2f> route;
-    float speed = 10.f;
+    float speed = 5.f;
 };
