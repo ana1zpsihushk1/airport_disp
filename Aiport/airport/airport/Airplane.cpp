@@ -31,14 +31,13 @@ Airplane::Airplane(std::string id, std::unique_ptr<Role> role, sf::Time schedule
 
 void Airplane::update(sf::Time deltaTime, sf::Time currentTime)
 {
-    if (!visible && currentTime >= scheduleTime) {
+    if (!visible && currentTime >= scheduleTime)
         setVisible(true);
-    }
 
-    if (status == Status::landed)
-        return;
+    //if (status == Status::landed)
+    //    return;
 
-    if (visible && moving)
+    if (moving)
         updatePosition(deltaTime);
 
     if (visible && (status == Status::inAir || status == Status::getCircle))
@@ -54,6 +53,15 @@ void Airplane::update(sf::Time deltaTime, sf::Time currentTime)
 
         if (status == Status::landed)
             lastDirection = { 0.f, 0.f };
+    }
+
+    if (getStatus() == Status::landing && reachedFinalDestination()) {
+        setStatus(Status::parking);
+    }
+
+    else if (getStatus() == Status::parking && reachedFinalDestination()) {
+        setMoving(false);
+        setStatus(Status::stayingPark);
     }
 }
 

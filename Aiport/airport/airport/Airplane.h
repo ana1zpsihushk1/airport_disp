@@ -18,6 +18,8 @@ enum class Status
     inAir,
     awaitingLanding,
     landing,
+    parking,
+    stayingPark,
     getCircle,
     landed,
     crashed
@@ -92,6 +94,8 @@ public:
 
     void setLastDirection(const sf::Vector2f& dir) { lastDirection = dir; }
     sf::Vector2f getLastDirection() const { return lastDirection; }
+
+    bool reachedFinalDestination() const { return path.empty() && !moving; }
 private:
     std::string id;
     std::unique_ptr<Role> role;

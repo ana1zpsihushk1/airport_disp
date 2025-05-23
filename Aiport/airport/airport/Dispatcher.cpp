@@ -27,20 +27,6 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 		return;
 	}
 
-	/*
-	for (size_t i = 0; i < chooseButtons.size(); ++i)
-	{
-		chooseButtons[i].update(mousePos);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButtons[i].isClicked(mousePos))
-		{
-			float yOffset = chooseLineOffsets[displayPlanes[i]->getId()];
-			handleChooseLine(displayPlanes[i], yOffset);
-			_selectedPlane = displayPlanes[i];
-			return;
-		}
-	}
-	*/
-
 	for (size_t i = 0; i < chooseButtons.size(); ++i)
 	{
 		chooseButtons[i].update(mousePos);
@@ -169,6 +155,8 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 			pendingLandingPlanes.erase(pendingLandingPlanes.begin() + i);
 			acceptLandingButtons.erase(acceptLandingButtons.begin() + i);
 
+			//spawnIncomingPlanes();
+
 			break;
 		}
 	}
@@ -208,13 +196,28 @@ void Dispatcher::update(float dt)
 		}
 
 		if (plane->getStatus() == Status::inAir && plane->getShape().getPosition().y < 0) {
+			size_t idx = std::distance(displayPlanes.begin(), it);
 			_airport->deleteAirplane(plane->getId());
 			it = displayPlanes.erase(it);
+
+			chooseButtons.erase(chooseButtons.begin() + idx);
+			roundButtons.erase(roundButtons.begin() + idx);
+			if (displayTexts.size() >= (idx * 2 + 1)) {
+				displayTexts.erase(displayTexts.begin() + idx * 2); 
+				displayTexts.erase(displayTexts.begin() + idx * 2);
+			}
+
 			continue;
 		}
 
 		if (plane->getStatus() == Status::landed && !plane->isMoving()) {
 			it = displayPlanes.erase(it);
+			continue;
+		}
+
+		if (plane->getStatus() == Status::stayingPark) {
+			// ÍÅ ÓÄÀËßÅÌ
+			++it;
 			continue;
 		}
 
@@ -226,11 +229,12 @@ void Dispatcher::update(float dt)
 		const FlightSchedule& sched = plane->getSchedule();
 
 		std::string mainLine;
-		if (plane->getStatus() == Status::awaitingTakeoff && !plane->getArrival())
-			mainLine = plane->getId();
+		mainLine = plane->getId();
+		if (plane->getArrival())
+			mainLine += " | Arrival: " + sched.getArrivalTimeString();
 		else
-			mainLine = plane->getId() + " | " + sched.getDepartureTimeString() + " - " + sched.getArrivalTimeString();
-
+			mainLine += " | " + sched.getDepartureTimeString() + " - " + sched.getArrivalTimeString();
+		
 		std::string planeStatus;
 		sf::Color statusColor = MAIN_WHITE_COLOR;
 
@@ -602,7 +606,7 @@ void Dispatcher::handleLandingAcceptance(std::shared_ptr<Airplane> plane)
 
 	std::string planeId = generatePlaneName(type);
 	plane->setDisplayName(planeId);
-	plane->setStatus(Status::inAir);
+	plane->setStatus(Status::landing);
 	plane->setArrival(true);
 
 	auto landingPath = chooseLandingPathByType(type);
