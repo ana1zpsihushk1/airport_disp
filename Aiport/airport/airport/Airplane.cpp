@@ -47,13 +47,26 @@ void Airplane::update(sf::Time deltaTime, sf::Time currentTime)
             status = Status::crashed;
     }
 
-    if (!moving && (status == Status::landing || status == Status::takingOff))
+    if (getStatus() == Status::landing && path.empty()) {
+        setStatus(Status::parking);
+    }
+
+    else if (getStatus() == Status::parking && path.empty()) {
+        setMoving(false);
+        setStatus(Status::stayingPark);
+    }
+
+    else if (getStatus() == Status::takingOff && path.empty()) {
+        setStatus(Status::inAir);
+    }
+
+    /*if (!moving && (status == Status::landing || status == Status::takingOff))
     {
         status = (status == Status::landing ? Status::landed : Status::inAir);
 
         if (status == Status::landed)
             lastDirection = { 0.f, 0.f };
-    }
+    }*/
 
     if (getStatus() == Status::landing && reachedFinalDestination()) {
         setStatus(Status::parking);
@@ -399,5 +412,5 @@ void Airplane::updatePosition(sf::Time deltaTime)
         shape.move(direction * step);
     }
 
-    moving = true;
+    moving = !path.empty();
 }

@@ -27,7 +27,7 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 		return;
 	}
 
-	for (size_t i = 0; i < chooseButtons.size(); ++i)
+	for (int i = static_cast<int>(chooseButtons.size()) - 1; i >= 0; --i)
 	{
 		chooseButtons[i].update(mousePos);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButtons[i].isClicked(mousePos))
@@ -55,6 +55,9 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 				};
 				takeoffPath = smallRoutes[rand() % smallRoutes.size()];
 			}
+
+			chooseButtons.erase(chooseButtons.begin() + i);
+			roundButtons.erase(roundButtons.begin() + i);
 
 			path.insert(path.end(), takeoffPath.begin(), takeoffPath.end());
 
@@ -85,7 +88,7 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 		}
 	}
 
-	for (size_t i = 0; i < roundButtons.size(); ++i)
+	for (int i = static_cast<int>(roundButtons.size()) - 1; i >= 0; --i)
 	{
 		roundButtons[i].update(mousePos);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && roundButtons[i].isClicked(mousePos))
@@ -98,6 +101,9 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 
 			std::string type = plane->getRole()->getType();
 			std::vector<sf::Vector2f> takeoffPath;
+
+			chooseButtons.erase(chooseButtons.begin() + i);
+			roundButtons.erase(roundButtons.begin() + i);
 
 			if (type == "Cargo" || type == "WideBody")
 			{
