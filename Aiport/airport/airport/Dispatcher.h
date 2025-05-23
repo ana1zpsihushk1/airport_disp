@@ -47,6 +47,9 @@ private:
 	int level = 0;
 	int points = 0;
 
+	int currentLevel = 0;
+	const int maxLevel = 5;
+
 	std::vector<std::string> types = { "Local", "Regional", "NarrowBody", "Cargo", "WideBody" };
 
 	int flightCounter = 0;

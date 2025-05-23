@@ -51,6 +51,7 @@ void menuState::HandleInput()
 		if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
 		{
 			if (_newGameButton->isClicked(mousePos)) {
+				_data->machine.RemoveState();
 				_data->machine.AddState(StateRef(new simulationState1(_data)), false);
 			}
 			else if (_continueButton->isClicked(mousePos)) {

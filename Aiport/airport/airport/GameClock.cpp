@@ -29,6 +29,10 @@ int GameClock::getHour() const
 	return static_cast<int>(_inGameTimeSeconds) / 3600 % 24;
 }
 
+void GameClock::reset() {
+	_inGameTimeSeconds = 0.f;
+}
+
 int GameClock::getTotalSeconds() const
 {
 	return static_cast<int>(_inGameTimeSeconds);

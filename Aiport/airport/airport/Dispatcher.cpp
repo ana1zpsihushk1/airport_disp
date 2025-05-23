@@ -221,6 +221,15 @@ void Dispatcher::update(float dt)
 			continue;
 		}
 
+		for (int i = static_cast<int>(pendingLandingPlanes.size()) - 1; i >= 0; --i) {
+			auto& p = pendingLandingPlanes[i];
+			if (p->getStatus() == Status::landed || p->getStatus() == Status::stayingPark || p->getStatus() == Status::crashed) {
+				pendingLandingPlanes.erase(pendingLandingPlanes.begin() + i);
+				if (i < acceptLandingButtons.size())
+					acceptLandingButtons.erase(acceptLandingButtons.begin() + i);
+			}
+		}
+
 		if (plane->getStatus() == Status::stayingPark) {
 			// ÍÅ ÓÄÀËßÅÌ
 			++it;
@@ -317,12 +326,47 @@ void Dispatcher::update(float dt)
 		yOffset = btnY + 60.f;
 		nextLandingRequestTime = _gameClock.getTotalSeconds() + (rand() % 30 + 20);
 	}
+
+	bool allProcessed = true;
+	for (const auto& plane : _airport->getAirplanes()) {
+		if (plane->getStatus() != Status::inAir && plane->getStatus() != Status::stayingPark && plane->getStatus() != Status::crashed) {
+			allProcessed = false;
+			break;
+		}
+	}
+
+	if (allProcessed && currentLevel < maxLevel) {
+		++currentLevel;
+
+		if (currentLevel == maxLevel) {
+			std::cout << "YOU WIN!" << std::endl;
+			_data->machine.AddState(StateRef(new menuState(_data)), true);
+			return;
+		}
+
+		resetGame();
+
+		int newCount = 3 + (currentLevel - 1) * 2;
+		for (int i = 0; i < newCount; ++i)
+			createPlaneWithSchedule();
+
+		spawnIncomingPlanes();
+	}
 }
 
 void Dispatcher::draw(sf::RenderWindow& window)
 {
 	window.draw(infoPanel);
 	window.draw(titleText);
+
+	sf::Text levelText;
+	levelText.setFont(_data->assets.GetFont("menu_Font"));
+	levelText.setCharacterSize(32);
+	levelText.setFillColor(MAIN_BLACK_COLOR);
+	levelText.setString("Level: " + std::to_string(currentLevel));
+	levelText.setPosition(20.f, 70.f); 
+
+	window.draw(levelText);
 
 	sf::Font& planeFont = _data->assets.GetFont(FONT_FOR_PLANES);
 
@@ -331,6 +375,15 @@ void Dispatcher::draw(sf::RenderWindow& window)
 		if (plane->isVisible())
 			plane->draw(window, planeFont);
 	}
+
+	/*sf::Text levelText;
+	levelText.setFont(_data->assets.GetFont("plane_Font"));
+	levelText.setString("Level: " + std::to_string(currentLevel));
+	levelText.setCharacterSize(22);
+	levelText.setFillColor(sf::Color::Black);
+	levelText.setPosition(titleText.getPosition().x - 80.f, titleText.getPosition().y + 40.f);
+	window.draw(levelText);
+	*/
 
 	for (auto& button : chooseButtons)
 		button.draw(window);
@@ -502,40 +555,51 @@ void Dispatcher::createPlaneWithSchedule() {
 
 std::vector<sf::Vector2f> Dispatcher::assignParking(std::shared_ptr<Airplane> plane)
 {
-	if (plane->getRole()->getType() == "Cargo" || plane->getRole()->getType() == "WideBody")
-	{
+	static int smallIndex = 0;
+	static int bigIndex = 0;
+
+	if (plane->getRole()->getType() == "Cargo" || plane->getRole()->getType() == "WideBody") {
 		for (int i = 0; i < PARKING_BIG_ROUTES.size(); ++i) {
-			int parkingId = 56 + i;
+			int index = (bigIndex + i) % PARKING_BIG_ROUTES.size();
+			int parkingId = 56 + index;
 			if (!bigParkingOccupied[parkingId]) {
 				bigParkingOccupied[parkingId] = true;
 				plane->setParkingId(parkingId);
-				return PARKING_BIG_ROUTES[i];
+				bigIndex = (index + 1) % PARKING_BIG_ROUTES.size();
+				return PARKING_BIG_ROUTES[index];
 			}
 		}
 	}
-	else
-	{
+	else {
 		for (int i = 0; i < PARKING_SMALL_ROUTES.size(); ++i) {
-			int parkingId = 45 + i;
+			int index = (smallIndex + i) % PARKING_SMALL_ROUTES.size();
+			int parkingId = 45 + index;
 			if (!smallParkingOccupied[parkingId]) {
 				smallParkingOccupied[parkingId] = true;
 				plane->setParkingId(parkingId);
-				return PARKING_SMALL_ROUTES[i];
+				smallIndex = (index + 1) % PARKING_SMALL_ROUTES.size();
+				return PARKING_SMALL_ROUTES[index];
 			}
 		}
 	}
+
 	return {};
 }
 
 void Dispatcher::resetGame()
 {
+	acceptedLandingCount = 0;
+	nextLandingRequestTime = 0;
+
 	_airport->reset();
 	displayPlanes.clear();
+	pendingLandingPlanes.clear(); 
 	chooseButtons.clear();
 	roundButtons.clear();
+	acceptLandingButtons.clear();
 	lineButtons.clear();
+	displayTexts.clear();    
 	scheduleTexts.clear();
-
 	//createdTypes.clear();
 }
 
@@ -608,12 +672,19 @@ void Dispatcher::spawnIncomingPlanes()
 void Dispatcher::handleLandingAcceptance(std::shared_ptr<Airplane> plane)
 {
 	auto type = plane->getRole()->getType();
-	auto sched = plane->getSchedule();
 
 	std::string planeId = generatePlaneName(type);
 	plane->setDisplayName(planeId);
 	plane->setStatus(Status::landing);
 	plane->setArrival(true);
+
+	FlightSchedule sched;
+	int arrivalSec = _gameClock.getTotalSeconds();
+	sched.arrivalHour = arrivalSec / 3600;
+	sched.arrivalMinute = (arrivalSec % 3600) / 60;
+	sched.departureHour = 0;
+	sched.departureMinute = 0;
+	plane->setSchedule(sched);;
 
 	auto landingPath = chooseLandingPathByType(type);
 	auto parkingRoute = assignParking(plane);

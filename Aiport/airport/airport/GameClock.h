@@ -15,6 +15,7 @@ public:
 	int getHour() const;
 	int getTotalSeconds() const;
 
+	void reset();
 private:
 	float _inGameTimeSeconds;
 	const float speed = GAME_SPEED;

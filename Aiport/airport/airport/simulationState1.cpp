@@ -89,6 +89,8 @@ void simulationState1::Draw(float dt)
 
 void simulationState1::Init()
 {
+	_gameClock.reset();
+
 	const int windowWidth = SCREEN_WIDTH;
 	const int windowHeight = SCREEN_HEIGHT;
 
