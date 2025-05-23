@@ -46,15 +46,18 @@ void Button::update(const sf::Vector2i& mousePos)
 	}
 }
 
-bool Button::isHovered(const sf::Vector2i& mousePos)
+bool Button::isHovered(const sf::Vector2i& mousePos) const
 {
 	return shape.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePos));
 }
 
-bool Button::isClicked(const sf::Vector2i& mousePos) const
+bool Button::isClicked(const sf::Vector2i& mousePos)
 {
-	return shape.getGlobalBounds().contains(static_cast<float>(mousePos.x), 
-		static_cast<float>(mousePos.y));
+	if (shape.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y))) {
+		clickSound.play();
+		return true;
+	}
+	return false;
 }
 
 void Button::setColors(const sf::Color& base, const sf::Color& hover)

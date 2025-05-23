@@ -5,19 +5,26 @@ C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\A
 C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\RoleFabric.h(14,20): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   (компиляция исходного файла "Dispatcher.cpp")
   
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(99,53): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(160,63): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-sfml-graphics-s-d.lib(Font.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Font.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-graphics-s-d.lib(GLCheck.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(GLCheck.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-graphics-s-d.lib(ImageLoader.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(ImageLoader.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-graphics-s-d.lib(Shader.obj) : warning LNK4099: "sfml-graphics-s.pdb" PDB не найден с "sfml-graphics-s-d.lib(Shader.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-graphics-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-window-s-d.lib(JoystickImpl.obj) : warning LNK4099: "sfml-window-s.pdb" PDB не найден с "sfml-window-s-d.lib(JoystickImpl.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-window-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-window-s-d.lib(VulkanImplWin32.obj) : warning LNK4099: "sfml-window-s.pdb" PDB не найден с "sfml-window-s-d.lib(VulkanImplWin32.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-window-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-system-s-d.lib(String.obj) : warning LNK4099: "sfml-system-s.pdb" PDB не найден с "sfml-system-s-d.lib(String.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-system-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-audio-s-d.lib(ALCheck.obj) : warning LNK4099: "sfml-audio-s.pdb" PDB не найден с "sfml-audio-s-d.lib(ALCheck.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-audio-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-audio-s-d.lib(AudioDevice.obj) : warning LNK4099: "sfml-audio-s.pdb" PDB не найден с "sfml-audio-s-d.lib(AudioDevice.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-audio-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-audio-s-d.lib(SoundFileFactory.obj) : warning LNK4099: "sfml-audio-s.pdb" PDB не найден с "sfml-audio-s-d.lib(SoundFileFactory.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-audio-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-audio-s-d.lib(SoundFileWriterFlac.obj) : warning LNK4099: "sfml-audio-s.pdb" PDB не найден с "sfml-audio-s-d.lib(SoundFileWriterFlac.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-audio-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-audio-s-d.lib(SoundFileWriterOgg.obj) : warning LNK4099: "sfml-audio-s.pdb" PDB не найден с "sfml-audio-s-d.lib(SoundFileWriterOgg.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-audio-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
-sfml-audio-s-d.lib(SoundFileWriterWav.obj) : warning LNK4099: "sfml-audio-s.pdb" PDB не найден с "sfml-audio-s-d.lib(SoundFileWriterWav.obj)" или на "C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\sfml-audio-s.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(189,63): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(308,57): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(571,50): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(571,50): warning C4244:         with
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(571,50): warning C4244:         [
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(571,50): warning C4244:             T=float
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(571,50): warning C4244:         ]
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(572,64): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(572,64): warning C4244:         with
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(572,64): warning C4244:         [
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(572,64): warning C4244:             T=float
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(572,64): warning C4244:         ]
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(573,42): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(573,42): warning C4244:         with
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(573,42): warning C4244:         [
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(573,42): warning C4244:             T=float
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(573,42): warning C4244:         ]
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(574,43): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(574,43): warning C4244:         with
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(574,43): warning C4244:         [
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(574,43): warning C4244:             T=float
+C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\airport\Dispatcher.cpp(574,43): warning C4244:         ]
   airport.vcxproj -> C:\Users\Huawei\Desktop\мУчёба в ВШУ\Прога\Airport\airport_disp\Aiport\airport\x64\Debug\airport.exe

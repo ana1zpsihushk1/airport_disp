@@ -13,8 +13,8 @@ public:
 
 	void draw(sf::RenderWindow& window);
 	void update(const sf::Vector2i& mousePos);
-	bool isHovered(const sf::Vector2i& mousePos);
-	bool isClicked (const sf::Vector2i& mousePos) const;
+	bool isHovered(const sf::Vector2i& mousePos) const;
+	bool isClicked (const sf::Vector2i& mousePos);
 
 	void setColors(const sf::Color& base, const sf::Color& hover);
 

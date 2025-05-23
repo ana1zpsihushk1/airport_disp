@@ -39,9 +39,15 @@ public:
 	void resetGame();
 
 	int stripIndex(const std::shared_ptr<Strip>& strip);
+
+	void spawnIncomingPlanes();
+
+	void handleLandingAcceptance(std::shared_ptr<Airplane> plane);
 private:
 	int level = 0;
 	int points = 0;
+
+	std::vector<std::string> types = { "Local", "Regional", "NarrowBody", "Cargo", "WideBody" };
 
 	int flightCounter = 0;
 	const int MAX_FLIGHTS_PER_DAY = 60;
@@ -79,6 +85,12 @@ private:
 	std::vector<std::pair<Button, std::shared_ptr<Strip>>> lineButtons;
 	std::map<std::shared_ptr<Strip>, sf::Text> stripLabels;
 
+	std::vector<std::shared_ptr<Airplane>> pendingLandingPlanes;
+	std::vector<Button> acceptLandingButtons;
+
+	int acceptedLandingCount = 0;
+	int maxLandingRequests = rand() % 3 + 4;
+	float nextLandingRequestTime = 0.f;
 
 	void initUI(sf::Font& font);
 	void createPlaneUI(std::shared_ptr<Airplane> plane, float yOffset);

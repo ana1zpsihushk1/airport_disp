@@ -83,6 +83,15 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 				}
 			}
 
+			int seconds = _gameClock.getTotalSeconds();
+			FlightSchedule sched;
+			sched.departureHour = seconds / 3600;
+			sched.departureMinute = (seconds % 3600) / 60;
+			sched.arrivalHour = 0;
+			sched.arrivalMinute = 0;
+
+			plane->setSchedule(sched);
+
 			plane->setPath(path);
 			plane->setStatus(Status::takingOff);
 			plane->setVisible(true);
@@ -96,32 +105,28 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && roundButtons[i].isClicked(mousePos))
 		{
 			auto plane = displayPlanes[i];
-			auto now = sf::seconds(_gameClock.getTotalSeconds());
+			auto parkingRoute = plane->getParkingRoute();
+			std::reverse(parkingRoute.begin(), parkingRoute.end());
 
-			if (plane->getStatus() == Status::awaitingTakeoff)
-				plane->requestTakeoff(_airport->getStrips(), now);
+			std::vector<sf::Vector2f> path = parkingRoute;
 
-			else if (plane->getStatus() == Status::inAir || plane->getStatus() == Status::getCircle)
-				plane->requestLanding(_airport->getStrips(), now);
-		}
-	}
+			std::string type = plane->getRole()->getType();
+			std::vector<sf::Vector2f> takeoffPath;
 
-	/*for (auto& [button, strip] : lineButtons) {
-		button.update(mousePos);
-		if (_selectedPlane && strip->canAccept(*_selectedPlane->getRole())) {
-			_selectedPlane->assignStrip(strip);
-			sf::Time now = sf::seconds(_gameClock.getTotalSeconds());
-			strip->reserveUntil(now + sf::seconds(10));
+			if (type == "Cargo" || type == "WideBody")
+			{
+				static std::vector<std::vector<sf::Vector2f>> bigRoutes = { TAKEOFF_BIG_1, TAKEOFF_BIG_2 };
+				takeoffPath = bigRoutes[rand() % bigRoutes.size()];
+			}
+			else
+			{
+				static std::vector<std::vector<sf::Vector2f>> smallRoutes = {
+					TAKEOFF_SMALL_1, TAKEOFF_SMALL_2, TAKEOFF_SMALL_3,
+					TAKEOFF_SMALL_4, TAKEOFF_SMALL_5
+				};
+				takeoffPath = smallRoutes[rand() % smallRoutes.size()];
+			}
 
-			std::vector<sf::Vector2f> path;
-
-			// Получаем маршрут от парковки (развёрнутый)
-			auto unparkPath = _selectedPlane->getParkingRoute();
-			std::reverse(unparkPath.begin(), unparkPath.end());
-			path.insert(path.end(), unparkPath.begin(), unparkPath.end());
-
-			// Добавляем путь взлёта
-			auto takeoffPath = strip->getTakeoffPath();
 			path.insert(path.end(), takeoffPath.begin(), takeoffPath.end());
 
 			if (takeoffPath.size() >= 2) {
@@ -129,20 +134,44 @@ void Dispatcher::handleInput(const sf::Vector2i& mousePos)
 				float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
 				if (len > 0) {
 					dir /= len;
-					_selectedPlane->setLastDirection(dir);
+					plane->setLastDirection(dir);
 					sf::Vector2f offscreenTarget = takeoffPath.back() + dir * 1000.f;
 					path.push_back(offscreenTarget);
 				}
 			}
 
-			_selectedPlane->setPath(path);
-			_selectedPlane->setStatus(Status::takingOff);
-			_selectedPlane->setVisible(true);
-			_selectedPlane->setMoving(true);
+			// Устанавливаем расписание
+			int seconds = _gameClock.getTotalSeconds();
+			int arrivalInSec = seconds + (rand() % 3600 + 3600); // прибытие через 1–2 часа
 
-			lineButtons.clear();
+			FlightSchedule sched;
+			sched.departureHour = seconds / 3600;
+			sched.departureMinute = (seconds % 3600) / 60;
+			sched.arrivalHour = arrivalInSec / 3600;
+			sched.arrivalMinute = (arrivalInSec % 3600) / 60;
+			plane->setSchedule(sched);
+
+			plane->setPath(path);
+			plane->setStatus(Status::takingOff);
+			plane->setVisible(true);
+			plane->setMoving(true);
 		}
-	}*/
+	}
+
+	for (int i = 0; i < acceptLandingButtons.size(); ++i) {
+		acceptLandingButtons[i].update(mousePos);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
+			acceptLandingButtons[i].isClicked(mousePos)) {
+
+			auto plane = pendingLandingPlanes[i];
+			handleLandingAcceptance(plane);
+
+			pendingLandingPlanes.erase(pendingLandingPlanes.begin() + i);
+			acceptLandingButtons.erase(acceptLandingButtons.begin() + i);
+
+			break;
+		}
+	}
 }
 
 void Dispatcher::update(float dt)
@@ -153,8 +182,8 @@ void Dispatcher::update(float dt)
 
 	if (displayPlanes.size() < 5)
 	{
-		//createdTypes.clear();
 		createPlaneWithSchedule();
+		spawnIncomingPlanes();
 	}
 
 	sf::Time currentTime = sf::seconds(_gameClock.getTotalSeconds());
@@ -250,6 +279,33 @@ void Dispatcher::update(float dt)
 
 		scheduleTexts.push_back(text1);
 		scheduleTexts.push_back(text2);
+	}
+
+	if (_gameClock.getTotalSeconds() > nextLandingRequestTime && acceptedLandingCount < maxLandingRequests)
+	{
+		std::string type = types[rand() % types.size()];
+		FlightSchedule sched;
+
+		int arrivalInSec = _gameClock.getTotalSeconds() + (rand() % 300 + 60);
+		sched.arrivalHour = arrivalInSec / 3600;
+		sched.arrivalMinute = (arrivalInSec % 3600) / 60;
+
+		std::string planeId = generatePlaneName(type);
+		auto plane = AirplaneFactory::createAirplane(planeId, sched);
+		plane->setDisplayName(planeId);
+		plane->setStatus(Status::awaitingLanding);
+		plane->setArrival(true);
+
+		pendingLandingPlanes.push_back(plane);
+
+		float btnY = yOffset + 10.f;
+
+		Button btn({ 200, 40 }, { infoPanel.getPosition().x + 20.f, btnY }, "Accept landing", _data->assets.GetFont("plane_Font"));
+		btn.setColors(BUTTON_MAIN_RED_COLOR, BUTTON_HOVER_RED_COLOR);
+		acceptLandingButtons.push_back(btn);
+
+		yOffset = btnY + 60.f;
+		nextLandingRequestTime = _gameClock.getTotalSeconds() + (rand() % 30 + 20);
 	}
 }
 
@@ -352,46 +408,8 @@ void Dispatcher::draw(sf::RenderWindow& window)
 		button.draw(window);
 	}*/
 
-	/*for (auto& [button, strip] : lineButtons)
-	{
-		if (button.isHovered(sf::Mouse::getPosition()))
-		{
-			const auto& path = strip->getLandingPath(); // Используем как универсальный путь для отрисовки
-			if (path.size() >= 2)
-			{
-				sf::VertexArray lines(sf::LineStrip, path.size());
-				sf::Color color = strip->isAvailable() ? BUTTON_MAIN_COLOR : BUTTON_MAIN_RED_COLOR;
-				color.a = 140;
-
-				for (size_t i = 0; i < path.size(); ++i)
-				{
-					lines[i].position = path[i];
-					lines[i].color = color;
-				}
-				window.draw(lines);
-
-				sf::RectangleShape box;
-				box.setSize({ 40.f, 25.f });
-				box.setFillColor(MAIN_WHITE_COLOR);
-				box.setOutlineColor(BUTTON_MAIN_COLOR);
-				box.setOutlineThickness(2.f);
-				box.setPosition(path.back().x + 10.f, path.back().y - 10.f);
-
-				sf::Text label;
-				label.setFont(font);
-				label.setCharacterSize(16);
-				label.setStyle(sf::Text::Bold);
-				label.setString(std::to_string(stripIndex(strip)));
-				label.setFillColor(MAIN_BLACK_COLOR);
-				label.setPosition(box.getPosition().x + 10.f, box.getPosition().y + 2.f);
-
-				window.draw(box);
-				window.draw(label);
-			}
-		}
-
-		button.draw(window);
-	}*/
+	for (auto& btn : acceptLandingButtons)
+		btn.draw(window);
 }
 
 void Dispatcher::initUI(sf::Font& font)
@@ -436,161 +454,6 @@ void Dispatcher::issueTakeoff()
 void Dispatcher::issueLanding()
 {
 }
-
-/*
-void Dispatcher::createPlaneWithSchedule() {
-	//static std::set<std::string> createdTypes; // чтобы избежать дубликатов
-
-	std::vector<std::string> types = { "Local", "Regional", "NarrowBody", "Cargo", "WideBody" };
-
-	/*for (const std::string& type : types)
-	{
-		if (createdTypes.find(type) != createdTypes.end()) continue;
-
-		auto role = createRoleByType(type);
-		std::string planeId = generatePlaneName(role->getType());
-		int now = _gameClock.getTotalSeconds();
-
-		// Определим сценарий — взлёт или посадка
-		bool isDeparture = rand() % 2 == 0;
-
-		int spacing = FLIGHT_DAY_DURATION / MAX_FLIGHTS_PER_DAY;
-		int baseTime = spacing * flightCounter + 300;
-		flightCounter++;
-
-		int dep = baseTime;
-		int arr = dep + 180;
-
-		if (!isDeparture) std::swap(dep, arr);
-
-		FlightSchedule sched;
-		sched.departureHour = dep / 3600;
-		sched.departureMinute = (dep % 3600) / 60;
-		sched.arrivalHour = arr / 3600;
-		sched.arrivalMinute = (arr % 3600) / 60;
-
-		auto plane = std::make_shared<Airplane>(planeId, std::move(role), sf::seconds(dep));
-		plane->setSchedule(sched);
-		plane->setDisplayName(planeId);
-
-		sf::Texture& tex = _data->assets.GetTexture("AIRPLANE_PNG");
-		sf::Vector2f startPos;
-		std::vector<sf::Vector2f> path;
-
-		if (isDeparture)
-		{
-			plane->setStatus(Status::awaitingTakeoff);
-			plane->setArrival(false);
-			path = chooseTakeoffPathByType(type); 
-			startPos = path.front();
-
-			plane->setVisible(true); 
-			plane->setMoving(false);
-		}
-		else
-		{
-			plane->setStatus(Status::inAir);
-			plane->setArrival(true);
-			path = chooseLandingPathByType(type); 
-			startPos = path.front();
-
-			auto parkingRoute = assignParking(plane);
-			path.insert(path.end(), parkingRoute.begin(), parkingRoute.end());
-		}
-
-		plane->setPath(path);
-		plane->getShape().setTexture(&tex);
-		plane->getShape().setRadius(20.f); 
-		plane->getShape().setOrigin(20.f, 20.f);
-		plane->getShape().setPosition(startPos);
-
-		_airport->acceptAirplane(plane);
-		displayPlanes.push_back(plane);
-
-		createPlaneUI(plane, nextPlaneUI_YOffset);
-
-		createdTypes.insert(type);
-	}//
-
-	int planesToGenerate = 10;
-	int spacing = FLIGHT_DAY_DURATION / planesToGenerate;
-
-	for (int i = 0; i < planesToGenerate; ++i)
-	{
-		std::string type = types[rand() % types.size()];
-		auto role = createRoleByType(type);
-		std::string planeId = generatePlaneName(role->getType());
-
-		int now = _gameClock.getTotalSeconds();
-
-		// Время вылета/прилёта
-		int baseTime = spacing * i + 300; // немного отступим от нуля
-		int dep = baseTime;
-		int arr = dep + 180;
-
-		bool isDeparture = rand() % 2 == 0;
-		if (!isDeparture) std::swap(dep, arr);
-
-		FlightSchedule sched;
-		sched.departureHour = dep / 3600;
-		sched.departureMinute = (dep % 3600) / 60;
-		sched.arrivalHour = arr / 3600;
-		sched.arrivalMinute = (arr % 3600) / 60;
-
-		auto plane = std::make_shared<Airplane>(planeId, std::move(role), sf::seconds(dep));
-		plane->setSchedule(sched);
-		plane->setDisplayName(planeId);
-
-		sf::Texture& tex = _data->assets.GetTexture(AIRPLANE_PNG);
-		plane->getShape().setTexture(&tex);
-		plane->getShape().setRadius(20.f);
-		plane->getShape().setOrigin(20.f, 20.f);
-
-		std::vector<sf::Vector2f> path;
-		sf::Vector2f startPos;
-
-		if (isDeparture)
-		{
-			plane->setStatus(Status::awaitingTakeoff);
-			plane->setArrival(false);
-
-			auto parkingRoute = assignParking(plane);
-			plane->setParkingRoute(parkingRoute);
-
-			auto takeoffRoute = chooseTakeoffPathByType(type);
-
-			std::vector<sf::Vector2f> reverseParking = parkingRoute;
-			std::reverse(reverseParking.begin(), reverseParking.end());
-
-			path = reverseParking;
-			path.insert(path.end(), takeoffRoute.begin(), takeoffRoute.end());
-
-			startPos = path.front();
-
-			plane->setVisible(true);
-			plane->setMoving(false);
-		}
-		else
-		{
-			plane->setStatus(Status::inAir);
-			plane->setArrival(true);
-			path = chooseLandingPathByType(type);
-			startPos = path.front();
-
-			auto parkingRoute = assignParking(plane);
-			plane->setParkingRoute(parkingRoute);
-			path.insert(path.end(), parkingRoute.begin(), parkingRoute.end());
-		}
-
-		plane->setPath(path);
-		plane->getShape().setPosition(startPos);
-
-		_airport->acceptAirplane(plane);
-		displayPlanes.push_back(plane);
-		createPlaneUI(plane, nextPlaneUI_YOffset);
-	}
-}
-*/
 
 void Dispatcher::createPlaneWithSchedule() {
 	std::vector<std::string> types = { "Local", "Regional", "NarrowBody", "Cargo", "WideBody" };
@@ -677,6 +540,107 @@ int Dispatcher::stripIndex(const std::shared_ptr<Strip>& target)
 	return -1;
 }
 
+void Dispatcher::spawnIncomingPlanes()
+{
+	std::vector<std::string> types = { "Local", "Regional", "NarrowBody", "Cargo", "WideBody" };
+	int planeCount = rand() % 3 + 4; // от 4 до 6
+
+	for (int i = 0; i < planeCount; ++i) {
+		std::string type = types[rand() % types.size()];
+		FlightSchedule sched;
+		int seconds = _gameClock.getTotalSeconds();
+		sched.arrivalHour = seconds / 3600;
+		sched.arrivalMinute = (seconds % 3600) / 60;
+
+		std::string planeId = generatePlaneName(type);
+		auto role = createRoleByType(type);
+		auto plane = std::make_shared<Airplane>(planeId, std::move(role), sf::seconds(0));
+		plane->setDisplayName(planeId);
+		plane->setStatus(Status::awaitingLanding);
+		plane->setArrival(true);
+
+		auto landingPath = chooseLandingPathByType(type);
+		auto parkingRoute = assignParking(plane);
+		if (parkingRoute.empty())
+			continue;
+
+		plane->setParkingRoute(parkingRoute);
+
+		sf::Vector2f startPos;
+		switch (rand() % 4) {
+		case 0: startPos = sf::Vector2f(-200.f, rand() % SCREEN_HEIGHT); break; // слева
+		case 1: startPos = sf::Vector2f(SCREEN_WIDTH + 200.f, rand() % SCREEN_HEIGHT); break; // справа
+		case 2: startPos = sf::Vector2f(rand() % SCREEN_WIDTH, -200.f); break; // сверху
+		default: startPos = sf::Vector2f(rand() % SCREEN_WIDTH, SCREEN_HEIGHT + 200.f); break; // снизу
+		}
+
+		sf::Texture& tex = _data->assets.GetTexture(AIRPLANE_PNG);
+		plane->getShape().setTexture(&tex);
+		plane->getShape().setRadius(20.f);
+		plane->getShape().setOrigin(20.f, 20.f);
+		plane->getShape().setPosition(startPos);
+
+		std::vector<sf::Vector2f> fullPath;
+		fullPath.push_back(startPos);
+		fullPath.push_back(landingPath.front());
+		fullPath.insert(fullPath.end(), landingPath.begin(), landingPath.end());
+		fullPath.insert(fullPath.end(), parkingRoute.begin(), parkingRoute.end());
+
+		plane->setPath(fullPath);
+		plane->setVisible(true);
+		plane->setMoving(true);
+
+		_airport->acceptAirplane(plane);
+		displayPlanes.push_back(plane);
+	}
+}
+
+void Dispatcher::handleLandingAcceptance(std::shared_ptr<Airplane> plane)
+{
+	auto type = plane->getRole()->getType();
+	auto sched = plane->getSchedule();
+
+	std::string planeId = generatePlaneName(type);
+	plane->setDisplayName(planeId);
+	plane->setStatus(Status::inAir);
+	plane->setArrival(true);
+
+	auto landingPath = chooseLandingPathByType(type);
+	auto parkingRoute = assignParking(plane);
+	if (parkingRoute.empty()) return;
+
+	plane->setParkingRoute(parkingRoute);
+
+	sf::Vector2f entryPoint = landingPath.front();
+	sf::Vector2f offset = {
+		static_cast<float>((rand() % 200) - 100),
+		static_cast<float>((rand() % 200) - 100)
+	};
+	sf::Vector2f startPos = entryPoint + offset;
+
+	sf::Texture& tex = _data->assets.GetTexture(AIRPLANE_PNG);
+	plane->getShape().setTexture(&tex);
+	plane->getShape().setRadius(20.f);
+	plane->getShape().setOrigin(20.f, 20.f);
+	plane->getShape().setPosition(startPos);
+
+	std::vector<sf::Vector2f> fullPath;
+	fullPath.push_back(startPos);
+	fullPath.insert(fullPath.end(), landingPath.begin(), landingPath.end());
+	fullPath.insert(fullPath.end(), parkingRoute.begin(), parkingRoute.end());
+
+	plane->setPath(fullPath);
+	plane->setVisible(true);
+	plane->setMoving(true);
+
+	_airport->acceptAirplane(plane);
+	displayPlanes.push_back(plane);
+
+	createPlaneUI(plane, nextPlaneUI_YOffset); 
+
+	acceptedLandingCount++;
+}
+
 std::vector<sf::Vector2f> Dispatcher::chooseTakeoffPathByType(const std::string& type)
 {
 	static std::vector<std::vector<sf::Vector2f>> big = { TAKEOFF_BIG_1, TAKEOFF_BIG_2 };
@@ -712,21 +676,13 @@ void Dispatcher::createPlaneUI(std::shared_ptr<Airplane> plane, float yOffset) {
 
 	float buttonY = yOffset + 50.f;
 
-	/*Button chooseBtn({155, 40}, {infoPanel.getPosition().x + 20.f, buttonY}, "Choose line", _data->assets.GetFont("plane_Font"));
-	chooseBtn.setColors(BUTTON_MAIN_COLOR, BUTTON_HOVER_COLOR);
-	chooseButtons.push_back(chooseBtn);
+	Button takeoffBtn({ 155, 40 }, { infoPanel.getPosition().x + 20.f, buttonY }, "Take off", _data->assets.GetFont("plane_Font"));
+	takeoffBtn.setColors(BUTTON_MAIN_COLOR, BUTTON_HOVER_COLOR);
+	chooseButtons.push_back(takeoffBtn);
 
 	Button roundBtn({ 155, 40 }, { infoPanel.getPosition().x + 210.f, buttonY }, "Next round", _data->assets.GetFont("plane_Font"));
 	roundBtn.setColors(BUTTON_MAIN_RED_COLOR, BUTTON_HOVER_RED_COLOR);
 	roundButtons.push_back(roundBtn);
-
-	chooseButtons.push_back(chooseBtn);
-	roundButtons.push_back(roundBtn);
-	chooseLineOffsets[plane->getId()] = yOffset;*/
-
-	Button takeoffBtn({ 155, 40 }, { infoPanel.getPosition().x + 20.f, buttonY }, "Take off", _data->assets.GetFont("plane_Font"));
-	takeoffBtn.setColors(BUTTON_MAIN_COLOR, BUTTON_HOVER_COLOR);
-	chooseButtons.push_back(takeoffBtn);
 }
 
 /*
